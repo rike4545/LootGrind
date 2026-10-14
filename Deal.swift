@@ -1,21 +1,57 @@
 import Foundation
 
-enum PayoutType: String, CaseIterable, Identifiable {
+enum PayoutType: String, CaseIterable, Identifiable, Codable {
     case cash = "Cash"
     case storeCredit = "Store Credit"
     var id: String { rawValue }
 }
 
-struct Deal: Identifiable {
-    let id = UUID()
+/// A trade-in quote entered by the user from a real offer (e.g. GameStop's trade-in page).
+/// `identifier` is an exact UPC or manufacturer model number used to match retail listings.
+struct TradeInQuote: Identifiable, Codable, Equatable {
+    var id = UUID()
+    var identifier: String
+    var label: String
+    var tradeValue: Decimal
+    var payoutType: PayoutType
+    var source: String
+    var quotedAt: Date
+
+    var normalizedIdentifier: String {
+        identifier.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    }
+}
+
+/// A live retail listing returned by an authorized provider.
+struct RetailListing: Equatable {
+    let sku: String
     let name: String
     let retailer: String
-    let purchasePrice: Decimal
-    let tradeValue: Decimal
-    let payoutType: PayoutType
+    let price: Decimal
+    let upc: String?
+    let modelNumber: String?
+    let url: URL?
+    let fetchedAt: Date
+
+    func matches(_ quote: TradeInQuote) -> Bool {
+        let id = quote.normalizedIdentifier
+        guard !id.isEmpty else { return false }
+        return upc?.lowercased() == id || modelNumber?.lowercased() == id
+    }
+}
+
+struct Deal: Identifiable {
+    var id: String { "\(listing.retailer)-\(listing.sku)-\(quote.id)" }
+    let listing: RetailListing
+    let quote: TradeInQuote
     let taxRate: Decimal
     let extraCosts: Decimal
-    let isIllustrative: Bool
+
+    var name: String { listing.name }
+    var retailer: String { listing.retailer }
+    var purchasePrice: Decimal { listing.price }
+    var tradeValue: Decimal { quote.tradeValue }
+    var payoutType: PayoutType { quote.payoutType }
 
     var totalCost: Decimal {
         purchasePrice + purchasePrice * taxRate + extraCosts
@@ -30,14 +66,18 @@ struct Deal: Identifiable {
         return netDifference / totalCost * 100
     }
 
-    static let samples: [Deal] = [
-        Deal(name: "iPad (sample listing)", retailer: "Walmart",
-             purchasePrice: 299, tradeValue: 340, payoutType: .cash,
-             taxRate: Decimal(string: "0.08625")!, extraCosts: 0,
-             isIllustrative: true),
-        Deal(name: "Game controller (sample listing)", retailer: "Best Buy",
-             purchasePrice: 49.99, tradeValue: 35, payoutType: .storeCredit,
-             taxRate: Decimal(string: "0.08625")!, extraCosts: 0,
-             isIllustrative: true)
-    ]
+    /// Quotes older than this are treated as stale and flagged.
+    static let staleQuoteInterval: TimeInterval = 7 * 24 * 3600
+    func isQuoteStale(now: Date = Date()) -> Bool {
+        now.timeIntervalSince(quote.quotedAt) > Deal.staleQuoteInterval
+    }
+
+    /// Profitable deals ranked by ROI (highest first), limited to `limit`.
+    static func topByROI(_ deals: [Deal], limit: Int = 5) -> [Deal] {
+        deals
+            .filter { $0.netDifference > 0 }
+            .sorted { $0.roiPercent > $1.roiPercent }
+            .prefix(limit)
+            .map { $0 }
+    }
 }

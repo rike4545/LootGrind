@@ -1,95 +1,97 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var minimumProfit = 25.0
-    @State private var selectedTab = 0
-
-    private var deals: [Deal] {
-        Deal.samples.filter { NSDecimalNumber(decimal: $0.netDifference).doubleValue >= minimumProfit }
-    }
+    @EnvironmentObject private var store: DealStore
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            NavigationStack {
-                List {
-                    Section {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Find the spread.")
-                                .font(.largeTitle.bold())
-                            Text("Compare retail prices with trade-in offers. Only verified data should drive a buy decision.")
-                                .foregroundStyle(.secondary)
+        TabView {
+            DealsView()
+                .tabItem { Label("Deals", systemImage: "chart.line.uptrend.xyaxis") }
+            QuotesView()
+                .tabItem { Label("Quotes", systemImage: "tag") }
+            SourcesView()
+                .tabItem { Label("Sources", systemImage: "antenna.radiowaves.left.and.right") }
+        }
+        .tint(.green)
+        .task { if !store.quotes.isEmpty && !store.apiKey.isEmpty { await store.refresh() } }
+    }
+}
+
+private struct DealsView: View {
+    @EnvironmentObject private var store: DealStore
+
+    var body: some View {
+        NavigationStack {
+            List {
+                if store.quotes.isEmpty {
+                    ContentUnavailableView("No trade-in quotes yet", systemImage: "tag",
+                        description: Text("Add a real trade-in quote on the Quotes tab. LootGrind then fetches the live retail price for the exact same product."))
+                } else if store.deals.isEmpty {
+                    ContentUnavailableView("No matched listings", systemImage: "magnifyingglass",
+                        description: Text(store.apiKey.isEmpty ? "Add your Best Buy API key in Sources." : "Pull to refresh. Listings must match the quote's UPC or model number exactly."))
+                } else {
+                    Section("Top 5 by ROI") {
+                        let top = store.topDeals
+                        if top.isEmpty {
+                            Text("No profitable deals right now.").foregroundStyle(.secondary)
                         }
-                        .padding(.vertical, 8)
-                    }
-                    Section("Minimum net difference") {
-                        VStack(alignment: .leading) {
-                            Text(minimumProfit, format: .currency(code: "USD").precision(.fractionLength(0)))
-                                .font(.title2.bold())
-                                .foregroundStyle(.green)
-                            Slider(value: $minimumProfit, in: 0...100, step: 5)
-                                .tint(.green)
-                        }
-                    }
-                    Section("Potential opportunities") {
-                        if deals.isEmpty {
-                            ContentUnavailableView("No matching sample deals", systemImage: "magnifyingglass",
-                                                   description: Text("Lower the threshold or connect verified data sources."))
-                        } else {
-                            ForEach(deals) { deal in
-                                NavigationLink {
-                                    DealDetailView(deal: deal)
-                                } label: {
-                                    DealRow(deal: deal)
-                                }
+                        ForEach(Array(top.enumerated()), id: \.element.id) { index, deal in
+                            NavigationLink { DealDetailView(deal: deal) } label: {
+                                DealRow(deal: deal, rank: index + 1)
                             }
                         }
                     }
-                    Section {
-                        Label("Sample data only — not live offers", systemImage: "info.circle")
-                            .font(.footnote)
-                            .foregroundStyle(.orange)
+                    Section("All matched products") {
+                        ForEach(store.rankedDeals) { deal in
+                            NavigationLink { DealDetailView(deal: deal) } label: {
+                                DealRow(deal: deal, rank: nil)
+                            }
+                        }
                     }
                 }
-                .navigationTitle("LootGrind")
-            }
-            .tabItem { Label("Deals", systemImage: "chart.line.uptrend.xyaxis") }
-            .tag(0)
-
-            NavigationStack {
-                List {
-                    Label("Best Buy provider: not connected", systemImage: "link")
-                    Label("Walmart provider: not connected", systemImage: "link")
-                    Label("GameStop trade-in provider: not connected", systemImage: "link")
-                    Text("Use authorized data sources and record a timestamp for each quote.")
-                        .foregroundStyle(.secondary)
+                if let error = store.errorMessage {
+                    Section { Label(error, systemImage: "exclamationmark.triangle").foregroundStyle(.red) }
                 }
-                .navigationTitle("Data Sources")
+                if let last = store.lastRefresh {
+                    Section { Text("Retail prices fetched \(last.formatted(date: .abbreviated, time: .shortened))")
+                        .font(.footnote).foregroundStyle(.secondary) }
+                }
             }
-            .tabItem { Label("Sources", systemImage: "antenna.radiowaves.left.and.right") }
-            .tag(1)
+            .navigationTitle("LootGrind")
+            .refreshable { await store.refresh() }
+            .toolbar {
+                if store.isRefreshing { ProgressView() }
+            }
         }
-        .tint(.green)
     }
 }
 
 private struct DealRow: View {
     let deal: Deal
+    let rank: Int?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack {
-                Text(deal.name).font(.headline)
-                Spacer()
-                Text(deal.netDifference, format: .currency(code: "USD"))
+        HStack(spacing: 12) {
+            if let rank {
+                Text("#\(rank)").font(.title3.bold().monospacedDigit()).foregroundStyle(.green)
+                    .frame(minWidth: 36)
+            }
+            VStack(alignment: .leading, spacing: 4) {
+                Text(deal.name).font(.headline).lineLimit(2)
+                Text("\(deal.retailer) · \(deal.payoutType.rawValue)")
+                    .font(.subheadline).foregroundStyle(.secondary)
+                if deal.isQuoteStale() {
+                    Text("Trade-in quote is over 7 days old — re-verify").font(.caption).foregroundStyle(.orange)
+                }
+            }
+            Spacer()
+            VStack(alignment: .trailing) {
+                Text("\(NSDecimalNumber(decimal: deal.roiPercent).doubleValue, specifier: "%.1f")%")
                     .font(.headline.monospacedDigit())
                     .foregroundStyle(deal.netDifference >= 0 ? .green : .red)
+                Text(deal.netDifference, format: .currency(code: "USD"))
+                    .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
             }
-            Text("\(deal.retailer) · \(deal.payoutType.rawValue)")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            Text("Illustrative estimate · tax included")
-                .font(.caption)
-                .foregroundStyle(.orange)
         }
         .padding(.vertical, 4)
     }
@@ -100,19 +102,139 @@ private struct DealDetailView: View {
 
     var body: some View {
         List {
+            LabeledContent("Product", value: deal.name)
             LabeledContent("Retailer", value: deal.retailer)
             LabeledContent("Purchase price", value: deal.purchasePrice, format: .currency(code: "USD"))
             LabeledContent("Estimated tax", value: deal.purchasePrice * deal.taxRate, format: .currency(code: "USD"))
             LabeledContent("Additional costs", value: deal.extraCosts, format: .currency(code: "USD"))
-            LabeledContent("Total estimated cost", value: deal.totalCost, format: .currency(code: "USD"))
-            LabeledContent("Trade-in estimate", value: deal.tradeValue, format: .currency(code: "USD"))
+            LabeledContent("Total cost", value: deal.totalCost, format: .currency(code: "USD"))
+            LabeledContent("Trade-in value", value: deal.tradeValue, format: .currency(code: "USD"))
             LabeledContent("Payout type", value: deal.payoutType.rawValue)
             LabeledContent("Net difference", value: deal.netDifference, format: .currency(code: "USD"))
-            LabeledContent("ROI", value: "\(NSDecimalNumber(decimal: deal.roiPercent).doubleValue, specifier: "%.1f")%")
-            Text("Illustrative values only. Confirm the current quote, product condition, payout terms, and local eligibility before purchasing.")
-                .font(.footnote)
-                .foregroundStyle(.orange)
+            LabeledContent("ROI", value: "\(NSDecimalNumber(decimal: deal.roiPercent).doubleValue.formatted(.number.precision(.fractionLength(1))))%")
+            Section("Verification") {
+                LabeledContent("Retail price checked", value: deal.listing.fetchedAt.formatted(date: .abbreviated, time: .shortened))
+                LabeledContent("Trade-in source", value: deal.quote.source)
+                LabeledContent("Trade-in quoted", value: deal.quote.quotedAt.formatted(date: .abbreviated, time: .omitted))
+                LabeledContent("Matched on", value: deal.quote.identifier)
+                if let url = deal.listing.url { Link("Open listing", destination: url) }
+            }
+            if deal.payoutType == .storeCredit {
+                Text("Store credit is not cash; its value depends on what you can buy with it.")
+                    .font(.footnote).foregroundStyle(.orange)
+            }
+            Text("Confirm the current quote, condition, payout terms and local eligibility before purchasing.")
+                .font(.footnote).foregroundStyle(.secondary)
         }
         .navigationTitle("Deal Analysis")
+    }
+}
+
+private struct QuotesView: View {
+    @EnvironmentObject private var store: DealStore
+    @State private var showingAdd = false
+
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(store.quotes) { quote in
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
+                            Text(quote.label).font(.headline)
+                            Spacer()
+                            Text(quote.tradeValue, format: .currency(code: "USD")).monospacedDigit()
+                        }
+                        Text("\(quote.identifier) · \(quote.payoutType.rawValue) · \(quote.source) · \(quote.quotedAt.formatted(date: .abbreviated, time: .omitted))")
+                            .font(.caption).foregroundStyle(.secondary)
+                    }
+                }
+                .onDelete { store.delete(at: $0) }
+                if store.quotes.isEmpty {
+                    Text("Add a real trade-in quote with the product's UPC or model number.")
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .navigationTitle("Trade-in Quotes")
+            .toolbar { Button { showingAdd = true } label: { Image(systemName: "plus") } }
+            .sheet(isPresented: $showingAdd) { AddQuoteView() }
+        }
+    }
+}
+
+private struct AddQuoteView: View {
+    @EnvironmentObject private var store: DealStore
+    @Environment(\.dismiss) private var dismiss
+    @State private var label = ""
+    @State private var identifier = ""
+    @State private var value = ""
+    @State private var payout = PayoutType.cash
+    @State private var source = "GameStop"
+    @State private var quotedAt = Date()
+
+    private var parsedValue: Decimal? { Decimal(string: value) }
+    private var isValid: Bool {
+        !label.isEmpty && !identifier.trimmingCharacters(in: .whitespaces).isEmpty
+            && (parsedValue ?? 0) > 0
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                TextField("Product name", text: $label)
+                TextField("UPC or model number (exact)", text: $identifier)
+                    .textInputAutocapitalization(.never).autocorrectionDisabled()
+                TextField("Trade-in value (USD)", text: $value).keyboardType(.decimalPad)
+                Picker("Payout", selection: $payout) {
+                    ForEach(PayoutType.allCases) { Text($0.rawValue).tag($0) }
+                }
+                TextField("Quote source", text: $source)
+                DatePicker("Quoted on", selection: $quotedAt, in: ...Date(), displayedComponents: .date)
+            }
+            .navigationTitle("New Quote")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        guard let tradeValue = parsedValue else { return }
+                        store.add(TradeInQuote(identifier: identifier, label: label, tradeValue: tradeValue,
+                                               payoutType: payout, source: source, quotedAt: quotedAt))
+                        Task { await store.refresh() }
+                        dismiss()
+                    }.disabled(!isValid)
+                }
+            }
+        }
+    }
+}
+
+private struct SourcesView: View {
+    @EnvironmentObject private var store: DealStore
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("Best Buy Products API") {
+                    SecureField("API key", text: $store.apiKey)
+                        .textInputAutocapitalization(.never).autocorrectionDisabled()
+                    Label(store.apiKey.isEmpty ? "Not connected" : "Key saved",
+                          systemImage: store.apiKey.isEmpty ? "link.badge.plus" : "checkmark.seal")
+                    Link("Get a free key", destination: URL(string: "https://developer.bestbuy.com")!)
+                }
+                Section("Sales tax") {
+                    Stepper(value: $store.taxPercent, in: 0...15, step: 0.25) {
+                        Text("\(store.taxPercent, specifier: "%.2f")%")
+                    }
+                }
+                Section("Not connected") {
+                    Label("Walmart: requires approved Walmart API access", systemImage: "link")
+                    Label("GameStop: no public trade-in API — enter quotes manually", systemImage: "hand.point.up.left")
+                }
+                Section {
+                    Text("Retail prices come live from authorized APIs. Trade-in values are quotes you enter, each stamped with source and date.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
+            }
+            .navigationTitle("Data Sources")
+        }
     }
 }
