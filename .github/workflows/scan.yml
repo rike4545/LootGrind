@@ -1,0 +1,43 @@
+name: Scan deals
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # every 6 hours; Best Buy is free, SerpApi bills per search
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: scan
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: scan-results
+          path: prev
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node --test scanner/scan.test.mjs
+      - run: node scanner/scan.mjs
+        env:
+          BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          TAX_PERCENT: ${{ vars.TAX_PERCENT || '7' }}
+          MIN_ROI: ${{ vars.MIN_ROI || '10' }}
+          MIN_PROFIT: ${{ vars.MIN_PROFIT || '5' }}
+      - name: Publish feed to scan-results branch
+        run: |
+          cd out
+          git init -q -b scan-results
+          git config user.name "lootgrind-scanner"
+          git config user.email "scanner@users.noreply.github.com"
+          git add top-deals.json
+          git commit -qm "Scan $(date -u +%FT%TZ)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" scan-results

@@ -6,10 +6,14 @@ final class DealStore: ObservableObject {
     @AppStorage("bestBuyAPIKey") var apiKey = ""
     @AppStorage("walmartSearchKey") var walmartSearchKey = ""
     @AppStorage("taxPercent") var taxPercent = 7.0
+    /// URL of the scanner's top-deals.json, e.g.
+    /// https://raw.githubusercontent.com/<owner>/<repo>/scan-results/top-deals.json
+    @AppStorage("scannerFeedURL") var feedURL = ""
 
     @Published private(set) var quotes: [TradeInQuote] = []
     @Published private(set) var listings: [RetailListing] = []
     @Published private(set) var isRefreshing = false
+    @Published private(set) var scanFeed: ScanFeed?
     @Published private(set) var lastRefresh: Date?
     @Published var errorMessage: String?
 
@@ -44,16 +48,39 @@ final class DealStore: ObservableObject {
         persist()
     }
 
+    /// Quotes as JSON for the scanner's scanner/quotes.json (ISO-8601 dates).
+    var exportedQuotesJSON: String {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        return (try? String(data: encoder.encode(quotes), encoding: .utf8)) ?? "[]"
+    }
+
+    func loadScanFeed() async {
+        guard let url = URL(string: feedURL.trimmingCharacters(in: .whitespacesAndNewlines)),
+              url.scheme == "https" else { return }
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            if let http = response as? HTTPURLResponse, http.statusCode != 200 {
+                throw ProviderError.badResponse(http.statusCode)
+            }
+            scanFeed = try ScanFeed.decode(data)
+        } catch {
+            errorMessage = "Scanner feed: \(error.localizedDescription)"
+        }
+    }
+
     func refresh() async {
         isRefreshing = true
         errorMessage = nil
         defer { isRefreshing = false }
+        await loadScanFeed()
         let providers: [ListingProvider] = [
             BestBuyProvider(apiKey: apiKey),
             WalmartSearchProvider(apiKey: walmartSearchKey)
         ].filter(\.isConfigured)
         guard !providers.isEmpty else {
-            errorMessage = ProviderError.missingAPIKey.localizedDescription
+            if scanFeed == nil { errorMessage = ProviderError.missingAPIKey.localizedDescription }
             return
         }
         var fetched: [RetailListing] = []
@@ -66,7 +93,7 @@ final class DealStore: ObservableObject {
         }
         listings = fetched
         lastRefresh = Date()
-        errorMessage = errors.isEmpty ? nil : Array(Set(errors)).sorted().joined(separator: "\n")
+        if !errors.isEmpty { errorMessage = Array(Set(errors)).sorted().joined(separator: "\n") }
     }
 
     private func persist() {
