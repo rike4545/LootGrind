@@ -4,7 +4,7 @@ LootGrind is a native iOS app concept for finding retail-to-trade-in arbitrage o
 
 ## Current status
 
-The app contains no demo data. Retail prices are fetched live from the official **Best Buy Products API** (free key from developer.bestbuy.com, entered in the Sources tab). Trade-in values are real quotes you enter (e.g. from GameStop), each stamped with source, payout type and date. Listings are matched to quotes by exact UPC or model number, and the Deals tab ranks the **Top 5 by ROI**. Quotes older than 7 days are flagged as stale.
+The app contains no demo data. Retail prices are fetched live from the official **Best Buy Products API** (free key from developer.bestbuy.com, entered in the Sources tab). Trade-in values are real quotes you enter (e.g. from GameStop), each stamped with source, payout type and date. Walmart has no public price API, so it is searched automatically through a licensed search-data service (SerpApi); those matches are flagged until verified. Listings are matched to quotes by exact UPC or model number, and the Deals tab ranks the **Top 5 by ROI**. Quotes older than 7 days are flagged as stale.
 
 ## Important data-integrity notes
 
@@ -23,7 +23,7 @@ The app contains no demo data. Retail prices are fetched live from the official 
 
 ## Next implementation milestones
 
-1. Add an authorized Walmart product data provider (Best Buy is done).
+1. Add a backend scanner so searches run on a schedule (Best Buy and Walmart-via-SerpApi providers are done).
 2. Add a GameStop trade-in offer provider and exact-SKU matching.
 3. Add a backend scheduled scanner and push notifications.
 4. Add location permissions and local pickup availability.

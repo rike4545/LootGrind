@@ -50,4 +50,20 @@ final class DealTests: XCTestCase {
         XCTAssertNil(BestBuyProvider.requestURL(identifier: "123", apiKey: ""))
         XCTAssertNotNil(BestBuyProvider.requestURL(identifier: "123", apiKey: "k"))
     }
+
+    func testSearchBasedListingMatchesQuoteAndIsFlaggedUnverified() {
+        let listing = RetailListing(sku: "9", name: "Y", retailer: "Walmart", price: 10, upc: nil,
+                                    modelNumber: nil, url: nil, fetchedAt: Date(),
+                                    searchedFor: "0123", isExactMatch: false)
+        let quote = TradeInQuote(identifier: "0123", label: "", tradeValue: 1, payoutType: .cash,
+                                 source: "", quotedAt: Date())
+        XCTAssertTrue(listing.matches(quote))
+        XCTAssertFalse(listing.isExactMatch)
+    }
+
+    func testWalmartRequestURLValidation() {
+        XCTAssertNil(WalmartSearchProvider.requestURL(identifier: "a&b", apiKey: "k"))
+        XCTAssertNil(WalmartSearchProvider.requestURL(identifier: "123", apiKey: ""))
+        XCTAssertNotNil(WalmartSearchProvider.requestURL(identifier: "123", apiKey: "k"))
+    }
 }

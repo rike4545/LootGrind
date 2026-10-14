@@ -32,11 +32,16 @@ struct RetailListing: Equatable {
     let modelNumber: String?
     let url: URL?
     let fetchedAt: Date
+    /// Set for search-based providers: the identifier that was searched for.
+    var searchedFor: String? = nil
+    /// False when the listing came from a text search and its UPC/model was not confirmed.
+    var isExactMatch = true
 
     func matches(_ quote: TradeInQuote) -> Bool {
         let id = quote.normalizedIdentifier
         guard !id.isEmpty else { return false }
-        return upc?.lowercased() == id || modelNumber?.lowercased() == id
+        if upc?.lowercased() == id || modelNumber?.lowercased() == id { return true }
+        return searchedFor?.lowercased() == id
     }
 }
 

@@ -14,7 +14,15 @@ enum ProviderError: LocalizedError {
 
 /// Fetches live prices from the official Best Buy Products API
 /// (https://bestbuyapis.github.io/api-documentation/). Requires a free developer key.
-struct BestBuyProvider {
+protocol ListingProvider {
+    var name: String { get }
+    var isConfigured: Bool { get }
+    func listings(for identifier: String) async throws -> [RetailListing]
+}
+
+struct BestBuyProvider: ListingProvider {
+    var name: String { "Best Buy" }
+    var isConfigured: Bool { !apiKey.isEmpty }
     var apiKey: String
     var session: URLSession = .shared
 

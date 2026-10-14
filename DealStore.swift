@@ -4,6 +4,7 @@ import SwiftUI
 @MainActor
 final class DealStore: ObservableObject {
     @AppStorage("bestBuyAPIKey") var apiKey = ""
+    @AppStorage("walmartSearchKey") var walmartSearchKey = ""
     @AppStorage("taxPercent") var taxPercent = 7.0
 
     @Published private(set) var quotes: [TradeInQuote] = []
@@ -47,17 +48,25 @@ final class DealStore: ObservableObject {
         isRefreshing = true
         errorMessage = nil
         defer { isRefreshing = false }
-        let provider = BestBuyProvider(apiKey: apiKey)
-        var fetched: [RetailListing] = []
-        do {
-            for identifier in Set(quotes.map(\.normalizedIdentifier)) {
-                fetched += try await provider.listings(for: identifier)
-            }
-            listings = fetched
-            lastRefresh = Date()
-        } catch {
-            errorMessage = error.localizedDescription
+        let providers: [ListingProvider] = [
+            BestBuyProvider(apiKey: apiKey),
+            WalmartSearchProvider(apiKey: walmartSearchKey)
+        ].filter(\.isConfigured)
+        guard !providers.isEmpty else {
+            errorMessage = ProviderError.missingAPIKey.localizedDescription
+            return
         }
+        var fetched: [RetailListing] = []
+        var errors: [String] = []
+        for provider in providers {
+            for identifier in Set(quotes.map(\.normalizedIdentifier)) {
+                do { fetched += try await provider.listings(for: identifier) }
+                catch { errors.append("\(provider.name): \(error.localizedDescription)") }
+            }
+        }
+        listings = fetched
+        lastRefresh = Date()
+        errorMessage = errors.isEmpty ? nil : Array(Set(errors)).sorted().joined(separator: "\n")
     }
 
     private func persist() {

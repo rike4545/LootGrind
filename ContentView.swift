@@ -13,7 +13,7 @@ struct ContentView: View {
                 .tabItem { Label("Sources", systemImage: "antenna.radiowaves.left.and.right") }
         }
         .tint(.green)
-        .task { if !store.quotes.isEmpty && !store.apiKey.isEmpty { await store.refresh() } }
+        .task { if !store.quotes.isEmpty && !(store.apiKey.isEmpty && store.walmartSearchKey.isEmpty) { await store.refresh() } }
     }
 }
 
@@ -28,7 +28,7 @@ private struct DealsView: View {
                         description: Text("Add a real trade-in quote on the Quotes tab. LootGrind then fetches the live retail price for the exact same product."))
                 } else if store.deals.isEmpty {
                     ContentUnavailableView("No matched listings", systemImage: "magnifyingglass",
-                        description: Text(store.apiKey.isEmpty ? "Add your Best Buy API key in Sources." : "Pull to refresh. Listings must match the quote's UPC or model number exactly."))
+                        description: Text((store.apiKey.isEmpty && store.walmartSearchKey.isEmpty) ? "Add a Best Buy or Walmart search key in Sources." : "Pull to refresh. Listings must match the quote's UPC or model number exactly."))
                 } else {
                     Section("Top 5 by ROI") {
                         let top = store.topDeals
@@ -80,6 +80,9 @@ private struct DealRow: View {
                 Text(deal.name).font(.headline).lineLimit(2)
                 Text("\(deal.retailer) · \(deal.payoutType.rawValue)")
                     .font(.subheadline).foregroundStyle(.secondary)
+                if !deal.listing.isExactMatch {
+                    Text("Search match — verify it's the same product").font(.caption).foregroundStyle(.orange)
+                }
                 if deal.isQuoteStale() {
                     Text("Trade-in quote is over 7 days old — re-verify").font(.caption).foregroundStyle(.orange)
                 }
@@ -117,6 +120,10 @@ private struct DealDetailView: View {
                 LabeledContent("Trade-in source", value: deal.quote.source)
                 LabeledContent("Trade-in quoted", value: deal.quote.quotedAt.formatted(date: .abbreviated, time: .omitted))
                 LabeledContent("Matched on", value: deal.quote.identifier)
+                if !deal.listing.isExactMatch {
+                    Text("Found by searching \(deal.quote.identifier); the UPC was not confirmed. Check the listing matches the exact model, condition and storage.")
+                        .font(.footnote).foregroundStyle(.orange)
+                }
                 if let url = deal.listing.url { Link("Open listing", destination: url) }
             }
             if deal.payoutType == .storeCredit {
@@ -220,13 +227,21 @@ private struct SourcesView: View {
                           systemImage: store.apiKey.isEmpty ? "link.badge.plus" : "checkmark.seal")
                     Link("Get a free key", destination: URL(string: "https://developer.bestbuy.com")!)
                 }
+                Section("Walmart (via SerpApi search)") {
+                    SecureField("SerpApi key", text: $store.walmartSearchKey)
+                        .textInputAutocapitalization(.never).autocorrectionDisabled()
+                    Label(store.walmartSearchKey.isEmpty ? "Not connected" : "Key saved",
+                          systemImage: store.walmartSearchKey.isEmpty ? "link.badge.plus" : "checkmark.seal")
+                    Link("Get a key", destination: URL(string: "https://serpapi.com")!)
+                    Text("Walmart has no public price API, so LootGrind searches each quote's UPC/model through a licensed search service. Results are flagged until you verify the match.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
                 Section("Sales tax") {
                     Stepper(value: $store.taxPercent, in: 0...15, step: 0.25) {
                         Text("\(store.taxPercent, specifier: "%.2f")%")
                     }
                 }
-                Section("Not connected") {
-                    Label("Walmart: requires approved Walmart API access", systemImage: "link")
+                Section("Manual only") {
                     Label("GameStop: no public trade-in API — enter quotes manually", systemImage: "hand.point.up.left")
                 }
                 Section {
