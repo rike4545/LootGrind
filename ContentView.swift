@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject private var store: DealStore
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         TabView {
@@ -13,7 +14,10 @@ struct ContentView: View {
                 .tabItem { Label("Sources", systemImage: "antenna.radiowaves.left.and.right") }
         }
         .tint(.green)
-        .task { if !store.quotes.isEmpty && !(store.apiKey.isEmpty && store.walmartSearchKey.isEmpty) { await store.refresh() } }
+        .task { await store.refresh() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { Task { await store.refresh() } }
+        }
     }
 }
 
@@ -40,12 +44,20 @@ private struct DealsView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
+                    if let feed = store.scanFeed, !feed.top.isEmpty {
+                        ScanSection(feed: feed)
+                    }
+                    let hasScan = !(store.scanFeed?.top.isEmpty ?? true)
                     if store.quotes.isEmpty {
-                        ContentUnavailableView("No trade-in quotes yet", systemImage: "tag",
-                            description: Text("Add a real trade-in quote on the Quotes tab. LootGrind then finds the live retail price for the same product."))
+                        if !hasScan {
+                            ContentUnavailableView("No trade-in quotes yet", systemImage: "tag",
+                                description: Text("Add a real trade-in quote on the Quotes tab, or connect the background scanner in Sources."))
+                        }
                     } else if store.deals.isEmpty {
+                        if !hasScan || !(store.apiKey.isEmpty && store.walmartSearchKey.isEmpty) {
                         ContentUnavailableView("No matched listings", systemImage: "magnifyingglass",
                             description: Text((store.apiKey.isEmpty && store.walmartSearchKey.isEmpty) ? "Add a Best Buy or Walmart search key in Sources." : "Pull down to refresh."))
+                        }
                     } else {
                         summary
                         let top = store.topDeals
@@ -54,7 +66,7 @@ private struct DealsView: View {
                                 .buttonStyle(.plain)
                         }
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Top 5 by ROI").font(.title3.bold())
+                            Text(hasScan ? "Live check · Top 5 by ROI" : "Top 5 by ROI").font(.title3.bold())
                             if top.isEmpty {
                                 Text("No profitable deals right now.").foregroundStyle(.secondary)
                             }
@@ -114,6 +126,60 @@ private struct DealsView: View {
         }
         .frame(maxWidth: .infinity).padding(.vertical, 12)
         .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 14))
+    }
+}
+
+private struct ScanSection: View {
+    @EnvironmentObject private var store: DealStore
+    let feed: ScanFeed
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Label("Background scan · Top 5 by ROI", systemImage: "clock.arrow.2.circlepath").font(.title3.bold())
+            }
+            Text("Updated \(feed.generatedAt.formatted(.relative(presentation: .named))) · tax \(feed.taxPercent.formatted())%")
+                .font(.caption).foregroundStyle(.secondary)
+            ForEach(feed.top) { deal in
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(spacing: 12) {
+                        Text("\(deal.rank)").font(.headline.monospacedDigit()).foregroundStyle(.black)
+                            .frame(width: 30, height: 30).background(.green, in: Circle())
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack(spacing: 6) {
+                                Text(deal.name).font(.subheadline.weight(.semibold)).lineLimit(2)
+                                if store.newScanDealIDs.contains(deal.id) {
+                                    Text("NEW").font(.caption2.bold()).padding(.horizontal, 6).padding(.vertical, 2)
+                                        .background(.green, in: Capsule()).foregroundStyle(.black)
+                                }
+                            }
+                            HStack(spacing: 6) {
+                                RetailerChip(retailer: deal.retailer)
+                                Text("Buy \(deal.price.formatted(.currency(code: "USD"))) → trade \(deal.tradeValue.formatted(.currency(code: "USD"))) · \(deal.payoutType)")
+                                    .font(.caption).foregroundStyle(.secondary)
+                            }
+                        }
+                        Spacer(minLength: 8)
+                        VStack(alignment: .trailing, spacing: 2) {
+                            Text(roiText(Decimal(deal.roiPercent))).font(.headline.monospacedDigit()).foregroundStyle(.green)
+                            Text(deal.netDifference.formatted(.currency(code: "USD")))
+                                .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                        }
+                    }
+                    if !deal.isExactMatch {
+                        Label("Verify match", systemImage: "exclamationmark.circle").font(.caption2).foregroundStyle(.orange)
+                    }
+                    if deal.quoteStale {
+                        Label("Quote over 7 days old", systemImage: "clock.badge.exclamationmark").font(.caption2).foregroundStyle(.orange)
+                    }
+                    if let url = deal.url {
+                        Link(destination: url) { Label("Open listing", systemImage: "arrow.up.right.square").font(.caption) }
+                    }
+                }
+                .padding(12)
+                .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 14))
+            }
+            ForEach(feed.errors, id: \.self) { Label($0, systemImage: "exclamationmark.triangle").font(.caption).foregroundStyle(.red) }
+        }
     }
 }
 
@@ -259,7 +325,19 @@ private struct QuotesView: View {
                 }
             }
             .navigationTitle("Trade-in Quotes")
-            .toolbar { Button { showingAdd = true } label: { Image(systemName: "plus") } }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    if !store.quotes.isEmpty {
+                        ShareLink(item: store.exportedQuotesJSON, subject: Text("quotes.json"),
+                                  message: Text("Save as scanner/quotes.json in your LootGrind repo")) {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { showingAdd = true } label: { Image(systemName: "plus") }
+                }
+            }
             .sheet(isPresented: $showingAdd) { AddQuoteView() }
         }
     }
@@ -331,6 +409,15 @@ private struct SourcesView: View {
                           systemImage: store.walmartSearchKey.isEmpty ? "link.badge.plus" : "checkmark.seal")
                     Link("Get a key", destination: URL(string: "https://serpapi.com")!)
                     Text("Walmart has no public price API, so LootGrind searches each quote's UPC/model through a licensed search service. Results are flagged until you verify the match.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
+                Section("Background scanner") {
+                    TextField("Feed URL (top-deals.json)", text: $store.feedURL)
+                        .font(.footnote)
+                        .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
+                    Label(store.scanFeed.map { "Last scan \($0.generatedAt.formatted(.relative(presentation: .named)))" } ?? "Not connected",
+                          systemImage: store.scanFeed == nil ? "link.badge.plus" : "checkmark.seal")
+                    Text("A GitHub Actions job scans on a schedule and publishes the Top 5. Set it up from the README (the feed URL below is pre-filled), and install the free ntfy app to get a push when a new deal appears.")
                         .font(.footnote).foregroundStyle(.secondary)
                 }
                 Section("Sales tax") {

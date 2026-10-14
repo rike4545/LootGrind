@@ -66,4 +66,16 @@ final class DealTests: XCTestCase {
         XCTAssertNil(WalmartSearchProvider.requestURL(identifier: "123", apiKey: ""))
         XCTAssertNotNil(WalmartSearchProvider.requestURL(identifier: "123", apiKey: "k"))
     }
+
+    func testScanFeedDecodesScannerOutput() throws {
+        let json = """
+        {"generatedAt":"2026-10-14T16:33:04Z","taxPercent":7,"matched":2,"errors":[],
+         "top":[{"id":"Best Buy-1-123","rank":1,"name":"Item","retailer":"Best Buy","price":100,
+         "tradeValue":150,"payoutType":"Cash","totalCost":107,"netDifference":43,"roiPercent":40.19,
+         "url":null,"isExactMatch":true,"quoteSource":"GameStop","quotedAt":"2026-10-10T00:00:00Z","quoteStale":false}]}
+        """
+        let feed = try ScanFeed.decode(Data(json.utf8))
+        XCTAssertEqual(feed.top.first?.rank, 1)
+        XCTAssertEqual(feed.top.first?.roiPercent, 40.19)
+    }
 }
