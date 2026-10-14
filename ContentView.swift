@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject private var store: DealStore
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         TabView {
@@ -14,6 +15,9 @@ struct ContentView: View {
         }
         .tint(.green)
         .task { await store.refresh() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { Task { await store.refresh() } }
+        }
     }
 }
 
@@ -126,6 +130,7 @@ private struct DealsView: View {
 }
 
 private struct ScanSection: View {
+    @EnvironmentObject private var store: DealStore
     let feed: ScanFeed
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -140,7 +145,13 @@ private struct ScanSection: View {
                         Text("\(deal.rank)").font(.headline.monospacedDigit()).foregroundStyle(.black)
                             .frame(width: 30, height: 30).background(.green, in: Circle())
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(deal.name).font(.subheadline.weight(.semibold)).lineLimit(2)
+                            HStack(spacing: 6) {
+                                Text(deal.name).font(.subheadline.weight(.semibold)).lineLimit(2)
+                                if store.newScanDealIDs.contains(deal.id) {
+                                    Text("NEW").font(.caption2.bold()).padding(.horizontal, 6).padding(.vertical, 2)
+                                        .background(.green, in: Capsule()).foregroundStyle(.black)
+                                }
+                            }
                             HStack(spacing: 6) {
                                 RetailerChip(retailer: deal.retailer)
                                 Text("Buy \(deal.price.formatted(.currency(code: "USD"))) → trade \(deal.tradeValue.formatted(.currency(code: "USD"))) · \(deal.payoutType)")
@@ -402,10 +413,11 @@ private struct SourcesView: View {
                 }
                 Section("Background scanner") {
                     TextField("Feed URL (top-deals.json)", text: $store.feedURL)
+                        .font(.footnote)
                         .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
                     Label(store.scanFeed.map { "Last scan \($0.generatedAt.formatted(.relative(presentation: .named)))" } ?? "Not connected",
                           systemImage: store.scanFeed == nil ? "link.badge.plus" : "checkmark.seal")
-                    Text("A GitHub Actions job scans on a schedule and publishes the Top 5. Set it up from the README, paste its raw feed URL here, and install the free ntfy app to get a push when a new deal appears.")
+                    Text("A GitHub Actions job scans on a schedule and publishes the Top 5. Set it up from the README (the feed URL below is pre-filled), and install the free ntfy app to get a push when a new deal appears.")
                         .font(.footnote).foregroundStyle(.secondary)
                 }
                 Section("Sales tax") {

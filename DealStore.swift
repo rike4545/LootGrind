@@ -8,7 +8,7 @@ final class DealStore: ObservableObject {
     @AppStorage("taxPercent") var taxPercent = 7.0
     /// URL of the scanner's top-deals.json, e.g.
     /// https://raw.githubusercontent.com/<owner>/<repo>/scan-results/top-deals.json
-    @AppStorage("scannerFeedURL") var feedURL = ""
+    @AppStorage("scannerFeedURL") var feedURL = DealStore.defaultFeedURL
 
     @Published private(set) var quotes: [TradeInQuote] = []
     @Published private(set) var listings: [RetailListing] = []
@@ -17,7 +17,13 @@ final class DealStore: ObservableObject {
     @Published private(set) var lastRefresh: Date?
     @Published var errorMessage: String?
 
+    /// Where the GitHub Actions scanner publishes its feed; works without setup once the workflow has run.
+    static let defaultFeedURL = "https://raw.githubusercontent.com/rike4545/LootGrind/scan-results/top-deals.json"
+
     private let quotesKey = "tradeInQuotes"
+    private let seenKey = "seenScanDealIDs"
+    /// Scanner deals that were not in the feed the last time the app loaded it.
+    @Published private(set) var newScanDealIDs: Set<String> = []
 
     init() {
         if let data = UserDefaults.standard.data(forKey: quotesKey),
@@ -61,10 +67,16 @@ final class DealStore: ObservableObject {
               url.scheme == "https" else { return }
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
-            if let http = response as? HTTPURLResponse, http.statusCode != 200 {
-                throw ProviderError.badResponse(http.statusCode)
+            if let http = response as? HTTPURLResponse {
+                if http.statusCode == 404 { return } // scanner has not published yet
+                if http.statusCode != 200 { throw ProviderError.badResponse(http.statusCode) }
             }
-            scanFeed = try ScanFeed.decode(data)
+            let feed = try ScanFeed.decode(data)
+            let current = Set(feed.top.map(\.id))
+            let seen = Set(UserDefaults.standard.stringArray(forKey: seenKey) ?? [])
+            if !seen.isEmpty { newScanDealIDs.formUnion(current.subtracting(seen)) }
+            UserDefaults.standard.set(Array(current), forKey: seenKey)
+            scanFeed = feed
         } catch {
             errorMessage = "Scanner feed: \(error.localizedDescription)"
         }
