@@ -305,17 +305,41 @@
     try { localStorage.setItem(magicStorageKey, JSON.stringify(magicCards)); magicSaveStatus.textContent = "Cards saved locally in this browser"; }
     catch (_) { magicSaveStatus.textContent = "Browser storage unavailable; export a CSV backup"; }
   }
+  const magicSearch = document.getElementById("magic-search");
+  const magicFilterCondition = document.getElementById("magic-filter-condition");
+  const magicFilterFinish = document.getElementById("magic-filter-finish");
+  const magicFilterStatus = document.getElementById("magic-filter-status");
+  const magicFilterCount = document.getElementById("magic-filter-count");
+  const magicPriceFields = ["tcgplayerMarket", "pricechartingPrice", "cardConduitBuylist", "gamestopTradeValue", "psaGradedValue"];
+  const freshnessDays = 7;
+  function priceState(card) {
+    const values = magicPriceFields.map(field => ({ value: safeNumber(card[field]), checked: card[field + "CheckedAt"] || (field === "psaGradedValue" ? card.psaPriceGuideCheckedAt : "") })).filter(item => item.value !== null);
+    if (!values.length) return "missing";
+    const dated = values.map(item => item.checked ? new Date(item.checked).getTime() : NaN).filter(Number.isFinite);
+    if (!dated.length) return "stale";
+    return dated.some(time => Date.now() - time <= freshnessDays * 86400000 && Date.now() >= time - 86400000) ? "fresh" : "stale";
+  }
   function renderMagic() {
     magicRows.replaceChildren();
-    if (!magicCards.length) {
+    const query = magicSearch.value.trim().toLowerCase();
+    const condition = magicFilterCondition.value;
+    const finish = magicFilterFinish.value;
+    const status = magicFilterStatus.value;
+    const visibleCards = magicCards.filter(card => {
+      const matchesQuery = !query || (card.name + " " + card.set).toLowerCase().includes(query);
+      return matchesQuery && (!condition || card.condition === condition) && (!finish || card.finish === finish) && (!status || priceState(card) === status);
+    });
+    magicFilterCount.textContent = "Showing " + visibleCards.length + " of " + magicCards.length + " cards";
+    if (!visibleCards.length) {
       const row = document.createElement("tr");
       const cell = document.createElement("td");
       cell.colSpan = 8;
       cell.className = "magic-empty";
-      cell.textContent = "Add a Magic card above to track the exact printing, condition, and finish.";
+      cell.textContent = magicCards.length ? "No cards match these filters. Try changing or resetting your filters." : "Add a Magic card above to track the exact printing, condition, and finish.";
       row.appendChild(cell); magicRows.appendChild(row); return;
     }
-    magicCards.forEach((card, index) => {
+    visibleCards.forEach(card => {
+      const index = magicCards.indexOf(card);
       const row = document.createElement("tr");
       const detail = document.createElement("td");
       const title = document.createElement("strong"); title.textContent = card.name;
@@ -331,14 +355,24 @@
           const value = input.value.trim();
           card[source.key] = value === "" ? "" : String(Math.max(0, Number(value) || 0));
           card[source.key + "CheckedAt"] = value === "" ? "" : new Date().toISOString();
+          card[source.key + "Source"] = value === "" ? "" : "manual entry";
           saveMagic(); renderMagic();
         });
         cell.appendChild(input);
         const checked = card[source.key + "CheckedAt"];
-        if (checked) { const small = document.createElement("small"); small.textContent = "Checked " + new Date(checked).toLocaleDateString(); cell.appendChild(small); }
+        const sourceNote = document.createElement("small");
+        if (checked) {
+          const checkedTime = new Date(checked).getTime();
+          const stale = !Number.isFinite(checkedTime) || Date.now() - checkedTime > freshnessDays * 86400000;
+          sourceNote.className = stale ? "magic-price-status is-stale" : "magic-price-status is-fresh";
+          sourceNote.textContent = (card[source.key + "Source"] || "Manual / legacy value") + " · " + (Number.isFinite(checkedTime) ? new Date(checked).toLocaleDateString() : "date unknown") + (stale ? " · stale" : " · current");
+        } else {
+          sourceNote.className = "magic-price-status is-unknown";
+          sourceNote.textContent = card[source.key] !== "" && card[source.key] != null ? "Manual / legacy value · date unknown" : "Not checked";
+        }
+        cell.appendChild(sourceNote);
         row.appendChild(cell);
       });
-      // PSA guide values apply only to the selected PSA-graded copy. They never enter raw-market spread calculations.
       const psaCell = document.createElement("td");
       psaCell.className = "magic-psa-value";
       const gradeLabel = document.createElement("label");
@@ -352,34 +386,29 @@
         gradeSelect.appendChild(option);
       });
       gradeSelect.value = card.psaGrade || "10";
-      gradeSelect.addEventListener("change", () => {
-        card.psaGrade = gradeSelect.value;
-        saveMagic(); renderMagic();
-      });
+      gradeSelect.addEventListener("change", () => { card.psaGrade = gradeSelect.value; saveMagic(); renderMagic(); });
       const psaInput = document.createElement("input");
-      psaInput.className = "magic-value";
-      psaInput.type = "number"; psaInput.min = "0"; psaInput.step = ".01";
-      psaInput.placeholder = "Manual only";
-      psaInput.value = card.psaGradedValue ?? "";
+      psaInput.className = "magic-value"; psaInput.type = "number"; psaInput.min = "0"; psaInput.step = ".01";
+      psaInput.placeholder = "Manual only"; psaInput.value = card.psaGradedValue ?? "";
       psaInput.setAttribute("aria-label", "PSA Price Guide value for " + card.name + ", PSA grade " + gradeSelect.value);
       psaInput.addEventListener("change", () => {
         const value = psaInput.value.trim();
         card.psaGradedValue = value === "" ? "" : String(Math.max(0, Number(value) || 0));
         card.psaPriceGuideCheckedAt = value === "" ? "" : new Date().toISOString();
+        card.psaGradedValueSource = value === "" ? "" : "manual entry";
         saveMagic(); renderMagic();
       });
       const gradeNote = document.createElement("small");
-      gradeNote.textContent = card.psaPriceGuideCheckedAt ? "Checked " + new Date(card.psaPriceGuideCheckedAt).toLocaleDateString() : "PSA-graded only";
-      gradeLabel.appendChild(gradeSelect);
-      psaCell.append(gradeLabel, psaInput, gradeNote);
-      row.appendChild(psaCell);
+      gradeNote.className = "magic-price-status " + (card.psaPriceGuideCheckedAt && Date.now() - new Date(card.psaPriceGuideCheckedAt).getTime() <= freshnessDays * 86400000 ? "is-fresh" : "is-unknown");
+      gradeNote.textContent = card.psaPriceGuideCheckedAt ? "Manual guide entry · checked " + new Date(card.psaPriceGuideCheckedAt).toLocaleDateString() : "Manual only · PSA-graded";
+      gradeLabel.appendChild(gradeSelect); psaCell.append(gradeLabel, psaInput, gradeNote); row.appendChild(psaCell);
       const spreadCell = document.createElement("td"); spreadCell.className = "magic-spread";
       const marketValues = [safeNumber(card.tcgplayerMarket), safeNumber(card.pricechartingPrice)].filter(v => v !== null);
       const bestMarket = marketValues.length ? Math.max(...marketValues) : null;
       const buylist = safeNumber(card.cardConduitBuylist);
       const gs = safeNumber(card.gamestopTradeValue);
-      const text = bestMarket === null ? "Add market prices" : "Market ref: " + currency(bestMarket) + (buylist === null ? "" : "\nBuylist gap: " + currency(buylist - bestMarket)) + (gs === null ? "" : "\nGameStop gap: " + currency(gs - bestMarket));
-      spreadCell.textContent = text; spreadCell.style.whiteSpace = "pre-line"; row.appendChild(spreadCell);
+      spreadCell.textContent = bestMarket === null ? "Add market prices" : "Raw market ref: " + currency(bestMarket) + (buylist === null ? "" : "\nCard Conduit vs. raw: " + currency(buylist - bestMarket)) + (gs === null ? "" : "\nGameStop quote vs. raw: " + currency(gs - bestMarket));
+      spreadCell.style.whiteSpace = "pre-line"; row.appendChild(spreadCell);
       const linksCell = document.createElement("td"); linksCell.className = "magic-source-links";
       const q = encodeURIComponent(card.name + " " + card.set);
       const links = [
@@ -389,13 +418,18 @@
         ["Card Conduit checker ↗", "https://cardconduit.com/card-price-check"],
         ["GameStop graded-card estimator ↗", "https://www.gamestop.com/graded-trading-cards/estimate"]
       ];
-      links.forEach(([label, href]) => { const a = document.createElement("a"); a.href = href; a.target = "_blank"; a.rel = "noreferrer"; a.textContent = label; linksCell.appendChild(a); });
+      links.forEach(([label, href]) => { const link = document.createElement("a"); link.href = href; link.target = "_blank"; link.rel = "noreferrer"; link.textContent = label; linksCell.appendChild(link); });
       const remove = document.createElement("button"); remove.type = "button"; remove.className = "magic-remove"; remove.textContent = "Remove";
       remove.addEventListener("click", () => { magicCards.splice(index, 1); saveMagic(); renderMagic(); });
-      linksCell.appendChild(remove); row.appendChild(linksCell);
-      magicRows.appendChild(row);
+      linksCell.appendChild(remove); row.appendChild(linksCell); magicRows.appendChild(row);
     });
   }
+  [magicSearch, magicFilterCondition, magicFilterFinish, magicFilterStatus].forEach(control => {
+    control.addEventListener(control === magicSearch ? "input" : "change", renderMagic);
+  });
+  document.getElementById("magic-reset-filters").addEventListener("click", () => {
+    magicSearch.value = ""; magicFilterCondition.value = ""; magicFilterFinish.value = ""; magicFilterStatus.value = ""; renderMagic();
+  });
   document.getElementById("magic-add-form").addEventListener("submit", event => {
     event.preventDefault();
     const card = {
@@ -451,10 +485,11 @@
           if (safeNumber(quote[field]) !== null) {
             card[field] = String(quote[field]);
             card[field + "CheckedAt"] = quote.checkedAt || snapshot.generatedAt || "";
+            card[field + "Source"] = "published snapshot";
             updated++;
           }
         });
-        card.gamestopStatus = quote.gamestopStatus || (safeNumber(quote.gamestopTradeValue) !== null ? "verified" : "unverified");
+        card.gamestopStatus = quote.gamestopStatus || (safeNumber(quote.gamestopTradeValue) !== null ? "unverified" : "unverified");
         card.grade = quote.grade || "";
         card.collectorNumber = quote.collectorNumber || "";
         card.sourceUrls = quote.sourceUrls || {};
