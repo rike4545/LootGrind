@@ -33,7 +33,7 @@ The static site lives in the repository root:
 - `favicon.svg` — site icon
 - `.github/workflows/pages.yml` — GitHub Pages deployment workflow
 
-To publish, open **Settings → Pages** in the repository and select **GitHub Actions** as the build and deployment source. The workflow deploys the root website when site files change on `main`. The first deployment may take a few minutes; confirm the Pages deployment succeeds before sharing the website URL.
+To publish, open **Settings → Pages** in the repository and select **GitHub Actions** as the build and deployment source. The workflow deploys the root website when site files or `data/trade-in-quotes.json` change on `main`, so a newly published quote snapshot is included in the Pages deployment. The first deployment may take a few minutes; confirm the Pages deployment succeeds before sharing the website URL.
 
 ## GameStop trade-in data: authorized feed adapter
 
