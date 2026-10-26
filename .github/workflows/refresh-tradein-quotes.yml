@@ -1,0 +1,38 @@
+name: Refresh authorized trade-in quotes
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every day at 12:20 UTC. Adjust after confirming provider rate limits.
+    - cron: "20 12 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh quotes from authorized feed
+        env:
+          TRADE_IN_FEED_URL: ${{ secrets.TRADE_IN_FEED_URL }}
+          TRADE_IN_FEED_KEY: ${{ secrets.TRADE_IN_FEED_KEY }}
+        run: python scripts/refresh-authorized-tradeins.py
+
+      - name: Upload quote snapshot
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lootgrind-trade-in-quotes
+          path: artifacts/trade-in-quotes.json
+          if-no-files-found: error
+          retention-days: 14
