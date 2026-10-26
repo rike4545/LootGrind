@@ -19,8 +19,12 @@
       "collectorNumber": "1",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ancient%20Tomb%20From%20the%20Vault%3A%20Realms",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ancient Tomb",
@@ -37,8 +41,12 @@
       "collectorNumber": "315",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ancient%20Tomb%20Tempest",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ancient Tomb",
@@ -55,8 +63,12 @@
       "collectorNumber": "",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ancient%20Tomb%20The%20List%20Reprints",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ancient Tomb",
@@ -73,8 +85,12 @@
       "collectorNumber": "236",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ancient%20Tomb%20Ultimate%20Masters",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ancient Tomb",
@@ -91,8 +107,12 @@
       "collectorNumber": "U31",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ancient%20Tomb%20Ultimate%20Masters%3A%20Box%20Toppers",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ancient Tomb",
@@ -109,8 +129,12 @@
       "collectorNumber": "36",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ancient%20Tomb%20Zendikar%20Expeditions",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ancient Tomb",
@@ -127,8 +151,12 @@
       "collectorNumber": "21",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ancient%20Tomb%20Zendikar%20Rising%20Expeditions",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Cavern of Souls",
@@ -145,8 +173,12 @@
       "collectorNumber": "226",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Cavern%20of%20Souls%20Avacyn%20Restored",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Cavern of Souls",
@@ -163,8 +195,12 @@
       "collectorNumber": "320",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Cavern%20of%20Souls%20Double%20Masters%202022",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Cavern of Souls",
@@ -181,8 +217,12 @@
       "collectorNumber": "232",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Cavern%20of%20Souls%20Modern%20Masters%202017",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Cavern of Souls",
@@ -199,8 +239,12 @@
       "collectorNumber": "269",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Cavern%20of%20Souls%20Prerelease%20Cards",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Cavern of Souls",
@@ -217,8 +261,12 @@
       "collectorNumber": "269",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Cavern%20of%20Souls%20Promo%20Pack%3A%20The%20Lost%20Caverns%20of%20Ixalan",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Cavern of Souls",
@@ -235,8 +283,12 @@
       "collectorNumber": "226/244",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Cavern%20of%20Souls%20The%20List%20Reprints",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Cavern of Souls",
@@ -253,8 +305,12 @@
       "collectorNumber": "237",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Cavern%20of%20Souls%20Ultimate%20Masters",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Cavern of Souls",
@@ -271,8 +327,12 @@
       "collectorNumber": "U32",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Cavern%20of%20Souls%20Ultimate%20Masters%3A%20Box%20Toppers",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Cavern of Souls",
@@ -289,8 +349,12 @@
       "collectorNumber": "22",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Cavern%20of%20Souls%20Zendikar%20Rising%20Expeditions",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Deflecting Swat",
@@ -307,8 +371,12 @@
       "collectorNumber": "50",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Deflecting%20Swat%20Commander%202020",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Deflecting Swat",
@@ -325,8 +393,12 @@
       "collectorNumber": "214",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Deflecting%20Swat%20Commander%20Masters",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Deflecting Swat",
@@ -343,8 +415,12 @@
       "collectorNumber": "1552",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Deflecting%20Swat%20Secret%20Lair%20Drop%20Series",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Dockside Extortionist",
@@ -361,8 +437,12 @@
       "collectorNumber": "24",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Dockside%20Extortionist%20Commander%202019",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Dockside Extortionist",
@@ -379,8 +459,12 @@
       "collectorNumber": "107",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Dockside%20Extortionist%20Double%20Masters%202022",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Dockside Extortionist",
@@ -397,8 +481,12 @@
       "collectorNumber": "107/024",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Dockside%20Extortionist%20The%20List%20Reprints",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Esper Sentinel",
@@ -415,8 +503,12 @@
       "collectorNumber": "12",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Esper%20Sentinel%20Modern%20Horizons%202",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Esper Sentinel",
@@ -433,8 +525,12 @@
       "collectorNumber": "12",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Esper%20Sentinel%20Prerelease%20Cards",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Esper Sentinel",
@@ -451,8 +547,12 @@
       "collectorNumber": "2123",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Esper%20Sentinel%20Secret%20Lair%20Drop%20Series",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Esper Sentinel",
@@ -469,8 +569,12 @@
       "collectorNumber": "012/303",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Esper%20Sentinel%20The%20List%20Reprints",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Force of Will",
@@ -487,8 +591,12 @@
       "collectorNumber": "42",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Force%20of%20Will%20Alliances",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Force of Will",
@@ -505,8 +613,12 @@
       "collectorNumber": "50",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Force%20of%20Will%20Dominaria%20Remastered",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Force of Will",
@@ -523,8 +635,12 @@
       "collectorNumber": "51",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Force%20of%20Will%20Double%20Masters",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Force of Will",
@@ -541,8 +657,12 @@
       "collectorNumber": "49",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Force%20of%20Will%20Eternal%20Masters",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Force of Will",
@@ -559,8 +679,12 @@
       "collectorNumber": "4",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Force%20of%20Will%20Judge%20Promos",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Force of Will",
@@ -577,8 +701,12 @@
       "collectorNumber": "14",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Force%20of%20Will%20Masterpiece%20Series%3A%20Amonkhet%20Invocations",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Force of Will",
@@ -595,8 +723,12 @@
       "collectorNumber": "19",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Force%20of%20Will%20Secrets%20of%20Strixhaven%3A%20Mystical%20Archive",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Jeweled Lotus",
@@ -613,8 +745,12 @@
       "collectorNumber": "319",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Jeweled%20Lotus%20Commander%20Legends",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Jeweled Lotus",
@@ -631,8 +767,12 @@
       "collectorNumber": "396",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Jeweled%20Lotus%20Commander%20Masters",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mana Crypt",
@@ -649,8 +789,12 @@
       "collectorNumber": "270",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mana%20Crypt%20Double%20Masters",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mana Crypt",
@@ -667,8 +811,12 @@
       "collectorNumber": "225",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mana%20Crypt%20Eternal%20Masters",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mana Crypt",
@@ -685,8 +833,12 @@
       "collectorNumber": "5",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mana%20Crypt%20Judge%20Promos",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mana Crypt",
@@ -703,8 +855,12 @@
       "collectorNumber": "16",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mana%20Crypt%20Masterpiece%20Series%3A%20Kaladesh%20Inventions",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mana Crypt",
@@ -721,8 +877,12 @@
       "collectorNumber": "",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mana%20Crypt%20Media%20Promos",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mana Crypt",
@@ -739,8 +899,12 @@
       "collectorNumber": "225",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mana%20Crypt%20The%20List%20Reprints",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mox Opal",
@@ -757,8 +921,12 @@
       "collectorNumber": "275",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mox%20Opal%20Double%20Masters",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mox Opal",
@@ -775,8 +943,12 @@
       "collectorNumber": "3",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mox%20Opal%20Judge%20Promos",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mox Opal",
@@ -793,8 +965,12 @@
       "collectorNumber": "19",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mox%20Opal%20Masterpiece%20Series%3A%20Kaladesh%20Inventions",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mox Opal",
@@ -811,8 +987,12 @@
       "collectorNumber": "223",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mox%20Opal%20Modern%20Masters%202015",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Mox Opal",
@@ -829,8 +1009,12 @@
       "collectorNumber": "179",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Mox%20Opal%20Scars%20of%20Mirrodin",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Orcish Bowmasters",
@@ -847,8 +1031,12 @@
       "collectorNumber": "103",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Orcish%20Bowmasters%20Prerelease%20Cards",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Orcish Bowmasters",
@@ -865,8 +1053,12 @@
       "collectorNumber": "103",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Orcish%20Bowmasters%20Universes%20Beyond%3A%20The%20Lord%20of%20the%20Rings%3A%20Tales%20of%20Middle-earth",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ragavan, Nimble Pilferer",
@@ -883,8 +1075,12 @@
       "collectorNumber": "21",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ragavan%2C%20Nimble%20Pilferer%20March%20of%20the%20Machine%3A%20Multiverse%20Legends",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ragavan, Nimble Pilferer",
@@ -901,15 +1097,19 @@
       "collectorNumber": "138",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ragavan%2C%20Nimble%20Pilferer%20Modern%20Horizons%202",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ragavan, Nimble Pilferer",
       "set": "Prerelease Cards",
       "condition": "Near Mint",
       "finish": "foil",
-      "tcgplayerMarket": 91.0,
+      "tcgplayerMarket": 91,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
@@ -919,8 +1119,12 @@
       "collectorNumber": "138",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ragavan%2C%20Nimble%20Pilferer%20Prerelease%20Cards",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Ragavan, Nimble Pilferer",
@@ -937,8 +1141,12 @@
       "collectorNumber": "2",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Ragavan%2C%20Nimble%20Pilferer%20Secret%20Lair%20Showdown",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Rhystic Study",
@@ -955,8 +1163,12 @@
       "collectorNumber": "15",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Rhystic%20Study%20Commander%27s%20Arsenal",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Rhystic Study",
@@ -973,8 +1185,12 @@
       "collectorNumber": "7",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Rhystic%20Study%20Judge%20Promos",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Rhystic Study",
@@ -991,8 +1207,12 @@
       "collectorNumber": "169",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Rhystic%20Study%20Jumpstart",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Rhystic Study",
@@ -1009,8 +1229,12 @@
       "collectorNumber": "114",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Rhystic%20Study%20Jumpstart%202022",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Rhystic Study",
@@ -1027,8 +1251,12 @@
       "collectorNumber": "45",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Rhystic%20Study%20Prophecy",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Rhystic Study",
@@ -1045,8 +1273,12 @@
       "collectorNumber": "45",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Rhystic%20Study%20The%20List%20Reprints",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Rhystic Study",
@@ -1063,8 +1295,12 @@
       "collectorNumber": "25",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Rhystic%20Study%20Wilds%20of%20Eldraine%3A%20Enchanting%20Tales",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Sheoldred, the Apocalypse",
@@ -1081,8 +1317,12 @@
       "collectorNumber": "107",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Sheoldred%2C%20the%20Apocalypse%20Dominaria%20United",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Sheoldred, the Apocalypse",
@@ -1099,8 +1339,12 @@
       "collectorNumber": "107",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Sheoldred%2C%20the%20Apocalypse%20Prerelease%20Cards",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "Sheoldred, the Apocalypse",
@@ -1117,8 +1361,12 @@
       "collectorNumber": "107",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=Sheoldred%2C%20the%20Apocalypse%20Promo%20Pack%3A%20Dominaria%20United",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "The One Ring",
@@ -1135,8 +1383,12 @@
       "collectorNumber": "246",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=The%20One%20Ring%20Prerelease%20Cards",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     },
     {
       "name": "The One Ring",
@@ -1153,9 +1405,13 @@
       "collectorNumber": "246",
       "sourceUrls": {
         "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=The%20One%20Ring%20Universes%20Beyond%3A%20The%20Lord%20of%20the%20Rings%3A%20Tales%20of%20Middle-earth",
-        "tcgApi": "https://tcgapi.dev/"
-      }
+        "tcgApi": "https://tcgapi.dev/",
+        "psaPriceGuide": "https://www.psacard.com/priceguide"
+      },
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only"
     }
   ],
-  "note": "TCG API market prices only. PriceCharting, Card Conduit, and GameStop values are unavailable unless separately verified from an authorized source. Market price is not a trade-in offer or guaranteed acquisition cost."
+  "note": "TCG API market prices only. PSA graded guide values are not scraped or automatically populated; check the official PSA Price Guide and enter a value for the exact PSA grade manually. PriceCharting, Card Conduit, and GameStop values are unavailable unless separately verified from an authorized source. Raw market prices, graded guide values, and trade-in offers are distinct and are not guaranteed acquisition costs or payouts."
 }
