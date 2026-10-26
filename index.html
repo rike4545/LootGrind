@@ -101,6 +101,14 @@
         <label>Finish<select id="magic-finish"><option value="nonfoil">Nonfoil</option><option value="foil">Foil</option><option value="etched">Etched foil</option></select></label>
         <button class="button button-primary" type="submit">Add card <span>＋</span></button>
       </form>
+      <div class="magic-filter-bar" aria-label="Filter Magic card watchlist">
+        <label>Search card / set<input id="magic-search" type="search" placeholder="Search name or printing" autocomplete="off"></label>
+        <label>Condition<select id="magic-filter-condition"><option value="">All conditions</option><option>Near Mint</option><option>Lightly Played</option><option>Moderately Played</option><option>Heavily Played</option><option>Damaged</option></select></label>
+        <label>Finish<select id="magic-filter-finish"><option value="">All finishes</option><option value="nonfoil">Nonfoil</option><option value="foil">Foil</option><option value="etched">Etched foil</option></select></label>
+        <label>Price status<select id="magic-filter-status"><option value="">All price statuses</option><option value="fresh">Checked within 7 days</option><option value="stale">Older than 7 days</option><option value="missing">No prices entered</option></select></label>
+        <button class="button button-secondary" type="button" id="magic-reset-filters">Reset filters</button>
+        <span id="magic-filter-count" role="status" aria-live="polite"></span>
+      </div>
       <div class="scanner-table-wrap">
         <table class="scanner-table magic-table">
           <thead><tr><th>Card / printing</th><th>TCGplayer raw market ($)</th><th>PriceCharting ($)</th><th>Card Conduit buylist ($)</th><th>GameStop graded-card trade-in ($)</th><th>PSA graded value ($)</th><th>Best raw reference / spread</th><th>Source checks</th></tr></thead>
