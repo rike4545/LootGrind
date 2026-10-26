@@ -1,31 +1,50 @@
 (() => {
   const money = value => (value < 0 ? "−$" : value > 0 ? "+$" : "$") + Math.abs(value).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const fields = ["price", "tax", "costs", "payout"].map(id => document.getElementById(id));
+  const calcCreditValue = document.getElementById("calc-credit-value");
   const netOutput = document.getElementById("net-result");
   const roiOutput = document.getElementById("roi-result");
   const note = document.getElementById("calc-note");
 
   function calculate() {
-    const [price, taxPercent, costs, payout] = fields.map(field => Math.max(0, Number(field.value) || 0));
+    const raw = fields.map(field => field.value.trim() === "" ? null : Number(field.value));
+    const [price, taxPercent, costs, payout] = raw;
+    const type = document.querySelector('input[name="payoutType"]:checked').value;
+    const creditPercent = Math.min(100, Math.max(0, Number(calcCreditValue.value) || 0));
+    const complete = raw.every(value => value !== null && Number.isFinite(value) && value >= 0) && taxPercent <= 30;
+    if (!complete) {
+      netOutput.textContent = "—";
+      roiOutput.textContent = "—";
+      netOutput.classList.remove("negative");
+      roiOutput.classList.remove("negative");
+      note.textContent = "Enter a verified retail price, tax rate, costs, and trade-in quote to calculate an estimate.";
+      return;
+    }
     const totalCost = price + price * taxPercent / 100 + costs;
-    const net = payout - totalCost;
+    const effectivePayout = type === "credit" ? payout * creditPercent / 100 : payout;
+    const net = effectivePayout - totalCost;
     const roi = totalCost > 0 ? net / totalCost * 100 : 0;
     netOutput.textContent = money(net);
     netOutput.classList.toggle("negative", net < 0);
     roiOutput.textContent = (roi > 0 ? "+" : "") + roi.toFixed(1) + "%";
     roiOutput.classList.toggle("negative", roi < 0);
-    const type = document.querySelector('input[name="payoutType"]:checked').value;
     note.textContent = type === "credit"
-      ? "Store-credit estimate only. Credit is not cash and may have redemption limits. Confirm the quote, eligibility, and all costs before buying."
-      : "Cash estimate assumes the quoted payout is received in full. It excludes any costs not entered above and is not a guarantee of profit.";
+      ? "Store-credit adjusted payout: " + money(effectivePayout) + " at " + creditPercent.toFixed(0) + "% of face value. This is your estimate of usable value, not cash; actual usefulness depends on what you would otherwise buy."
+      : "Cash estimate assumes the quoted payout is received in full. It excludes costs not entered above and is not a guarantee of profit.";
   }
   fields.forEach(field => field.addEventListener("input", calculate));
+  calcCreditValue.addEventListener("input", () => {
+    const value = Number(calcCreditValue.value);
+    calcCreditValue.setCustomValidity(calcCreditValue.value !== "" && (value < 0 || value > 100) ? "Enter a value from 0 to 100." : "");
+    calculate();
+  });
   document.querySelectorAll('input[name="payoutType"]').forEach(input => input.addEventListener("change", calculate));
 
   // Manual opportunity tracker. Quotes stay in this browser; nothing is uploaded.
   const storageKey = "lootgrind.manualTradeQuotes.v1";
   const rows = Array.from(document.querySelectorAll("#scanner-rows tr[data-product]"));
   const taxField = document.getElementById("scanner-tax");
+  const creditValueField = document.getElementById("scanner-credit-value");
   const ranking = document.getElementById("ranking-results");
   const saveStatus = document.getElementById("save-status");
   const feedStatus = document.getElementById("feed-status");
@@ -51,7 +70,7 @@
         checkedAt: row.dataset.checkedAt || ""
       };
     });
-    return { tax: taxField.value, products };
+    return { tax: taxField.value, creditValue: creditValueField.value, products };
   }
   function saveState() {
     try {
@@ -66,6 +85,7 @@
       const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
       if (!saved) return;
       if (typeof saved.tax === "string") taxField.value = saved.tax;
+      if (typeof saved.creditValue === "string") creditValueField.value = saved.creditValue;
       rows.forEach(row => {
         const savedProduct = saved.products && saved.products[row.dataset.product];
         if (!savedProduct) return;
@@ -91,6 +111,8 @@
   function renderRanking() {
     const taxRaw = number(taxField);
     const tax = taxRaw === null ? 0 : Math.min(30, Math.max(0, taxRaw));
+    const creditRaw = number(creditValueField);
+    const creditPercent = creditRaw === null ? 80 : Math.min(100, Math.max(0, creditRaw));
     const opportunities = [];
     rows.forEach(row => {
       const f = fieldsFor(row);
@@ -100,11 +122,12 @@
       const costsRaw = number(f.costs);
       const costs = costsRaw === null ? 0 : Math.max(0, costsRaw);
       const totalCost = retail * (1 + tax / 100) + costs;
-      const net = quote - totalCost;
+      const effectivePayout = f.payout.value === "credit" ? quote * creditPercent / 100 : quote;
+      const net = effectivePayout - totalCost;
       const roi = totalCost > 0 ? net / totalCost * 100 : 0;
       const checkedAt = row.dataset.checkedAt || "";
       const ageDays = checkedAt ? Math.floor((Date.now() - new Date(checkedAt).getTime()) / 86400000) : null;
-      opportunities.push({ name: row.dataset.product, net, roi, payout: f.payout.value, totalCost, checkedAt, ageDays });
+      opportunities.push({ name: row.dataset.product, net, roi, payout: f.payout.value, effectivePayout, creditPercent, totalCost, checkedAt, ageDays });
     });
     opportunities.sort((a, b) => b.net - a.net);
     ranking.replaceChildren();
@@ -123,7 +146,7 @@
       const title = document.createElement("strong");
       title.textContent = (index + 1) + ". " + item.name;
       const detail = document.createElement("small");
-      detail.textContent = (item.payout === "credit" ? "Store credit · not cash" : "Cash quote") + " · Cost basis " + currency(item.totalCost) + (item.ageDays === null ? " · quote date not recorded" : item.ageDays > 7 ? " · quote may be stale" : " · checked " + quoteAgeLabel(item.checkedAt));
+      detail.textContent = (item.payout === "credit" ? "Store credit · valued at " + item.creditPercent.toFixed(0) + "% (" + currency(item.effectivePayout) + " estimated usable value)" : "Cash quote · " + currency(item.effectivePayout)) + " · Cost basis " + currency(item.totalCost) + (item.ageDays === null ? " · quote date not recorded" : item.ageDays > 7 ? " · quote may be stale" : " · checked " + quoteAgeLabel(item.checkedAt));
       left.append(title, detail);
       const right = document.createElement("div");
       right.className = "ranking-values";
@@ -156,10 +179,18 @@
   }
   rows.forEach(row => row.querySelectorAll("[data-field]").forEach(input => input.addEventListener("input", onTrackerChange)));
   taxField.addEventListener("input", () => { saveState(); renderRanking(); });
+  creditValueField.addEventListener("input", () => {
+    const value = number(creditValueField);
+    if (value !== null && (value < 0 || value > 100)) creditValueField.setCustomValidity("Enter a value from 0 to 100.");
+    else creditValueField.setCustomValidity("");
+    saveState(); renderRanking();
+  });
   document.getElementById("export-quotes").addEventListener("click", () => {
-    const header = ["Product", "Retail price", "Trade-in quote", "Payout type", "Extra costs", "Sales tax percent", "Quote checked at", "Estimated net", "Estimated ROI percent"];
+    const header = ["Product", "Retail price", "Trade-in quote", "Payout type", "Estimated usable credit percent", "Effective payout value", "Extra costs", "Sales tax percent", "Quote checked at", "Estimated net", "Estimated ROI percent"];
     const taxRaw = number(taxField);
     const tax = taxRaw === null ? 0 : Math.min(30, Math.max(0, taxRaw));
+    const creditRaw = number(creditValueField);
+    const creditPercent = creditRaw === null ? 80 : Math.min(100, Math.max(0, creditRaw));
     const csvRows = [header];
     rows.forEach(row => {
       const f = fieldsFor(row);
@@ -168,9 +199,10 @@
       const costsRaw = number(f.costs);
       const costs = costsRaw === null ? 0 : Math.max(0, costsRaw);
       const total = retail !== null && retail > 0 ? retail * (1 + tax / 100) + costs : null;
-      const net = total !== null && quote !== null && quote > 0 ? quote - total : "";
+      const effectivePayout = quote !== null && quote > 0 ? (f.payout.value === "credit" ? quote * creditPercent / 100 : quote) : null;
+      const net = total !== null && effectivePayout !== null ? effectivePayout - total : "";
       const roi = total > 0 && net !== "" ? (net / total * 100).toFixed(2) : "";
-      csvRows.push([row.dataset.product, f.retail.value, f.quote.value, f.payout.value, f.costs.value, taxField.value, row.dataset.checkedAt || "", net === "" ? "" : net.toFixed(2), roi]);
+      csvRows.push([row.dataset.product, f.retail.value, f.quote.value, f.payout.value, f.payout.value === "credit" ? creditPercent : "", effectivePayout === null ? "" : effectivePayout.toFixed(2), f.costs.value, taxField.value, row.dataset.checkedAt || "", net === "" ? "" : net.toFixed(2), roi]);
     });
     const csv = csvRows.map(line => line.map(value => '"' + String(value).replace(/"/g, '""') + '"').join(",")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -184,6 +216,7 @@
   document.getElementById("clear-quotes").addEventListener("click", () => {
     if (!window.confirm("Clear all saved LootGrind quote entries in this browser?")) return;
     taxField.value = "";
+    creditValueField.value = "80";
     rows.forEach(row => {
       Object.values(fieldsFor(row)).forEach(input => { input.value = input.dataset.field === "payout" ? "cash" : ""; });
       row.dataset.checkedAt = "";
