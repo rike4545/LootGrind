@@ -69,10 +69,10 @@ Configure an HTTPS endpoint and bearer API key in **Sources → Authorized trade
 
 ### Enable scheduled refresh
 
-1. Replace the example placeholder in `data/trade-in-watchlist.json` with real UPCs or model numbers.
+1. Review `data/trade-in-watchlist.json`. The placeholder has been replaced with manufacturer model identifiers for several popular Nintendo, PlayStation, and Xbox products. Confirm the exact model/region/edition before relying on a match.
 2. In **Settings → Secrets and variables → Actions**, add repository secrets named `TRADE_IN_FEED_URL` and `TRADE_IN_FEED_KEY` for your licensed provider.
-3. Open **Actions → Refresh authorized trade-in quotes** and choose **Run workflow** to test it. Once configured, it runs daily at 12:20 UTC.
-4. Open the successful run and download the `lootgrind-trade-in-quotes` artifact. The job intentionally fails when credentials are missing or no valid quotes are returned.
+3. Open **Actions → Refresh authorized trade-in quotes** and choose **Run workflow** to test it. Once configured, it runs daily at 12:20 UTC. Until credentials are configured, the scheduled workflow only reports that live collection is unavailable and does not fail the run.
+4. Open the successful run and download the `lootgrind-trade-in-quotes` artifact. The refresh script intentionally fails when run directly without credentials or when no valid quotes are returned; the scheduled workflow skips collection when credentials are missing.
 
 The workflow does not commit quotes into the repository or publish them to the public website. It produces a validated snapshot artifact; wiring that snapshot into the app or a hosted API is a separate integration step.
 
