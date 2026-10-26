@@ -360,22 +360,43 @@
       if (!response.ok) throw new Error("snapshot unavailable");
       const snapshot = await response.json();
       if (!Array.isArray(snapshot.cards) || !snapshot.cards.length) {
-        setMagicStatus("Automatic Magic prices are not configured yet. Add cards to your local tracker, then enter verified values from the source links. A licensed provider feed is required for unattended updates.", "warning");
+        setMagicStatus("Daily publishing is set up, but no authorized Magic pricing feed is configured yet. Add MAGIC_CARD_PRICE_FEED_URL and MAGIC_CARD_PRICE_FEED_KEY in GitHub repository Actions secrets to publish verified prices.", "warning");
         return;
       }
       let updated = 0;
       snapshot.cards.forEach(quote => {
+        if (!quote || !quote.name || !quote.set || !quote.condition || !quote.finish) return;
         const key = magicKey(quote);
-        const card = magicCards.find(item => magicKey(item) === key);
-        if (!card) return;
+        let card = magicCards.find(item => magicKey(item) === key);
+        if (!card) {
+          card = {
+            name: String(quote.name), set: String(quote.set),
+            condition: String(quote.condition), finish: String(quote.finish),
+            tcgplayerMarket: "", pricechartingPrice: "", cardConduitBuylist: "", gamestopTradeValue: ""
+          };
+          magicCards.push(card);
+        }
         ["tcgplayerMarket", "pricechartingPrice", "cardConduitBuylist", "gamestopTradeValue"].forEach(field => {
-          if (safeNumber(quote[field]) !== null) { card[field] = String(quote[field]); card[field + "CheckedAt"] = quote.checkedAt || snapshot.generatedAt || ""; updated++; }
+          if (safeNumber(quote[field]) !== null) {
+            card[field] = String(quote[field]);
+            card[field + "CheckedAt"] = quote.checkedAt || snapshot.generatedAt || "";
+            updated++;
+          }
         });
+        card.gamestopStatus = quote.gamestopStatus || (safeNumber(quote.gamestopTradeValue) !== null ? "verified" : "unverified");
+        card.grade = quote.grade || "";
+        card.collectorNumber = quote.collectorNumber || "";
+        card.sourceUrls = quote.sourceUrls || {};
       });
-      if (updated) { saveMagic(); renderMagic(); setMagicStatus("Loaded " + updated + " verified source value(s) from the authorized snapshot generated " + (snapshot.generatedAt ? new Date(snapshot.generatedAt).toLocaleString() : "at an unknown time") + ". Check source links before acting.", "success"); }
-      else setMagicStatus("A published snapshot exists, but no tracked cards matched its exact name, set, condition, and finish.", "info");
+      if (updated) {
+        saveMagic();
+        renderMagic();
+        setMagicStatus("Loaded " + updated + " verified source value(s) across " + snapshot.cards.length + " published card(s). Snapshot generated " + (snapshot.generatedAt ? new Date(snapshot.generatedAt).toLocaleString() : "at an unknown time") + ". GameStop values marked unverified are not offers.", "success");
+      } else {
+        setMagicStatus("The published snapshot contains " + snapshot.cards.length + " card(s), but no numeric price values matched the expected schema.", "warning");
+      }
     } catch (_) {
-      setMagicStatus("Could not load the published Magic price snapshot. Manual tracking is available; automatic prices require a configured authorized feed.", "warning");
+      setMagicStatus("Could not load the published Magic price snapshot. The daily workflow is ready, but a licensed feed must be configured before prices can update.", "warning");
     }
   }
   renderMagic();
