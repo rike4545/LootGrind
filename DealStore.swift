@@ -87,7 +87,14 @@ final class DealStore: ObservableObject {
 
         listings = fetchedListings
         if quoteProvider.isConfigured {
-            let manualQuotes = quotes.filter { !$0.source.hasPrefix("Authorized feed:") }
+            let refreshedKeys = Set(refreshedQuotes.map {
+                "\($0.normalizedIdentifier)|\($0.payoutType.rawValue)"
+            })
+            let manualQuotes = quotes.filter { quote in
+                guard !quote.source.hasPrefix("Authorized feed:") else { return false }
+                let key = "\(quote.normalizedIdentifier)|\(quote.payoutType.rawValue)"
+                return !refreshedKeys.contains(key)
+            }
             let markedQuotes = refreshedQuotes.map { quote in
                 var quote = quote
                 quote.source = "Authorized feed: \(quote.source)"
