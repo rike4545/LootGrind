@@ -338,11 +338,27 @@ private struct SourcesView: View {
                         Text("\(store.taxPercent, specifier: "%.2f")%")
                     }
                 }
-                Section("Manual only") {
-                    Label("GameStop: no public trade-in API — enter quotes manually", systemImage: "hand.point.up.left")
+                Section("Authorized trade-in feed") {
+                    TextField("HTTPS feed endpoint", text: $store.authorizedTradeInFeedURL)
+                        .textInputAutocapitalization(.never).autocorrectionDisabled()
+                        .keyboardType(.URL)
+                    SecureField("Feed API key", text: $store.authorizedTradeInFeedKey)
+                        .textInputAutocapitalization(.never).autocorrectionDisabled()
+                    Label(store.authorizedTradeInFeedURL.isEmpty || store.authorizedTradeInFeedKey.isEmpty
+                          ? "Not connected" : "Endpoint configured",
+                          systemImage: store.authorizedTradeInFeedURL.isEmpty || store.authorizedTradeInFeedKey.isEmpty
+                          ? "link.badge.plus" : "checkmark.seal")
+                    Text("Use only an API or data feed you are authorized to access. LootGrind does not scrape GameStop.com. The endpoint must return the documented JSON quote format in the repository README.")
+                        .font(.footnote).foregroundStyle(.secondary)
+                    Link("Open GameStop trade-in page", destination: URL(string: "https://www.gamestop.com/trade/")!)
+                }
+                Section("Trade-in data") {
+                    Label("Manual quotes remain supported", systemImage: "hand.point.up.left")
+                    Text("GameStop's published site terms prohibit automated scraping. Live GameStop data requires an approved API or licensed feed; until you have one, add quotes manually and verify them directly.")
+                        .font(.footnote).foregroundStyle(.secondary)
                 }
                 Section {
-                    Text("Retail prices come live from authorized APIs. Trade-in values are quotes you enter, each stamped with source and date.")
+                    Text("Retail prices come from configured data sources. Trade-in quotes show their source and quote date; verify values and eligibility before purchasing.")
                         .font(.footnote).foregroundStyle(.secondary)
                 }
             }
