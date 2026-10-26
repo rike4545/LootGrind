@@ -23,6 +23,8 @@ The app currently includes a SwiftUI interface, deal model/store, Best Buy Produ
 
 The website includes a product-research watchlist, an opportunity scanner, a profit estimator, and a ranking. When the scheduled authorized-feed workflow is configured and succeeds, it publishes `data/trade-in-quotes.json`, which the website loads automatically and uses to populate trade-in quotes and payout types. Users can manually override quotes. Retail purchase prices, tax, and extra costs remain user-entered, and are stored in the current browser and can be exported as CSV. Entries do not sync across devices. Without an authorized feed configured, the site cannot automatically fetch GameStop trade-in values.
 
+The Magic: The Gathering tracker also supports TCG API/TCGplayer raw-market snapshots and a separate manual PSA Price Guide field. PSA guide values must be entered after checking the official [PSA Price Guide](https://www.psacard.com/priceguide) for the exact printing and PSA grade. LootGrind does not scrape PSA or claim an automated PSA price feed. Graded guide values are kept separate from raw-card market values and are excluded from raw-market spread calculations; neither is a GameStop trade-in quote. The CSV export includes the selected PSA grade, manually entered value, and check date.
+
 ## Website deployment
 
 The static site lives in the repository root:
