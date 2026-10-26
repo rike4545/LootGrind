@@ -86,7 +86,8 @@
     <section class="section magic-section" id="magic-cards">
       <div class="section-intro"><div class="eyebrow">MAGIC: THE GATHERING</div><h2>Compare card value<br><span>before you trade.</span></h2><p>Track the same printing across TCGplayer, PriceCharting, and Card Conduit, then compare against GameStop only when the card and grade qualify. Retail market price and buylist/trade-in payout are different things.</p></div>
       <div class="magic-source-grid">
-        <a href="https://www.tcgplayer.com/categories/trading-and-collectible-card-games/magic-the-gathering/price-guides" target="_blank" rel="noreferrer"><strong>TCGplayer</strong><span>Market price / recent sales</span><small>Open price guides ↗</small></a>
+        <a href="https://www.tcgplayer.com/categories/trading-and-collectible-card-games/magic-the-gathering/price-guides" target="_blank" rel="noreferrer"><strong>TCGplayer</strong><span>Raw-card market price</span><small>Open price guides ↗</small></a>
+        <a href="https://www.psacard.com/priceguide" target="_blank" rel="noreferrer"><strong>PSA Price Guide</strong><span>PSA-graded card values by grade</span><small>Open PSA guide ↗</small></a>
         <a href="https://www.pricecharting.com/category/magic-cards" target="_blank" rel="noreferrer"><strong>PriceCharting</strong><span>Price guide / historical context</span><small>Open Magic prices ↗</small></a>
         <a href="https://cardconduit.com/card-price-check" target="_blank" rel="noreferrer"><strong>Card Conduit</strong><span>Optimized buylist estimate</span><small>Open price checker ↗</small></a>
         <a href="https://www.gamestop.com/trade/" target="_blank" rel="noreferrer"><strong>GameStop</strong><span>Trade Center / eligibility check</span><small>Check trade-in ↗</small></a>
@@ -101,12 +102,12 @@
       </form>
       <div class="scanner-table-wrap">
         <table class="scanner-table magic-table">
-          <thead><tr><th>Card / printing</th><th>TCGplayer market ($)</th><th>PriceCharting ($)</th><th>Card Conduit buylist ($)</th><th>GameStop trade-in ($)</th><th>Best reference / spread</th><th>Source checks</th></tr></thead>
+          <thead><tr><th>Card / printing</th><th>TCGplayer raw market ($)</th><th>PriceCharting ($)</th><th>Card Conduit buylist ($)</th><th>GameStop trade-in ($)</th><th>PSA graded value ($)</th><th>Best raw reference / spread</th><th>Source checks</th></tr></thead>
           <tbody id="magic-rows"></tbody>
         </table>
       </div>
       <div class="scanner-actions"><button class="button button-secondary" type="button" id="magic-export">Export Magic CSV <span>↗</span></button><button class="button button-secondary" type="button" id="magic-clear">Clear Magic list</button><span id="magic-save-status" role="status">Cards saved locally in this browser</span></div>
-      <p class="calc-disclaimer">Prices are not automatically pulled from these websites by this static page. TCGplayer restricts automated collection and no longer grants new API access; PriceCharting's API requires a paid subscription; Card Conduit's price checker is an interactive service, not a documented public feed. Automatic updates require an authorized data provider/feed. GameStop currently describes trading cards as PSA-graded cards, so do not treat a raw-card market price as a GameStop-eligible offer. Always confirm the exact set, collector number, language, condition, foil, and grade.</p>
+      <p class="calc-disclaimer">PSA values are for PSA-graded copies only and must match the exact card, printing, and PSA grade. Enter the PSA guide value manually after checking the official guide; LootGrind does not scrape PSA or claim an automated PSA feed. PSA values are kept separate from raw-card market prices and are excluded from raw-card spread calculations. Other prices are not automatically pulled from these websites by this static page; automatic updates require an authorized data provider/feed. Never treat a raw-card market price or PSA guide estimate as a GameStop trade-in offer. Confirm the exact set, collector number, language, finish, condition, and grade.</p>
     </section>
 
     <section class="calculator-section" id="calculator">
