@@ -21,7 +21,7 @@ LootGrind is an independent native iOS project for researching retail-to-trade-i
 
 The app currently includes a SwiftUI interface, deal model/store, Best Buy Products API provider, Walmart search provider, and unit tests. Best Buy requires a developer API key entered in the app. Walmart search results depend on a configured SerpApi key and should be treated as unverified until checked against the retailer listing. Trade-in values can be entered manually or refreshed through the authorized-feed adapter when you have an approved/licensed feed endpoint. A daily GitHub Actions job now supports scheduled refreshes from that authorized feed; it requires provider credentials and a populated watchlist before it can run successfully. There is no direct GameStop integration bundled.
 
-The website includes a product-research watchlist, a manual trade-in quote tracker, a profit estimator, and an opportunity ranking. Enter verified retailer prices, trade-in quotes, payout type, sales tax, and extra costs; the page ranks complete entries by estimated net. Entries save in the current browser's local storage and can be exported as CSV. They do not sync across devices. The site does not pull live retailer prices or GameStop trade-in offers; product variants, prices, availability, and trade-in eligibility must be verified manually.
+The website includes a product-research watchlist, an opportunity scanner, a profit estimator, and a ranking. When the scheduled authorized-feed workflow is configured and succeeds, it publishes `data/trade-in-quotes.json`, which the website loads automatically and uses to populate trade-in quotes and payout types. Users can manually override quotes. Retail purchase prices, tax, and extra costs remain user-entered, and are stored in the current browser and can be exported as CSV. Entries do not sync across devices. Without an authorized feed configured, the site cannot automatically fetch GameStop trade-in values.
 
 ## Website deployment
 
@@ -72,9 +72,9 @@ Configure an HTTPS endpoint and bearer API key in **Sources → Authorized trade
 1. Review `data/trade-in-watchlist.json`. The placeholder has been replaced with manufacturer model identifiers for several popular Nintendo, PlayStation, and Xbox products. Confirm the exact model/region/edition before relying on a match.
 2. In **Settings → Secrets and variables → Actions**, add repository secrets named `TRADE_IN_FEED_URL` and `TRADE_IN_FEED_KEY` for your licensed provider.
 3. Open **Actions → Refresh authorized trade-in quotes** and choose **Run workflow** to test it. Once configured, it runs daily at 12:20 UTC. Until credentials are configured, the scheduled workflow only reports that live collection is unavailable and does not fail the run.
-4. Open the successful run and download the `lootgrind-trade-in-quotes` artifact. The refresh script intentionally fails when run directly without credentials or when no valid quotes are returned; the scheduled workflow skips collection when credentials are missing.
+4. Open the successful run and confirm the `data/trade-in-quotes.json` snapshot commit and/or download the `lootgrind-trade-in-quotes` artifact. The refresh script intentionally fails when run directly without credentials or when no valid quotes are returned; the scheduled workflow skips collection when credentials are missing.
 
-The workflow does not commit quotes into the repository or publish them to the public website. It produces a validated snapshot artifact; wiring that snapshot into the app or a hosted API is a separate integration step.
+After a successful authorized-feed refresh, the workflow publishes the validated snapshot to `data/trade-in-quotes.json` for the website and also uploads the `lootgrind-trade-in-quotes` artifact. The website fetches the public JSON snapshot automatically. The workflow still does not discover the whole GameStop catalog; it only queries identifiers in the watchlist.
 
 ## Data integrity principles
 
