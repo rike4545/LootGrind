@@ -3,11 +3,19 @@ import Foundation
 enum ProviderError: LocalizedError {
     case missingAPIKey
     case badResponse(Int)
+    case missingAuthorizedTradeInFeed
+    case invalidAuthorizedTradeInFeed
 
     var errorDescription: String? {
         switch self {
-        case .missingAPIKey: return "Add your Best Buy API key in the Sources tab."
-        case .badResponse(let code): return "Best Buy API returned HTTP \(code)."
+        case .missingAPIKey:
+            return "Add a retailer data-source API key in the Sources tab."
+        case .badResponse(let code):
+            return "Data provider returned HTTP \(code)."
+        case .missingAuthorizedTradeInFeed:
+            return "Configure an authorized trade-in feed endpoint and API key in Sources."
+        case .invalidAuthorizedTradeInFeed:
+            return "The authorized trade-in feed URL or response was invalid."
         }
     }
 }
