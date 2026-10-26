@@ -1,0 +1,15 @@
+{
+  "cards": [],
+  "schema": {
+    "name": "Exact card name",
+    "set": "Set or printing name",
+    "condition": "Near Mint | Lightly Played | Moderately Played | Heavily Played | Damaged",
+    "finish": "nonfoil | foil | etched",
+    "tcgplayerMarket": "number|null",
+    "pricechartingPrice": "number|null",
+    "cardConduitBuylist": "number|null",
+    "gamestopTradeValue": "number|null",
+    "checkedAt": "ISO-8601 timestamp"
+  },
+  "note": "Only publish values from providers you are authorized to use. GameStop trading-card eligibility is limited; verify current eligibility and PSA grade requirements."
+}
