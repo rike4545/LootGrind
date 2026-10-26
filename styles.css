@@ -49,3 +49,5 @@
 .ranking-negative{color:#ff8e77}
 .empty-ranking{font-size:11px;color:#929889;margin:18px 0 3px}
 @media(max-width:650px){.scanner-section{padding-top:60px}.scanner-controls{align-items:flex-start;flex-direction:column;gap:10px}.scanner-controls input{width:130px}.scanner-actions{align-items:stretch;flex-direction:column}.scanner-actions .button{width:100%}.ranking-panel{padding:16px}.ranking-item{align-items:flex-start;gap:10px}.ranking-values strong{font-size:15px}.ranking-product strong{font-size:11px}.ranking-product small{max-width:230px}}
+
+.feed-status{margin:18px 0 14px;padding:12px 15px;border:1px solid #3b4031;border-radius:8px;background:#171a14;color:#c5cbb9;font-size:11px;line-height:1.7}.feed-status:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#9ba58a;margin:0 9px 1px 0}.feed-status[data-state="warning"]{border-color:#66513a;color:#e4c8a3}.feed-status[data-state="warning"]:before{background:#e4ad61}.feed-status[data-state="success"]{border-color:#43552e;color:#d9edb7}.feed-status[data-state="success"]:before{background:var(--lime)}
