@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T01:40:30.107140+00:00",
+  "generatedAt": "2026-10-26T18:50:50.686203+00:00",
   "provider": "TCG API (TCGplayer market data)",
   "queryCount": 14,
   "cardCount": 64,
@@ -9,12 +9,15 @@
       "set": "From the Vault: Realms",
       "condition": "Near Mint",
       "finish": "foil",
-      "tcgplayerMarket": 149.5,
+      "tcgplayerMarket": 149.64,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:31:45.212Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:17:45.812Z",
       "grade": "",
       "collectorNumber": "1",
       "sourceUrls": {
@@ -22,10 +25,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ancient Tomb",
@@ -37,6 +37,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:26:02.131Z",
       "grade": "",
       "collectorNumber": "315",
@@ -45,22 +48,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ancient Tomb",
       "set": "The List Reprints",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 127.91,
+      "tcgplayerMarket": 127.75,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:19:12.006Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:01:42.200Z",
       "grade": "",
       "collectorNumber": "",
       "sourceUrls": {
@@ -68,10 +71,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ancient Tomb",
@@ -83,6 +83,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:17:34.982Z",
       "grade": "",
       "collectorNumber": "236",
@@ -91,10 +94,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ancient Tomb",
@@ -106,6 +106,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:36:59.289Z",
       "grade": "",
       "collectorNumber": "U31",
@@ -114,10 +117,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ancient Tomb",
@@ -129,6 +129,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:39:42.885Z",
       "grade": "",
       "collectorNumber": "36",
@@ -137,10 +140,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ancient Tomb",
@@ -152,6 +152,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:29:08.445Z",
       "grade": "",
       "collectorNumber": "21",
@@ -160,10 +163,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Cavern of Souls",
@@ -175,6 +175,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:41:47.587Z",
       "grade": "",
       "collectorNumber": "226",
@@ -183,10 +186,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Cavern of Souls",
@@ -198,6 +198,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:30:31.169Z",
       "grade": "",
       "collectorNumber": "320",
@@ -206,10 +209,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Cavern of Souls",
@@ -221,7 +221,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:38:13.754Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:07:43.557Z",
       "grade": "",
       "collectorNumber": "232",
       "sourceUrls": {
@@ -229,10 +232,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Cavern of Souls",
@@ -244,6 +244,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:49:33.832Z",
       "grade": "",
       "collectorNumber": "269",
@@ -252,10 +255,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Cavern of Souls",
@@ -267,7 +267,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:40:27.911Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:14:58.380Z",
       "grade": "",
       "collectorNumber": "269",
       "sourceUrls": {
@@ -275,22 +278,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Cavern of Souls",
       "set": "The List Reprints",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 52.59,
+      "tcgplayerMarket": 52.65,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:19:12.006Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:01:42.200Z",
       "grade": "",
       "collectorNumber": "226/244",
       "sourceUrls": {
@@ -298,10 +301,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Cavern of Souls",
@@ -313,6 +313,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:17:35.429Z",
       "grade": "",
       "collectorNumber": "237",
@@ -321,10 +324,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Cavern of Souls",
@@ -336,6 +336,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:36:59.289Z",
       "grade": "",
       "collectorNumber": "U32",
@@ -344,10 +347,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Cavern of Souls",
@@ -359,6 +359,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:29:08.719Z",
       "grade": "",
       "collectorNumber": "22",
@@ -367,22 +370,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Deflecting Swat",
       "set": "Commander 2020",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 73.3,
+      "tcgplayerMarket": 73.87,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:33:11.772Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:19:50.111Z",
       "grade": "",
       "collectorNumber": "50",
       "sourceUrls": {
@@ -390,22 +393,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Deflecting Swat",
       "set": "Commander Masters",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 74.9,
+      "tcgplayerMarket": 75.47,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:34:32.200Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T01:59:48.913Z",
       "grade": "",
       "collectorNumber": "214",
       "sourceUrls": {
@@ -413,10 +416,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Deflecting Swat",
@@ -428,6 +428,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:54:34.969Z",
       "grade": "",
       "collectorNumber": "1552",
@@ -436,10 +439,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Dockside Extortionist",
@@ -451,6 +451,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:48:19.003Z",
       "grade": "",
       "collectorNumber": "24",
@@ -459,10 +462,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Dockside Extortionist",
@@ -474,6 +474,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:30:21.933Z",
       "grade": "",
       "collectorNumber": "107",
@@ -482,10 +485,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Dockside Extortionist",
@@ -497,7 +497,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:19:12.006Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:01:42.200Z",
       "grade": "",
       "collectorNumber": "107/024",
       "sourceUrls": {
@@ -505,10 +508,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Esper Sentinel",
@@ -520,6 +520,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:01:49.615Z",
       "grade": "",
       "collectorNumber": "12",
@@ -528,10 +531,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Esper Sentinel",
@@ -543,6 +543,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:54:24.635Z",
       "grade": "",
       "collectorNumber": "12",
@@ -551,10 +554,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Esper Sentinel",
@@ -566,6 +566,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:54:34.969Z",
       "grade": "",
       "collectorNumber": "2123",
@@ -574,10 +577,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Esper Sentinel",
@@ -589,7 +589,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:19:12.006Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:01:42.200Z",
       "grade": "",
       "collectorNumber": "012/303",
       "sourceUrls": {
@@ -597,10 +600,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Force of Will",
@@ -612,6 +612,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:17:55.115Z",
       "grade": "",
       "collectorNumber": "42",
@@ -620,22 +623,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Force of Will",
       "set": "Dominaria Remastered",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 58.09,
+      "tcgplayerMarket": 58.33,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:34:27.895Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T01:59:46.303Z",
       "grade": "",
       "collectorNumber": "50",
       "sourceUrls": {
@@ -643,22 +646,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Force of Will",
       "set": "Double Masters",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 59.26,
+      "tcgplayerMarket": 59.05,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:40:02.840Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:14:33.588Z",
       "grade": "",
       "collectorNumber": "51",
       "sourceUrls": {
@@ -666,10 +669,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Force of Will",
@@ -681,6 +681,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:33:17.847Z",
       "grade": "",
       "collectorNumber": "49",
@@ -689,10 +692,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Force of Will",
@@ -704,7 +704,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:31:56.937Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:18:01.322Z",
       "grade": "",
       "collectorNumber": "4",
       "sourceUrls": {
@@ -712,10 +715,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Force of Will",
@@ -727,6 +727,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:09:42.327Z",
       "grade": "",
       "collectorNumber": "14",
@@ -735,10 +738,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Force of Will",
@@ -750,6 +750,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:59:34.495Z",
       "grade": "",
       "collectorNumber": "19",
@@ -758,10 +761,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Jeweled Lotus",
@@ -773,6 +773,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:44:47.737Z",
       "grade": "",
       "collectorNumber": "319",
@@ -781,10 +784,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Jeweled Lotus",
@@ -796,7 +796,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:34:01.799Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T01:59:34.057Z",
       "grade": "",
       "collectorNumber": "396",
       "sourceUrls": {
@@ -804,10 +807,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mana Crypt",
@@ -819,7 +819,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:40:00.280Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:14:31.064Z",
       "grade": "",
       "collectorNumber": "270",
       "sourceUrls": {
@@ -827,10 +830,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mana Crypt",
@@ -842,6 +842,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:33:17.854Z",
       "grade": "",
       "collectorNumber": "225",
@@ -850,10 +853,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mana Crypt",
@@ -865,7 +865,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:31:56.937Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:18:01.322Z",
       "grade": "",
       "collectorNumber": "5",
       "sourceUrls": {
@@ -873,10 +876,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mana Crypt",
@@ -888,7 +888,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:18:32.144Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T01:46:13.001Z",
       "grade": "",
       "collectorNumber": "16",
       "sourceUrls": {
@@ -896,10 +899,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mana Crypt",
@@ -911,7 +911,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:33:02.155Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:19:41.196Z",
       "grade": "",
       "collectorNumber": "",
       "sourceUrls": {
@@ -919,22 +922,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mana Crypt",
       "set": "The List Reprints",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 37.84,
+      "tcgplayerMarket": 37.82,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:19:12.006Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:01:42.200Z",
       "grade": "",
       "collectorNumber": "225",
       "sourceUrls": {
@@ -942,10 +945,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mox Opal",
@@ -957,7 +957,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:38:50.929Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:13:57.698Z",
       "grade": "",
       "collectorNumber": "275",
       "sourceUrls": {
@@ -965,10 +968,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mox Opal",
@@ -980,7 +980,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:31:56.937Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:18:01.322Z",
       "grade": "",
       "collectorNumber": "3",
       "sourceUrls": {
@@ -988,10 +991,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mox Opal",
@@ -1003,7 +1003,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:18:32.144Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T01:46:13.001Z",
       "grade": "",
       "collectorNumber": "19",
       "sourceUrls": {
@@ -1011,10 +1014,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mox Opal",
@@ -1026,6 +1026,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:57:41.057Z",
       "grade": "",
       "collectorNumber": "223",
@@ -1034,10 +1037,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Mox Opal",
@@ -1049,7 +1049,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:41:46.101Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:16:37.105Z",
       "grade": "",
       "collectorNumber": "179",
       "sourceUrls": {
@@ -1057,10 +1060,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Orcish Bowmasters",
@@ -1072,6 +1072,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:49:33.832Z",
       "grade": "",
       "collectorNumber": "103",
@@ -1080,22 +1083,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Orcish Bowmasters",
       "set": "Universes Beyond: The Lord of the Rings: Tales of Middle-earth",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 38.17,
+      "tcgplayerMarket": 37.98,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-26T01:12:35.298Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T01:43:59.450Z",
       "grade": "",
       "collectorNumber": "103",
       "sourceUrls": {
@@ -1103,10 +1106,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ragavan, Nimble Pilferer",
@@ -1118,6 +1118,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:44:42.781Z",
       "grade": "",
       "collectorNumber": "21",
@@ -1126,10 +1129,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ragavan, Nimble Pilferer",
@@ -1141,6 +1141,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:01:53.687Z",
       "grade": "",
       "collectorNumber": "138",
@@ -1149,21 +1152,21 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ragavan, Nimble Pilferer",
       "set": "Prerelease Cards",
       "condition": "Near Mint",
       "finish": "foil",
-      "tcgplayerMarket": 91,
+      "tcgplayerMarket": 91.0,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:49:33.832Z",
       "grade": "",
       "collectorNumber": "138",
@@ -1172,10 +1175,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Ragavan, Nimble Pilferer",
@@ -1187,6 +1187,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:20:10.185Z",
       "grade": "",
       "collectorNumber": "2",
@@ -1195,10 +1198,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Rhystic Study",
@@ -1210,6 +1210,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T01:02:07.444Z",
       "grade": "",
       "collectorNumber": "15",
@@ -1218,10 +1221,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Rhystic Study",
@@ -1233,7 +1233,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:31:56.937Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:18:01.322Z",
       "grade": "",
       "collectorNumber": "7",
       "sourceUrls": {
@@ -1241,10 +1244,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Rhystic Study",
@@ -1256,6 +1256,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:53:34.096Z",
       "grade": "",
       "collectorNumber": "169",
@@ -1264,10 +1267,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Rhystic Study",
@@ -1279,6 +1279,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:37:53.452Z",
       "grade": "",
       "collectorNumber": "114",
@@ -1287,10 +1290,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Rhystic Study",
@@ -1302,7 +1302,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-26T01:36:28.986Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T01:56:11.274Z",
       "grade": "",
       "collectorNumber": "45",
       "sourceUrls": {
@@ -1310,22 +1313,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Rhystic Study",
       "set": "The List Reprints",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 70.59,
+      "tcgplayerMarket": 71.77,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:19:12.006Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:01:42.200Z",
       "grade": "",
       "collectorNumber": "45",
       "sourceUrls": {
@@ -1333,22 +1336,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Rhystic Study",
       "set": "Wilds of Eldraine: Enchanting Tales",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 78.53,
+      "tcgplayerMarket": 78.9,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:47:22.960Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:49:25.144Z",
       "grade": "",
       "collectorNumber": "25",
       "sourceUrls": {
@@ -1356,22 +1359,22 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Sheoldred, the Apocalypse",
       "set": "Dominaria United",
       "condition": "Near Mint",
       "finish": "nonfoil",
-      "tcgplayerMarket": 102.47,
+      "tcgplayerMarket": 101.57,
       "pricechartingPrice": null,
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:48:19.410Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:50:13.904Z",
       "grade": "",
       "collectorNumber": "107",
       "sourceUrls": {
@@ -1379,10 +1382,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Sheoldred, the Apocalypse",
@@ -1394,6 +1394,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:49:33.832Z",
       "grade": "",
       "collectorNumber": "107",
@@ -1402,10 +1405,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "Sheoldred, the Apocalypse",
@@ -1417,7 +1417,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-25T01:40:26.370Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T02:14:56.819Z",
       "grade": "",
       "collectorNumber": "107",
       "sourceUrls": {
@@ -1425,10 +1428,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "The One Ring",
@@ -1440,6 +1440,9 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
       "checkedAt": "2026-10-26T00:49:33.832Z",
       "grade": "",
       "collectorNumber": "246",
@@ -1448,10 +1451,7 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     },
     {
       "name": "The One Ring",
@@ -1463,7 +1463,10 @@
       "cardConduitBuylist": null,
       "gamestopTradeValue": null,
       "gamestopStatus": "unavailable",
-      "checkedAt": "2026-10-26T01:12:35.298Z",
+      "psaGrade": "",
+      "psaGradedValue": null,
+      "psaPriceGuideStatus": "manual_only",
+      "checkedAt": "2026-10-26T01:44:04.951Z",
       "grade": "",
       "collectorNumber": "246",
       "sourceUrls": {
@@ -1471,11 +1474,8 @@
         "tcgApi": "https://tcgapi.dev/",
         "psaPriceGuide": "https://www.psacard.com/priceguide",
         "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate"
-      },
-      "psaGrade": "",
-      "psaGradedValue": null,
-      "psaPriceGuideStatus": "manual_only"
+      }
     }
   ],
-  "note": "TCG API market prices only. PSA graded guide values are not scraped or automatically populated; check the official PSA Price Guide and enter a value for the exact PSA grade manually. PriceCharting, Card Conduit, and GameStop values are unavailable unless separately verified from an authorized source. Raw market prices, graded guide values, and trade-in offers are distinct and are not guaranteed acquisition costs or payouts."
+  "note": "TCG API provides raw TCGplayer market prices only. PSA graded guide values are not scraped or automatically populated; check the official PSA Price Guide and enter a value for the exact PSA grade manually. PriceCharting, Card Conduit, and GameStop values are unavailable unless separately verified from an authorized source. Raw market prices, graded guide values, and trade-in offers are distinct and are not guaranteed acquisition costs or payouts."
 }
