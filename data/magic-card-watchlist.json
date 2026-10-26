@@ -1,15 +1,58 @@
-{
-  "cards": [],
-  "schema": {
-    "name": "Exact card name",
-    "set": "Set or printing name",
-    "condition": "Near Mint | Lightly Played | Moderately Played | Heavily Played | Damaged",
-    "finish": "nonfoil | foil | etched",
-    "tcgplayerMarket": "number|null",
-    "pricechartingPrice": "number|null",
-    "cardConduitBuylist": "number|null",
-    "gamestopTradeValue": "number|null",
-    "checkedAt": "ISO-8601 timestamp"
+[
+  {
+    "name": "The One Ring",
+    "query": "The One Ring"
   },
-  "note": "Only publish values from providers you are authorized to use. GameStop trading-card eligibility is limited; verify current eligibility and PSA grade requirements."
-}
+  {
+    "name": "Mana Crypt",
+    "query": "Mana Crypt"
+  },
+  {
+    "name": "Jeweled Lotus",
+    "query": "Jeweled Lotus"
+  },
+  {
+    "name": "Orcish Bowmasters",
+    "query": "Orcish Bowmasters"
+  },
+  {
+    "name": "Sheoldred, the Apocalypse",
+    "query": "Sheoldred, the Apocalypse"
+  },
+  {
+    "name": "Ragavan, Nimble Pilferer",
+    "query": "Ragavan, Nimble Pilferer"
+  },
+  {
+    "name": "Force of Will",
+    "query": "Force of Will"
+  },
+  {
+    "name": "Rhystic Study",
+    "query": "Rhystic Study"
+  },
+  {
+    "name": "Esper Sentinel",
+    "query": "Esper Sentinel"
+  },
+  {
+    "name": "Dockside Extortionist",
+    "query": "Dockside Extortionist"
+  },
+  {
+    "name": "Deflecting Swat",
+    "query": "Deflecting Swat"
+  },
+  {
+    "name": "Ancient Tomb",
+    "query": "Ancient Tomb"
+  },
+  {
+    "name": "Mox Opal",
+    "query": "Mox Opal"
+  },
+  {
+    "name": "Cavern of Souls",
+    "query": "Cavern of Souls"
+  }
+]
