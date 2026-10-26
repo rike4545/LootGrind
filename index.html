@@ -42,7 +42,7 @@
           <article class="watch-item"><div class="watch-icon">PP</div><div class="watch-details"><h3>PlayStation Portal</h3><p>Model family CFI-Y1001 · verify exact SKU</p></div><a href="https://www.bestbuy.com/site/searchpage.jsp?st=PlayStation+Portal" target="_blank" rel="noreferrer" aria-label="Search Best Buy for PlayStation Portal">↗</a></article>
           <article class="watch-item"><div class="watch-icon">XB</div><div class="watch-details"><h3>Xbox Wireless Controller</h3><p>Model 1914 family · match color/edition</p></div><a href="https://www.walmart.com/search?q=Xbox+Wireless+Controller" target="_blank" rel="noreferrer" aria-label="Search Walmart for Xbox Wireless Controller">↗</a></article>
         </div>
-        <div class="watchlist-note">Retail prices and GameStop trade-in offers are not connected to this page. Open a retailer search, verify the exact item, and enter current figures in the calculator.</div>
+        <div class="watchlist-note">Retail prices stay manual. Trade-in quotes populate automatically only when an authorized feed is configured and has published verified data.</div>
         <div class="card-foot"><span>↳ Product research starters</span><span>NO FABRICATED PRICES</span></div>
       </div>
       <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
@@ -61,12 +61,12 @@
     </section>
 
     <section class="section scanner-section" id="opportunity-scanner">
-      <div class="section-intro"><div class="eyebrow">AUTOMATED QUOTE TRACKER</div><h2>Find your best<br><span>trade-in opportunity.</span></h2><p>LootGrind checks the latest published snapshot from its scheduled authorized trade-in feed, then ranks eligible quotes against your retail prices and costs. You can still override any quote manually.</p></div>
+      <div class="section-intro"><div class="eyebrow">AUTOMATED QUOTE TRACKER</div><h2>Find your best<br><span>trade-in opportunity.</span></h2><p>LootGrind can load verified trade-in quotes from a scheduled authorized feed and rank them against your retail prices and costs. The live feed is not configured yet, so enter a verified quote manually for now.</p></div>
       <div class="scanner-controls">
         <label>Sales tax rate (%) <input id="scanner-tax" type="number" min="0" max="30" step="0.001" placeholder="Enter local rate"></label>
         <p>Use the actual checkout price and verify whether each GameStop offer is cash or store credit.</p>
       </div>
-      <div class="scanner-table-wrap">
+      <p id="feed-status" class="feed-status" role="status" aria-live="polite">Checking authorized quote feed…</p>\n      <div class="scanner-table-wrap">
         <table class="scanner-table">
           <thead><tr><th>Product</th><th>Retail price ($)</th><th>Trade-in quote ($)</th><th>Payout</th><th>Extra costs ($)</th><th>Last checked</th></tr></thead>
           <tbody id="scanner-rows">
