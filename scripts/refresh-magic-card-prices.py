@@ -112,6 +112,7 @@ def main():
                     "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=" + __import__("urllib.parse", fromlist=["quote"]).quote(str(raw.get("name") or target_name) + " " + set_name),
                     "tcgApi": "https://tcgapi.dev/",
                     "psaPriceGuide": "https://www.psacard.com/priceguide",
+                    "gamestopGradedEstimator": "https://www.gamestop.com/graded-trading-cards/estimate",
                 },
             }
             existing = cards_by_key.get(key)
