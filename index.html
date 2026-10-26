@@ -94,6 +94,22 @@
         <a href="https://www.gamestop.com/graded-trading-cards/estimate" target="_blank" rel="noreferrer"><strong>GameStop Graded Cards</strong><span>PSA-graded card trade-in estimate</span><small>Estimate trade-in ↗</small></a>
       </div>
       <p id="magic-feed-status" class="feed-status" role="status" aria-live="polite">Checking published Magic card price snapshot…</p>
+      <div class="psa-lookup-panel" aria-labelledby="psa-lookup-title">
+        <div class="psa-lookup-copy">
+          <div class="mini-label">GRADED CARD SHORTCUT</div>
+          <h3 id="psa-lookup-title">Look up a PSA certification number</h3>
+          <p>Use one certificate number to jump to PSA verification or GameStop’s official estimate form. LootGrind will copy the number for you when your browser allows it.</p>
+        </div>
+        <form id="psa-cert-form" class="psa-cert-form">
+          <label for="psa-cert-number">PSA certification number</label>
+          <input id="psa-cert-number" name="psa-cert-number" type="text" inputmode="numeric" autocomplete="off" maxlength="20" pattern="[0-9]{1,20}" placeholder="Enter digits from the slab label" required>
+          <div class="psa-lookup-actions">
+            <button class="button button-primary" type="button" id="psa-open-gamestop">Open GameStop estimate ↗</button>
+            <button class="button button-secondary" type="button" id="psa-open-verify">Open PSA verification ↗</button>
+          </div>
+          <p id="psa-lookup-status" class="psa-lookup-status" role="status" aria-live="polite">The GameStop estimate must be confirmed on GameStop’s site; LootGrind does not currently have a supported direct quote feed.</p>
+        </form>
+      </div>
       <form class="magic-add-form" id="magic-add-form">
         <label>Card name<input id="magic-name" required maxlength="120" placeholder="e.g. Sol Ring"></label>
         <label>Set / printing<input id="magic-set" required maxlength="100" placeholder="e.g. Commander Masters"></label>
