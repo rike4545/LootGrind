@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
-"""Refresh Magic card price snapshots from an authorized/licensed provider feed.
+"""Publish a daily Magic: The Gathering market-price snapshot from TCG API.
 
-Expected response:
-{"provider":"Provider name","cards":[{"name":"Card name","set":"Set / printing","condition":"Near Mint","finish":"nonfoil","tcgplayerMarket":12.34,"pricechartingPrice":11.25,"cardConduitBuylist":7.50,"gamestopTradeValue":null,"gamestopStatus":"unavailable","checkedAt":"ISO-8601"}]}
-Only values supplied by the authorized provider are published. Missing GameStop offers remain null.
+Requires the repository Actions secret TCG_API_KEY. This uses one search request
+per watchlist query (the free tier documents 100 requests/day). It does not scrape
+retailer websites or claim that market prices are GameStop trade-in offers.
 """
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
+WATCHLIST = ROOT / "data" / "magic-card-watchlist.json"
 OUTPUT = ROOT / "artifacts" / "magic-card-prices.json"
-FIELDS = ("tcgplayerMarket", "pricechartingPrice", "cardConduitBuylist", "gamestopTradeValue")
-IDENTITY = ("name", "set", "condition", "finish")
+API_URL = "https://api.tcgapi.dev/v1/search"
+USER_AGENT = "LootGrindMagicPriceRefresh/1.0"
 
 
 def fail(message):
@@ -24,75 +27,108 @@ def fail(message):
     raise SystemExit(1)
 
 
-def main():
-    endpoint = os.environ.get("MAGIC_CARD_PRICE_FEED_URL", "").strip()
-    api_key = os.environ.get("MAGIC_CARD_PRICE_FEED_KEY", "").strip()
-    if not endpoint or not api_key:
-        fail("Set MAGIC_CARD_PRICE_FEED_URL and MAGIC_CARD_PRICE_FEED_KEY repository secrets for an authorized provider.")
-    if not endpoint.startswith("https://"):
-        fail("MAGIC_CARD_PRICE_FEED_URL must be HTTPS.")
-    request = Request(endpoint, headers={
-        "Authorization": f"Bearer {api_key}",
+def normalized(value):
+    return re.sub(r"[^a-z0-9]", "", str(value or "").lower())
+
+
+def fetch_search(query, api_key):
+    url = API_URL + "?" + urlencode({"game": "magic", "q": query, "per_page": 100})
+    request = Request(url, headers={
+        "X-API-Key": api_key,
         "Accept": "application/json",
-        "User-Agent": "LootGrindMagicPriceRefresh/1.0",
+        "User-Agent": USER_AGENT,
     })
     try:
         with urlopen(request, timeout=30) as response:
             if response.status != 200:
-                fail(f"Provider returned HTTP {response.status}.")
+                fail(f"TCG API returned HTTP {response.status} for a watchlist query.")
             payload = json.loads(response.read().decode("utf-8"))
-    except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as exc:
-        fail(f"Could not retrieve authorized price feed: {exc}")
+    except HTTPError as exc:
+        fail(f"TCG API returned HTTP {exc.code}; check TCG_API_KEY and your plan limits.")
+    except (URLError, TimeoutError, json.JSONDecodeError) as exc:
+        fail(f"Could not retrieve TCG API prices: {exc}")
+    data = payload.get("data")
+    if not isinstance(data, list):
+        fail("TCG API response did not contain the expected data array.")
+    return data
 
-    cards = payload.get("cards")
-    if not isinstance(cards, list):
-        fail("Provider response must contain a cards array.")
-    cleaned, seen = [], set()
-    for raw in cards:
-        if not isinstance(raw, dict) or not all(str(raw.get(k, "")).strip() for k in IDENTITY):
+
+def main():
+    api_key = os.environ.get("TCG_API_KEY", "").strip()
+    if not api_key:
+        fail("Add the TCG_API_KEY repository Actions secret before running this workflow.")
+
+    try:
+        watchlist = json.loads(WATCHLIST.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(f"Could not read data/magic-card-watchlist.json: {exc}")
+    if not isinstance(watchlist, list) or not watchlist:
+        fail("The Magic watchlist must be a non-empty JSON array.")
+
+    checked_at = datetime.now(timezone.utc).isoformat()
+    cards_by_key = {}
+    queries_used = 0
+    for entry in watchlist:
+        if not isinstance(entry, dict):
             continue
-        item = {k: str(raw[k]).strip() for k in IDENTITY}
-        item["finish"] = item["finish"].lower()
-        key = tuple(item[k].casefold() for k in IDENTITY)
-        if key in seen:
+        query = str(entry.get("query") or entry.get("name") or "").strip()
+        target_name = str(entry.get("name") or query).strip()
+        if len(query) < 2 or not target_name:
             continue
-        seen.add(key)
-        valid_count = 0
-        for field in FIELDS:
-            value = raw.get(field)
-            if value is None or value == "":
-                item[field] = None
+        results = fetch_search(query, api_key)
+        queries_used += 1
+        target = normalized(target_name)
+        for raw in results:
+            if not isinstance(raw, dict) or normalized(raw.get("name")) != target:
                 continue
+            set_name = str(raw.get("set_name") or "").strip()
+            if not set_name:
+                continue
+            printing = str(raw.get("printing") or ("Foil" if raw.get("foil_only") else "Normal")).strip()
+            finish = "foil" if "foil" in printing.lower() else "nonfoil"
+            price = raw.get("market_price")
             try:
-                number = float(value)
+                market = round(float(price), 2) if price is not None and float(price) >= 0 else None
             except (TypeError, ValueError):
-                item[field] = None
-                continue
-            if number < 0:
-                item[field] = None
-                continue
-            item[field] = round(number, 2)
-            valid_count += 1
-        item["gamestopStatus"] = str(raw.get("gamestopStatus") or ("verified" if item["gamestopTradeValue"] is not None else "unverified"))
-        item["checkedAt"] = str(raw.get("checkedAt") or datetime.now(timezone.utc).isoformat())
-        item["sourceUrls"] = raw.get("sourceUrls") if isinstance(raw.get("sourceUrls"), dict) else {}
-        item["grade"] = str(raw.get("grade") or "")
-        item["collectorNumber"] = str(raw.get("collectorNumber") or "")
-        if valid_count:
-            cleaned.append(item)
+                market = None
+            key = (target, normalized(set_name), finish)
+            item = {
+                "name": str(raw.get("name") or target_name),
+                "set": set_name,
+                "condition": "Near Mint",
+                "finish": finish,
+                "tcgplayerMarket": market,
+                "pricechartingPrice": None,
+                "cardConduitBuylist": None,
+                "gamestopTradeValue": None,
+                "gamestopStatus": "unavailable",
+                "checkedAt": str(raw.get("price_updated_at") or raw.get("market_price_as_of") or checked_at),
+                "grade": "",
+                "collectorNumber": str(raw.get("number") or ""),
+                "sourceUrls": {
+                    "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=" + __import__("urllib.parse", fromlist=["quote"]).quote(str(raw.get("name") or target_name) + " " + set_name),
+                    "tcgApi": "https://tcgapi.dev/",
+                },
+            }
+            existing = cards_by_key.get(key)
+            if existing is None or (existing["tcgplayerMarket"] is None and market is not None):
+                cards_by_key[key] = item
+
+    cards = sorted(cards_by_key.values(), key=lambda c: (c["name"].casefold(), c["set"].casefold(), c["finish"]))
+    if not cards:
+        fail("No exact card-name matches were returned; no snapshot was published.")
 
     result = {
-        "generatedAt": datetime.now(timezone.utc).isoformat(),
-        "provider": str(payload.get("provider") or "authorized Magic pricing feed"),
-        "cardCount": len(cleaned),
-        "cards": cleaned,
-        "note": "Values are copied from an authorized provider feed. Null or unverified GameStop values are not offers.",
+        "generatedAt": checked_at,
+        "provider": "TCG API (TCGplayer market data)",
+        "queryCount": queries_used,
+        "cardCount": len(cards),
+        "cards": cards,
+        "note": "TCG API market prices only. PriceCharting, Card Conduit, and GameStop values are unavailable unless separately verified from an authorized source. Market price is not a trade-in offer or guaranteed acquisition cost.",
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    print(f"Prepared {len(cleaned)} card price records.")
-    if not cleaned:
-        fail("No valid card price records returned; snapshot will not be published.")
+    print(f"Prepared {len(cards)} exact-name printing records from {queries_used} search requests.")
 
 
 if __name__ == "__main__":
