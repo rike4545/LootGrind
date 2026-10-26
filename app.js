@@ -301,6 +301,30 @@
     { key: "cardConduitBuylist", label: "Card Conduit", url: "https://cardconduit.com/card-price-check" },
     { key: "gamestopTradeValue", label: "GameStop graded-card trade-in", url: "https://www.gamestop.com/graded-trading-cards/estimate" }
   ];
+  const psaCertInput = document.getElementById("psa-cert-number");
+  const psaLookupStatus = document.getElementById("psa-lookup-status");
+  async function openPsaLookup(destination) {
+    const cert = psaCertInput.value.trim();
+    if (!/^\\d{1,20}$/.test(cert)) {
+      psaLookupStatus.textContent = "Enter a numeric PSA certification number first.";
+      psaCertInput.focus();
+      return;
+    }
+    const target = destination === "gamestop"
+      ? "https://www.gamestop.com/graded-trading-cards/estimate"
+      : "https://www.psacard.com/en/cert";
+    window.open(target, "_blank", "noopener,noreferrer");
+    try {
+      await navigator.clipboard.writeText(cert);
+      psaLookupStatus.textContent = (destination === "gamestop" ? "GameStop’s estimator opened and the certification number was copied. Paste it into the estimator to retrieve the current quote." : "PSA certification verification opened and the number was copied. Paste it into PSA’s verification form.");
+    } catch (_) {
+      psaLookupStatus.textContent = (destination === "gamestop" ? "GameStop’s estimator opened. Copy the certification number above and paste it into the estimator to retrieve the current quote." : "PSA verification opened. Copy the certification number above and paste it into PSA’s verification form.");
+    }
+  }
+  document.getElementById("psa-open-gamestop").addEventListener("click", () => openPsaLookup("gamestop"));
+  document.getElementById("psa-open-verify").addEventListener("click", () => openPsaLookup("psa"));
+  document.getElementById("psa-cert-form").addEventListener("submit", event => event.preventDefault());
+
   function saveMagic() {
     try { localStorage.setItem(magicStorageKey, JSON.stringify(magicCards)); magicSaveStatus.textContent = "Cards saved locally in this browser"; }
     catch (_) { magicSaveStatus.textContent = "Browser storage unavailable; export a CSV backup"; }
