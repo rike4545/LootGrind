@@ -3,7 +3,7 @@ name: Refresh authorized trade-in quotes
 on:
   workflow_dispatch:
   schedule:
-    # Every day at 12:20 UTC. Adjust after confirming provider rate limits.
+    # Daily check; quote collection runs only after an authorized feed is configured.
     - cron: "20 12 * * *"
 
 permissions:
@@ -17,19 +17,27 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Explain missing authorized feed
+        if: ${{ !secrets.TRADE_IN_FEED_URL || !secrets.TRADE_IN_FEED_KEY }}
+        run: |
+          echo "::notice title=Trade-in feed not configured::No authorized trade-in feed credentials are configured. No retailer pages were scraped and no live quote data was collected."
+          echo "To enable automated quote collection, add TRADE_IN_FEED_URL and TRADE_IN_FEED_KEY repository secrets for a provider you are authorized to use."
+
       - name: Set up Python
+        if: ${{ secrets.TRADE_IN_FEED_URL && secrets.TRADE_IN_FEED_KEY }}
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Refresh quotes from authorized feed
+        if: ${{ secrets.TRADE_IN_FEED_URL && secrets.TRADE_IN_FEED_KEY }}
         env:
           TRADE_IN_FEED_URL: ${{ secrets.TRADE_IN_FEED_URL }}
           TRADE_IN_FEED_KEY: ${{ secrets.TRADE_IN_FEED_KEY }}
         run: python scripts/refresh-authorized-tradeins.py
 
       - name: Upload quote snapshot
-        if: success()
+        if: ${{ success() && secrets.TRADE_IN_FEED_URL && secrets.TRADE_IN_FEED_KEY }}
         uses: actions/upload-artifact@v4
         with:
           name: lootgrind-trade-in-quotes
