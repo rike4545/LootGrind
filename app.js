@@ -140,9 +140,9 @@
   }
   function onTrackerChange(event) {
     const row = event.target.closest("tr[data-product]");
-    if (row && event.target.dataset.field === "quote" && event.target.value.trim() !== "") {
-      row.dataset.checkedAt = new Date().toISOString();
+    if (row && event.target.dataset.field === "quote") {
       row.dataset.quoteSource = "manual";
+      if (event.target.value.trim() !== "") row.dataset.checkedAt = new Date().toISOString();
     }
     saveState();
     updateDates();
