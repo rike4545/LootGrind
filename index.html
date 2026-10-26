@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10100f">
+  <meta name="description" content="LootGrind helps you compare retail prices with trade-in quotes, separate cash from store credit, and estimate real arbitrage profit.">
+  <meta property="og:title" content="LootGrind — Find the spread. Know the profit.">
+  <meta property="og:description" content="A smarter retail-to-trade-in deal research tool for Best Buy, Walmart, and GameStop.">
+  <meta property="og:type" content="website">
+  <title>LootGrind — Find the spread. Know the profit.</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="LootGrind home"><span class="brand-mark">L<span>G</span></span><span>loot<span class="brand-light">grind</span></span></a>
+    <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#calculator">Profit calculator</a><a href="#integrity">Data integrity</a></nav>
+    <a class="nav-cta" href="https://github.com/rike4545/LootGrind" target="_blank" rel="noreferrer">View on GitHub <span>↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> RETAIL-TO-TRADE-IN RESEARCH</div>
+        <h1>Find the spread.<br><span>Know the profit.</span></h1>
+        <p class="hero-description">LootGrind helps you spot potential arbitrage between retail deals and trade-in offers—without confusing store credit for cash or ignoring the costs in between.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#calculator">Calculate a deal <span>↘</span></a><a class="button button-secondary" href="https://github.com/rike4545/LootGrind" target="_blank" rel="noreferrer">Explore the project <span>↗</span></a></div>
+        <div class="hero-note"><span class="note-icon">⌁</span> Research tool, not a guarantee of resale profit. Verify every offer before buying.</div>
+      </div>
+      <div class="product-card" aria-label="Illustrative deal preview">
+        <div class="card-top"><div><div class="mini-label">DEAL SCOUT / PREVIEW</div><div class="card-heading">Opportunity snapshot</div></div><span class="status-pill"><span></span> EXAMPLE</span></div>
+        <div class="mock-product"><div class="product-art"><div class="device"><div class="device-screen"></div><div class="device-dot"></div></div></div><div class="product-details"><div class="mini-label">MATCHED PRODUCT</div><h3>Example device</h3><p>Exact model match required</p></div></div>
+        <div class="price-grid"><div class="price-cell"><span>RETAIL COST</span><strong>$249.99</strong><small>Example price</small></div><div class="price-cell"><span>TRADE-IN VALUE</span><strong>$320.00</strong><small>Example quote</small></div></div>
+        <div class="result-row"><div><span class="mini-label">EST. NET SPREAD</span><div class="result-caption">Before unentered costs</div></div><strong class="positive">+$70.01</strong></div>
+        <div class="card-foot"><span>↳ Illustrative values only</span><span>NOT A LIVE OFFER</span></div>
+      </div>
+      <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
+    </section>
+
+    <section class="ticker" aria-label="Supported retailer focus"><div><span>01</span> RETAIL PRICE DISCOVERY</div><i></i><div><span>02</span> EXACT PRODUCT MATCHING</div><i></i><div><span>03</span> CASH VS. CREDIT</div><i></i><div><span>04</span> NET PROFIT ESTIMATES</div></section>
+
+    <section class="section" id="how-it-works">
+      <div class="section-intro"><div class="eyebrow">THE WORKFLOW</div><h2>Less guesswork.<br><span>Better decisions.</span></h2><p>A good-looking spread means nothing if the model is wrong, the quote is stale, or the payout is store credit.</p></div>
+      <div class="steps-grid">
+        <article class="step-card"><div class="step-number">01 <span>↗</span></div><div class="step-icon">⌕</div><h3>Discover retail prices</h3><p>Research product listings from Best Buy and Walmart, then verify the actual listing, availability, and checkout price.</p><div class="step-tag">PRICE SOURCES</div></article>
+        <article class="step-card"><div class="step-number">02 <span>↗</span></div><div class="step-icon">⌗</div><h3>Match the exact item</h3><p>Use UPCs and model numbers wherever possible. Similar names are not proof that two products are identical.</p><div class="step-tag">SKU / UPC MATCHING</div></article>
+        <article class="step-card"><div class="step-number">03 <span>↗</span></div><div class="step-icon">⇄</div><h3>Compare payout types</h3><p>Keep cash trade-in values separate from store-credit offers so the headline number doesn't mislead you.</p><div class="step-tag">CASH ≠ CREDIT</div></article>
+        <article class="step-card"><div class="step-number">04 <span>↗</span></div><div class="step-icon">⌁</div><h3>Estimate the real spread</h3><p>Account for tax, fees, travel, and other costs. Rank opportunities by the metric that actually matters to you.</p><div class="step-tag">NET PROFIT / ROI</div></article>
+      </div>
+    </section>
+
+    <section class="calculator-section" id="calculator">
+      <div class="calculator-copy"><div class="eyebrow">QUICK DEAL CHECK</div><h2>Run the numbers<br><span>before you buy.</span></h2><p>Try a deal with your own figures. This on-page calculator is independent of live retailer feeds and does not imply an offer is available.</p><div class="calc-callout"><span>✳</span><p><strong>Keep it honest.</strong><br>Store credit may be useful, but it isn't equivalent to cash. Choose the payout type that matches the quote you're evaluating.</p></div></div>
+      <form class="calculator" id="deal-form">
+        <div class="calc-header"><div><span class="mini-label">LOOTGRIND TOOL</span><h3>Profit estimator</h3></div><span class="live-dot">LOCAL CALC</span></div>
+        <label>Retail purchase price <div class="input-wrap"><span>$</span><input id="price" type="number" min="0" step="0.01" value="249.99" required></div></label>
+        <div class="input-row"><label>Sales tax (%) <div class="input-wrap"><input id="tax" type="number" min="0" max="30" step="0.01" value="8.625" required><span>%</span></div></label><label>Extra costs <div class="input-wrap"><span>$</span><input id="costs" type="number" min="0" step="0.01" value="0" required></div></label></div>
+        <label>Trade-in quote <div class="input-wrap"><span>$</span><input id="payout" type="number" min="0" step="0.01" value="320" required></div></label>
+        <fieldset><legend>Payout type</legend><div class="choice-row"><label class="choice"><input type="radio" name="payoutType" value="cash" checked><span>Cash</span></label><label class="choice"><input type="radio" name="payoutType" value="credit"><span>Store credit</span></label></div></fieldset>
+        <div class="calc-results"><div><span>ESTIMATED NET</span><strong id="net-result">+$48.45</strong></div><div><span>ROI ON COST</span><strong id="roi-result">17.8%</strong></div></div>
+        <p class="calc-disclaimer" id="calc-note">Estimate assumes the quoted payout is received in full. It excludes any costs not entered above.</p>
+      </form>
+    </section>
+
+    <section class="section feature-section" id="integrity">
+      <div class="section-intro"><div class="eyebrow">BUILT AROUND TRUST</div><h2>A deal is only as good<br>as <span>its data.</span></h2><p>LootGrind is being built to make assumptions visible, not hide them behind a big green number.</p></div>
+      <div class="integrity-list">
+        <div class="integrity-item"><span class="integrity-check">✓</span><div><h3>Source and timestamp</h3><p>Retail prices and trade-in quotes should show where they came from and when they were verified.</p></div><span class="integrity-index">A1</span></div>
+        <div class="integrity-item"><span class="integrity-check">✓</span><div><h3>Freshness warnings</h3><p>Older quotes can go stale quickly. The app flags trade-in quotes older than seven days.</p></div><span class="integrity-index">A2</span></div>
+        <div class="integrity-item"><span class="integrity-check">✓</span><div><h3>Exact match before ranking</h3><p>Prefer exact UPC or model matches; verify condition, storage, region, and promotion eligibility.</p></div><span class="integrity-index">A3</span></div>
+        <div class="integrity-item"><span class="integrity-check">✓</span><div><h3>No pretend live data</h3><p>This website's preview values are examples. Retail listings, local inventory, and trade-in offers must be confirmed directly.</p></div><span class="integrity-index">A4</span></div>
+      </div>
+    </section>
+
+    <section class="retailers"><div><div class="eyebrow">THE RETAIL LOOP</div><h2>Shop smart.<br><span>Trade informed.</span></h2></div><div class="retailer-logos"><span class="retailer bestbuy">BEST<span>BUY</span></span><span class="retailer walmart">Walmart<span>✳</span></span><span class="retailer gamestop">GameStop<span>®</span></span></div><p class="retailer-note">LootGrind is an independent project and is not affiliated with, endorsed by, or sponsored by these retailers.</p></section>
+
+    <section class="closing"><div class="closing-mark">LG</div><div><div class="eyebrow">OPEN SOURCE PROJECT</div><h2>Want to help grind<br>out the details?</h2><p>Explore the code, follow development, or contribute improvements on GitHub.</p></div><a class="button button-primary" href="https://github.com/rike4545/LootGrind" target="_blank" rel="noreferrer">Explore LootGrind <span>↗</span></a></section>
+  </main>
+  <footer><a class="brand footer-brand" href="#top"><span class="brand-mark">L<span>G</span></span><span>loot<span class="brand-light">grind</span></span></a><p>Independent deal research. Verify before you buy.</p><div><a href="https://github.com/rike4545/LootGrind" target="_blank" rel="noreferrer">GitHub ↗</a><span>© <span id="year">2026</span> LootGrind</span></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
