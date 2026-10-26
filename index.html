@@ -61,7 +61,7 @@
     </section>
 
     <section class="section scanner-section" id="opportunity-scanner">
-      <div class="section-intro"><div class="eyebrow">MANUAL QUOTE TRACKER</div><h2>Find your best<br><span>trade-in opportunity.</span></h2><p>Enter a retailer price and the trade-in quote you just checked. LootGrind calculates estimated net profit and ranks products from best to worst. Your entries save in this browser.</p></div>
+      <div class="section-intro"><div class="eyebrow">AUTOMATED QUOTE TRACKER</div><h2>Find your best<br><span>trade-in opportunity.</span></h2><p>LootGrind checks the latest published snapshot from its scheduled authorized trade-in feed, then ranks eligible quotes against your retail prices and costs. You can still override any quote manually.</p></div>
       <div class="scanner-controls">
         <label>Sales tax rate (%) <input id="scanner-tax" type="number" min="0" max="30" step="0.001" placeholder="Enter local rate"></label>
         <p>Use the actual checkout price and verify whether each GameStop offer is cash or store credit.</p>
@@ -80,7 +80,7 @@
       </div>
       <div class="scanner-actions"><button class="button button-primary" type="button" id="export-quotes">Export quotes CSV <span>↗</span></button><button class="button button-secondary" type="button" id="clear-quotes">Clear saved quotes</button><span id="save-status" role="status">Saved locally in this browser</span></div>
       <div class="ranking-panel"><div class="ranking-header"><div><div class="mini-label">LIVE RANKING</div><h3>Best estimated opportunities</h3></div><span class="live-dot">YOUR ENTRIES</span></div><div id="ranking-results"><p class="empty-ranking">Enter a retail price and trade-in quote for at least one product to see your ranking.</p></div></div>
-      <p class="calc-disclaimer">Ranking uses estimated net after entered sales tax and extra costs. Store-credit results are labeled separately because credit is not cash. No live offers are fetched; quotes must be checked directly with the retailer. Browser-local entries do not sync to other devices.</p>
+      <p class="calc-disclaimer">Ranking uses estimated net after entered sales tax and extra costs. Store-credit results are labeled separately because credit is not cash. Automatic trade-in quotes appear only after an authorized provider feed is configured and its scheduled refresh succeeds. Retail purchase prices remain manual; verify exact product, condition, eligibility, and final offer before buying. Browser-local retail prices and cost entries do not sync across devices.</p>
     </section>
 
     <section class="calculator-section" id="calculator">
