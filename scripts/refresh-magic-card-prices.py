@@ -102,12 +102,16 @@ def main():
                 "cardConduitBuylist": None,
                 "gamestopTradeValue": None,
                 "gamestopStatus": "unavailable",
+                "psaGrade": "",
+                "psaGradedValue": None,
+                "psaPriceGuideStatus": "manual_only",
                 "checkedAt": str(raw.get("price_updated_at") or raw.get("market_price_as_of") or checked_at),
                 "grade": "",
                 "collectorNumber": str(raw.get("number") or ""),
                 "sourceUrls": {
                     "tcgplayerMarket": "https://www.tcgplayer.com/search/magic/product?q=" + __import__("urllib.parse", fromlist=["quote"]).quote(str(raw.get("name") or target_name) + " " + set_name),
                     "tcgApi": "https://tcgapi.dev/",
+                    "psaPriceGuide": "https://www.psacard.com/priceguide",
                 },
             }
             existing = cards_by_key.get(key)
@@ -124,7 +128,7 @@ def main():
         "queryCount": queries_used,
         "cardCount": len(cards),
         "cards": cards,
-        "note": "TCG API market prices only. PriceCharting, Card Conduit, and GameStop values are unavailable unless separately verified from an authorized source. Market price is not a trade-in offer or guaranteed acquisition cost.",
+        "note": "TCG API provides raw TCGplayer market prices only. PSA graded guide values are not scraped or automatically populated; check the official PSA Price Guide and enter a value for the exact PSA grade manually. PriceCharting, Card Conduit, and GameStop values are unavailable unless separately verified from an authorized source. Raw market prices, graded guide values, and trade-in offers are distinct and are not guaranteed acquisition costs or payouts.",
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
