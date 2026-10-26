@@ -1,0 +1,8 @@
+{
+  "generatedAt": null,
+  "provider": "not-configured",
+  "quoteCount": 0,
+  "quotes": [],
+  "failures": [],
+  "note": "No live quotes are available until an authorized provider feed is configured."
+}
