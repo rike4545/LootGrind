@@ -1,5 +1,19 @@
 {
   "identifiers": [
-    "REPLACE_WITH_A_REAL_UPC_OR_MODEL_NUMBER"
-  ]
+    "HEG-001",
+    "HDH-001",
+    "CFI-2015",
+    "CFI-ZCT1W",
+    "CFI-Y1001",
+    "1914"
+  ],
+  "notes": [
+    "Nintendo Switch OLED model HEG-001",
+    "Nintendo Switch Lite model HDH-001",
+    "PlayStation 5 Slim family model CFI-2015; verify regional suffix and edition before comparing",
+    "Sony DualSense Wireless Controller model CFI-ZCT1W; verify revision/region",
+    "PlayStation Portal model CFI-Y1001",
+    "Xbox Wireless Controller model 1914; verify color/edition"
+  ],
+  "important": "These are manufacturer model identifiers for watchlist setup, not confirmed GameStop trade-in eligibility or live quotes. Confirm exact variant, region, condition, and current trade-in offer before acting."
 }
