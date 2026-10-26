@@ -21,7 +21,7 @@ LootGrind is an independent native iOS project for researching retail-to-trade-i
 
 The app currently includes a SwiftUI interface, deal model/store, Best Buy Products API provider, Walmart search provider, and unit tests. Best Buy requires a developer API key entered in the app. Walmart search results depend on a configured SerpApi key and should be treated as unverified until checked against the retailer listing. Trade-in values can be entered manually or refreshed through the authorized-feed adapter when you have an approved/licensed feed endpoint. A daily GitHub Actions job now supports scheduled refreshes from that authorized feed; it requires provider credentials and a populated watchlist before it can run successfully. There is no direct GameStop integration bundled.
 
-The website includes a standalone profit estimator. Its sample deal card is explicitly illustrative and is not connected to live retailer prices or trade-in offers.
+The website includes a product-research watchlist with retailer search links for real product families and a standalone profit estimator. The site does not currently pull live retailer prices or GameStop trade-in offers; product variants, prices, availability, and trade-in eligibility must be verified manually.
 
 ## Website deployment
 
