@@ -39,6 +39,7 @@
       products[row.dataset.product] = {
         retail: f.retail.value,
         quote: f.quote.value,
+        quoteSource: row.dataset.quoteSource || "",
         payout: f.payout.value,
         costs: f.costs.value,
         checkedAt: row.dataset.checkedAt || ""
@@ -67,6 +68,7 @@
           if (typeof savedProduct[key] === "string") f[key].value = savedProduct[key];
         });
         row.dataset.checkedAt = savedProduct.checkedAt || "";
+        row.dataset.quoteSource = savedProduct.quoteSource || (savedProduct.quote ? "manual" : "");
       });
     } catch (_) {
       saveStatus.textContent = "Couldn't read saved quotes; enter them again or import no data";
@@ -140,6 +142,7 @@
     const row = event.target.closest("tr[data-product]");
     if (row && event.target.dataset.field === "quote" && event.target.value.trim() !== "") {
       row.dataset.checkedAt = new Date().toISOString();
+      row.dataset.quoteSource = "manual";
     }
     saveState();
     updateDates();
@@ -178,15 +181,64 @@
     rows.forEach(row => {
       Object.values(fieldsFor(row)).forEach(input => { input.value = input.dataset.field === "payout" ? "cash" : ""; });
       row.dataset.checkedAt = "";
+      row.dataset.quoteSource = "";
     });
     try { localStorage.removeItem(storageKey); } catch (_) {}
     saveStatus.textContent = "Saved quotes cleared";
     updateDates();
     renderRanking();
   });
+
+  // Load the latest published snapshot from the scheduled authorized-feed workflow.
+  // Manual quotes remain in control once the user edits a quote field.
+  async function loadAutomatedQuotes() {
+    const productByIdentifier = {
+      "heg-001": "Nintendo Switch OLED",
+      "cfi-2015": "PlayStation 5 Slim",
+      "cfi-zct1w": "DualSense Wireless Controller",
+      "cfi-y1001": "PlayStation Portal",
+      "1914": "Xbox Wireless Controller"
+    };
+    try {
+      const response = await fetch("data/trade-in-quotes.json", { cache: "no-store" });
+      if (!response.ok) throw new Error("Quote snapshot unavailable");
+      const snapshot = await response.json();
+      if (!Array.isArray(snapshot.quotes) || snapshot.quotes.length === 0) {
+        if (snapshot.provider === "not-configured") {
+          saveStatus.textContent = "Automatic quotes need an authorized feed to be configured";
+        }
+        return;
+      }
+      let applied = 0;
+      snapshot.quotes.forEach(quote => {
+        const identifier = String(quote.identifier || "").trim().toLowerCase();
+        const productName = productByIdentifier[identifier];
+        if (!productName || !(Number(quote.tradeValue) > 0)) return;
+        const row = rows.find(candidate => candidate.dataset.product === productName);
+        if (!row || row.dataset.quoteSource === "manual") return;
+        const f = fieldsFor(row);
+        f.quote.value = Number(quote.tradeValue).toFixed(2);
+        f.payout.value = quote.payoutType === "Store Credit" ? "credit" : "cash";
+        row.dataset.checkedAt = quote.quotedAt || snapshot.generatedAt || "";
+        row.dataset.quoteSource = "feed";
+        applied += 1;
+      });
+      if (applied) {
+        saveState();
+        updateDates();
+        renderRanking();
+        saveStatus.textContent = "Updated " + applied + " quote(s) from authorized feed · " +
+          (snapshot.generatedAt ? new Date(snapshot.generatedAt).toLocaleString() : "timestamp unavailable");
+      }
+    } catch (_) {
+      saveStatus.textContent = "Automatic quote snapshot unavailable; manual tracking still works";
+    }
+  }
+
   document.getElementById("year").textContent = new Date().getFullYear();
   loadState();
   updateDates();
   renderRanking();
   calculate();
+  loadAutomatedQuotes();
 })();
