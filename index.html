@@ -32,12 +32,18 @@
         <div class="hero-actions"><a class="button button-primary" href="#calculator">Calculate a deal <span>↘</span></a><a class="button button-secondary" href="https://github.com/rike4545/LootGrind" target="_blank" rel="noreferrer">Explore the project <span>↗</span></a></div>
         <div class="hero-note"><span class="note-icon">⌁</span> Research tool, not a guarantee of resale profit. Verify every offer before buying.</div>
       </div>
-      <div class="product-card" aria-label="Illustrative deal preview">
-        <div class="card-top"><div><div class="mini-label">DEAL SCOUT / PREVIEW</div><div class="card-heading">Opportunity snapshot</div></div><span class="status-pill"><span></span> EXAMPLE</span></div>
-        <div class="mock-product"><div class="product-art"><div class="device"><div class="device-screen"></div><div class="device-dot"></div></div></div><div class="product-details"><div class="mini-label">MATCHED PRODUCT</div><h3>Example device</h3><p>Exact model match required</p></div></div>
-        <div class="price-grid"><div class="price-cell"><span>RETAIL COST</span><strong>$249.99</strong><small>Example price</small></div><div class="price-cell"><span>TRADE-IN VALUE</span><strong>$320.00</strong><small>Example quote</small></div></div>
-        <div class="result-row"><div><span class="mini-label">EST. NET SPREAD</span><div class="result-caption">Before unentered costs</div></div><strong class="positive">+$70.01</strong></div>
-        <div class="card-foot"><span>↳ Illustrative values only</span><span>NOT A LIVE OFFER</span></div>
+
+      <div class="product-card" aria-label="Product watchlist">
+        <div class="card-top"><div><div class="mini-label">PRODUCT WATCHLIST</div><div class="card-heading">Real products to research</div></div><span class="status-pill"><span></span> WATCHLIST</span></div>
+        <div class="watchlist">
+          <article class="watch-item"><div class="watch-icon">NS</div><div class="watch-details"><h3>Nintendo Switch OLED</h3><p>Model HEG-001 · verify regional variant</p></div><a href="https://www.bestbuy.com/site/searchpage.jsp?st=Nintendo+Switch+OLED" target="_blank" rel="noreferrer" aria-label="Search Best Buy for Nintendo Switch OLED">↗</a></article>
+          <article class="watch-item"><div class="watch-icon">PS5</div><div class="watch-details"><h3>PlayStation 5 Slim</h3><p>Model family CFI-20xx · match edition/storage</p></div><a href="https://www.bestbuy.com/site/searchpage.jsp?st=PlayStation+5+Slim" target="_blank" rel="noreferrer" aria-label="Search Best Buy for PlayStation 5 Slim">↗</a></article>
+          <article class="watch-item"><div class="watch-icon">DS</div><div class="watch-details"><h3>DualSense Wireless Controller</h3><p>Model family CFI-ZCT1W · verify color/revision</p></div><a href="https://www.walmart.com/search?q=DualSense+Wireless+Controller" target="_blank" rel="noreferrer" aria-label="Search Walmart for DualSense Wireless Controller">↗</a></article>
+          <article class="watch-item"><div class="watch-icon">PP</div><div class="watch-details"><h3>PlayStation Portal</h3><p>Model family CFI-Y1001 · verify exact SKU</p></div><a href="https://www.bestbuy.com/site/searchpage.jsp?st=PlayStation+Portal" target="_blank" rel="noreferrer" aria-label="Search Best Buy for PlayStation Portal">↗</a></article>
+          <article class="watch-item"><div class="watch-icon">XB</div><div class="watch-details"><h3>Xbox Wireless Controller</h3><p>Model 1914 family · match color/edition</p></div><a href="https://www.walmart.com/search?q=Xbox+Wireless+Controller" target="_blank" rel="noreferrer" aria-label="Search Walmart for Xbox Wireless Controller">↗</a></article>
+        </div>
+        <div class="watchlist-note">Retail prices and GameStop trade-in offers are not connected to this page. Open a retailer search, verify the exact item, and enter current figures in the calculator.</div>
+        <div class="card-foot"><span>↳ Product research starters</span><span>NO FABRICATED PRICES</span></div>
       </div>
       <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div>
     </section>
@@ -58,12 +64,12 @@
       <div class="calculator-copy"><div class="eyebrow">QUICK DEAL CHECK</div><h2>Run the numbers<br><span>before you buy.</span></h2><p>Try a deal with your own figures. This on-page calculator is independent of live retailer feeds and does not imply an offer is available.</p><div class="calc-callout"><span>✳</span><p><strong>Keep it honest.</strong><br>Store credit may be useful, but it isn't equivalent to cash. Choose the payout type that matches the quote you're evaluating.</p></div></div>
       <form class="calculator" id="deal-form">
         <div class="calc-header"><div><span class="mini-label">LOOTGRIND TOOL</span><h3>Profit estimator</h3></div><span class="live-dot">LOCAL CALC</span></div>
-        <label>Retail purchase price <div class="input-wrap"><span>$</span><input id="price" type="number" min="0" step="0.01" value="249.99" required></div></label>
-        <div class="input-row"><label>Sales tax (%) <div class="input-wrap"><input id="tax" type="number" min="0" max="30" step="0.01" value="8.625" required><span>%</span></div></label><label>Extra costs <div class="input-wrap"><span>$</span><input id="costs" type="number" min="0" step="0.01" value="0" required></div></label></div>
-        <label>Trade-in quote <div class="input-wrap"><span>$</span><input id="payout" type="number" min="0" step="0.01" value="320" required></div></label>
+        <label>Retail purchase price <div class="input-wrap"><span>$</span><input id="price" type="number" min="0" step="0.01" value="" placeholder="Enter current price" required></div></label>
+        <div class="input-row"><label>Sales tax (%) <div class="input-wrap"><input id="tax" type="number" min="0" max="30" step="0.01" value="" placeholder="0.00" required><span>%</span></div></label><label>Extra costs <div class="input-wrap"><span>$</span><input id="costs" type="number" min="0" step="0.01" value="" placeholder="0.00" required></div></label></div>
+        <label>Trade-in quote <div class="input-wrap"><span>$</span><input id="payout" type="number" min="0" step="0.01" value="" placeholder="Enter verified quote" required></div></label>
         <fieldset><legend>Payout type</legend><div class="choice-row"><label class="choice"><input type="radio" name="payoutType" value="cash" checked><span>Cash</span></label><label class="choice"><input type="radio" name="payoutType" value="credit"><span>Store credit</span></label></div></fieldset>
-        <div class="calc-results"><div><span>ESTIMATED NET</span><strong id="net-result">+$48.45</strong></div><div><span>ROI ON COST</span><strong id="roi-result">17.8%</strong></div></div>
-        <p class="calc-disclaimer" id="calc-note">Estimate assumes the quoted payout is received in full. It excludes any costs not entered above.</p>
+        <div class="calc-results"><div><span>ESTIMATED NET</span><strong id="net-result">$0.00</strong></div><div><span>ROI ON COST</span><strong id="roi-result">0.0%</strong></div></div>
+        <p class="calc-disclaimer" id="calc-note">Enter a verified retail price, tax rate, costs, and trade-in quote to calculate an estimate.</p>
       </form>
     </section>
 
@@ -73,7 +79,7 @@
         <div class="integrity-item"><span class="integrity-check">✓</span><div><h3>Source and timestamp</h3><p>Retail prices and trade-in quotes should show where they came from and when they were verified.</p></div><span class="integrity-index">A1</span></div>
         <div class="integrity-item"><span class="integrity-check">✓</span><div><h3>Freshness warnings</h3><p>Older quotes can go stale quickly. The app flags trade-in quotes older than seven days.</p></div><span class="integrity-index">A2</span></div>
         <div class="integrity-item"><span class="integrity-check">✓</span><div><h3>Exact match before ranking</h3><p>Prefer exact UPC or model matches; verify condition, storage, region, and promotion eligibility.</p></div><span class="integrity-index">A3</span></div>
-        <div class="integrity-item"><span class="integrity-check">✓</span><div><h3>No pretend live data</h3><p>This website's preview values are examples. Retail listings, local inventory, and trade-in offers must be confirmed directly.</p></div><span class="integrity-index">A4</span></div>
+        <div class="integrity-item"><span class="integrity-check">✓</span><div><h3>No pretend live data</h3><p>Product links are retailer searches, not live offers. Retail listings, inventory, exact variants, and trade-in values must be confirmed directly.</p></div><span class="integrity-index">A4</span></div>
       </div>
     </section>
 
