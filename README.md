@@ -105,3 +105,44 @@ LootGrind is an independent project and is not affiliated with, endorsed by, or 
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+
+## Daily Magic: The Gathering price publishing
+
+The repository now includes `.github/workflows/refresh-magic-card-prices.yml`, scheduled daily at 12:35 UTC. When a licensed provider is configured, the job fetches its authorized feed, validates the response, writes `data/magic-card-prices.json`, commits changed snapshots, and triggers the GitHub Pages deployment. The public website merges published card records into the Magic tracker so visitors can see the feed's cards, not only browser-local entries.
+
+**This is publishing infrastructure, not a live provider connection yet.** No provider credentials are configured by this change, so daily runs will explicitly report that collection is unavailable and will not invent values or scrape source sites.
+
+### Enable the daily feed
+
+Add these repository secrets under **Settings → Secrets and variables → Actions**:
+
+- `MAGIC_CARD_PRICE_FEED_URL` — HTTPS endpoint for a licensed/authorized provider.
+- `MAGIC_CARD_PRICE_FEED_KEY` — bearer token for that provider.
+
+The endpoint must return JSON with a `cards` array. Each record needs exact `name`, `set`, `condition`, and `finish` values, plus at least one numeric source value. Supported numeric fields are `tcgplayerMarket`, `pricechartingPrice`, `cardConduitBuylist`, and `gamestopTradeValue`. Optional fields include `gamestopStatus`, `checkedAt`, `grade`, `collectorNumber`, and `sourceUrls`. Example:
+
+```json
+{
+  "provider": "Licensed Provider",
+  "cards": [
+    {
+      "name": "Example Card",
+      "set": "Example Set",
+      "condition": "Near Mint",
+      "finish": "nonfoil",
+      "tcgplayerMarket": 12.34,
+      "pricechartingPrice": 11.25,
+      "cardConduitBuylist": 7.5,
+      "gamestopTradeValue": null,
+      "gamestopStatus": "unverified",
+      "checkedAt": "2026-10-25T12:00:00Z",
+      "sourceUrls": {}
+    }
+  ]
+}
+```
+
+A null or unverified GameStop value is not an offer. The feed must be permitted to provide each source's data; do not scrape TCGplayer, PriceCharting, Card Conduit, or GameStop in violation of their terms. After adding the secrets, use **Actions → Refresh Magic card prices → Run workflow** to test publishing. GitHub Pages then redeploys automatically when `data/magic-card-prices.json` changes.
+
+The website can display market-to-buylist and market-to-trade-in spreads. True ROI requires an actual acquisition cost; market price alone is not a profit estimate. The feed should only label GameStop as verified when it has a genuine eligible quote for the exact card/grade.
