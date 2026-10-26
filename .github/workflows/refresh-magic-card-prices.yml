@@ -1,0 +1,54 @@
+name: Refresh Magic card prices
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily refresh; publishing happens only after an authorized provider is configured.
+    - cron: "35 12 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: magic-card-price-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      MAGIC_CARD_PRICE_FEED_URL: ${{ secrets.MAGIC_CARD_PRICE_FEED_URL }}
+      MAGIC_CARD_PRICE_FEED_KEY: ${{ secrets.MAGIC_CARD_PRICE_FEED_KEY }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Explain missing authorized feed
+        if: ${{ !env.MAGIC_CARD_PRICE_FEED_URL || !env.MAGIC_CARD_PRICE_FEED_KEY }}
+        run: |
+          echo "::notice title=Magic pricing feed not configured::No licensed Magic pricing feed credentials are configured. No sites were scraped and no prices were fabricated."
+          echo "Add MAGIC_CARD_PRICE_FEED_URL and MAGIC_CARD_PRICE_FEED_KEY repository secrets for an authorized provider to enable automatic data publishing."
+
+      - name: Set up Python
+        if: ${{ env.MAGIC_CARD_PRICE_FEED_URL && env.MAGIC_CARD_PRICE_FEED_KEY }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh card price snapshot
+        if: ${{ env.MAGIC_CARD_PRICE_FEED_URL && env.MAGIC_CARD_PRICE_FEED_KEY }}
+        run: python scripts/refresh-magic-card-prices.py
+
+      - name: Publish snapshot to website
+        if: ${{ success() && env.MAGIC_CARD_PRICE_FEED_URL && env.MAGIC_CARD_PRICE_FEED_KEY }}
+        run: |
+          cp artifacts/magic-card-prices.json data/magic-card-prices.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/magic-card-prices.json
+          if git diff --cached --quiet; then
+            echo "No Magic card price changes to publish."
+          else
+            git commit -m "chore: refresh Magic card prices"
+            git push
+          fi
