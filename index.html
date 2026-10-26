@@ -19,7 +19,7 @@
   <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="LootGrind home"><span class="brand-mark">L<span>G</span></span><span>loot<span class="brand-light">grind</span></span></a>
-    <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#opportunity-scanner">Find best deal</a><a href="#calculator">Profit calculator</a><a href="#integrity">Data integrity</a></nav>
+    <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#opportunity-scanner">Find best deal</a><a href="#magic-cards">Magic cards</a><a href="#calculator">Profit calculator</a><a href="#integrity">Data integrity</a></nav>
     <a class="nav-cta" href="https://github.com/rike4545/LootGrind" target="_blank" rel="noreferrer">View on GitHub <span>↗</span></a>
   </header>
 
@@ -81,6 +81,32 @@
       <div class="scanner-actions"><button class="button button-primary" type="button" id="export-quotes">Export quotes CSV <span>↗</span></button><button class="button button-secondary" type="button" id="clear-quotes">Clear saved quotes</button><span id="save-status" role="status">Saved locally in this browser</span></div>
       <div class="ranking-panel"><div class="ranking-header"><div><div class="mini-label">LIVE RANKING</div><h3>Best estimated opportunities</h3></div><span class="live-dot">YOUR ENTRIES</span></div><div id="ranking-results"><p class="empty-ranking">Enter a retail price and trade-in quote for at least one product to see your ranking.</p></div></div>
       <p class="calc-disclaimer">Ranking uses estimated net after entered sales tax and extra costs. Store-credit results are labeled separately because credit is not cash. Automatic trade-in quotes appear only after an authorized provider feed is configured and its scheduled refresh succeeds. Retail purchase prices remain manual; verify exact product, condition, eligibility, and final offer before buying. Browser-local retail prices and cost entries do not sync across devices.</p>
+    </section>
+
+    <section class="section magic-section" id="magic-cards">
+      <div class="section-intro"><div class="eyebrow">MAGIC: THE GATHERING</div><h2>Compare card value<br><span>before you trade.</span></h2><p>Track the same printing across TCGplayer, PriceCharting, and Card Conduit, then compare against GameStop only when the card and grade qualify. Retail market price and buylist/trade-in payout are different things.</p></div>
+      <div class="magic-source-grid">
+        <a href="https://www.tcgplayer.com/categories/trading-and-collectible-card-games/magic-the-gathering/price-guides" target="_blank" rel="noreferrer"><strong>TCGplayer</strong><span>Market price / recent sales</span><small>Open price guides ↗</small></a>
+        <a href="https://www.pricecharting.com/category/magic-cards" target="_blank" rel="noreferrer"><strong>PriceCharting</strong><span>Price guide / historical context</span><small>Open Magic prices ↗</small></a>
+        <a href="https://cardconduit.com/card-price-check" target="_blank" rel="noreferrer"><strong>Card Conduit</strong><span>Optimized buylist estimate</span><small>Open price checker ↗</small></a>
+        <a href="https://www.gamestop.com/trade/" target="_blank" rel="noreferrer"><strong>GameStop</strong><span>Trade Center / eligibility check</span><small>Check trade-in ↗</small></a>
+      </div>
+      <p id="magic-feed-status" class="feed-status" role="status" aria-live="polite">Checking published Magic card price snapshot…</p>
+      <form class="magic-add-form" id="magic-add-form">
+        <label>Card name<input id="magic-name" required maxlength="120" placeholder="e.g. Sol Ring"></label>
+        <label>Set / printing<input id="magic-set" required maxlength="100" placeholder="e.g. Commander Masters"></label>
+        <label>Condition<select id="magic-condition"><option>Near Mint</option><option>Lightly Played</option><option>Moderately Played</option><option>Heavily Played</option><option>Damaged</option></select></label>
+        <label>Finish<select id="magic-finish"><option value="nonfoil">Nonfoil</option><option value="foil">Foil</option><option value="etched">Etched foil</option></select></label>
+        <button class="button button-primary" type="submit">Add card <span>＋</span></button>
+      </form>
+      <div class="scanner-table-wrap">
+        <table class="scanner-table magic-table">
+          <thead><tr><th>Card / printing</th><th>TCGplayer market ($)</th><th>PriceCharting ($)</th><th>Card Conduit buylist ($)</th><th>GameStop trade-in ($)</th><th>Best reference / spread</th><th>Source checks</th></tr></thead>
+          <tbody id="magic-rows"></tbody>
+        </table>
+      </div>
+      <div class="scanner-actions"><button class="button button-secondary" type="button" id="magic-export">Export Magic CSV <span>↗</span></button><button class="button button-secondary" type="button" id="magic-clear">Clear Magic list</button><span id="magic-save-status" role="status">Cards saved locally in this browser</span></div>
+      <p class="calc-disclaimer">Prices are not automatically pulled from these websites by this static page. TCGplayer restricts automated collection and no longer grants new API access; PriceCharting's API requires a paid subscription; Card Conduit's price checker is an interactive service, not a documented public feed. Automatic updates require an authorized data provider/feed. GameStop currently describes trading cards as PSA-graded cards, so do not treat a raw-card market price as a GameStop-eligible offer. Always confirm the exact set, collector number, language, condition, foil, and grade.</p>
     </section>
 
     <section class="calculator-section" id="calculator">
