@@ -64,7 +64,8 @@
       <div class="section-intro"><div class="eyebrow">AUTOMATED QUOTE TRACKER</div><h2>Find your best<br><span>trade-in opportunity.</span></h2><p>LootGrind can load verified trade-in quotes from a scheduled authorized feed and rank them against your retail prices and costs. The live feed is not configured yet, so enter a verified quote manually for now.</p></div>
       <div class="scanner-controls">
         <label>Sales tax rate (%) <input id="scanner-tax" type="number" min="0" max="30" step="0.001" placeholder="Enter local rate"></label>
-        <p>Use the actual checkout price and verify whether each GameStop offer is cash or store credit.</p>
+        <label>Usable store-credit value (%) <input id="scanner-credit-value" type="number" min="0" max="100" step="1" value="80" aria-describedby="credit-value-help"></label>
+        <p id="credit-value-help">Estimate what store credit is worth to you. The default 80% is only a starting assumption; adjust it to your own spending plans.</p>
       </div>
       <p id="feed-status" class="feed-status" role="status" aria-live="polite">Checking authorized quote feed…</p>      <div class="scanner-table-wrap">
         <table class="scanner-table">
@@ -118,8 +119,9 @@
         <div class="input-row"><label>Sales tax (%) <div class="input-wrap"><input id="tax" type="number" min="0" max="30" step="0.01" value="" placeholder="0.00" required><span>%</span></div></label><label>Extra costs <div class="input-wrap"><span>$</span><input id="costs" type="number" min="0" step="0.01" value="" placeholder="0.00" required></div></label></div>
         <label>Trade-in quote <div class="input-wrap"><span>$</span><input id="payout" type="number" min="0" step="0.01" value="" placeholder="Enter verified quote" required></div></label>
         <fieldset><legend>Payout type</legend><div class="choice-row"><label class="choice"><input type="radio" name="payoutType" value="cash" checked><span>Cash</span></label><label class="choice"><input type="radio" name="payoutType" value="credit"><span>Store credit</span></label></div></fieldset>
+        <label class="credit-value-field">Estimated usable store-credit value (%) <div class="input-wrap"><input id="calc-credit-value" type="number" min="0" max="100" step="1" value="80" required><span>%</span></div></label>
         <div class="calc-results"><div><span>ESTIMATED NET</span><strong id="net-result">$0.00</strong></div><div><span>ROI ON COST</span><strong id="roi-result">0.0%</strong></div></div>
-        <p class="calc-disclaimer" id="calc-note">Enter a verified retail price, tax rate, costs, and trade-in quote to calculate an estimate.</p>
+        <p class="calc-disclaimer" id="calc-note">Enter a verified retail price, tax rate, costs, and trade-in quote to calculate an estimate. Store credit is discounted using your estimated usable-value percentage.</p>
       </form>
     </section>
 
