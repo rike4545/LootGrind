@@ -28,6 +28,12 @@
   const taxField = document.getElementById("scanner-tax");
   const ranking = document.getElementById("ranking-results");
   const saveStatus = document.getElementById("save-status");
+  const feedStatus = document.getElementById("feed-status");
+  function setFeedStatus(message, state) {
+    if (!feedStatus) return;
+    feedStatus.textContent = message;
+    feedStatus.dataset.state = state || "info";
+  }
   const currency = value => (value < 0 ? "−$" : "$") + Math.abs(value).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const number = input => input.value.trim() === "" ? null : Number(input.value);
   const fieldsFor = row => Object.fromEntries(Array.from(row.querySelectorAll("[data-field]")).map(input => [input.dataset.field, input]));
@@ -205,7 +211,10 @@
       const snapshot = await response.json();
       if (!Array.isArray(snapshot.quotes) || snapshot.quotes.length === 0) {
         if (snapshot.provider === "not-configured") {
-          saveStatus.textContent = "Automatic quotes need an authorized feed to be configured";
+          saveStatus.textContent = "Authorized quote feed not configured";
+          setFeedStatus("Automatic trade-in quotes are not active yet. Add an authorized feed to enable scheduled updates; manual quotes still work.", "warning");
+        } else {
+          setFeedStatus("The latest snapshot contains no verified trade-in quotes. Check the authorized provider feed or enter quotes manually.", "warning");
         }
         return;
       }
@@ -227,11 +236,15 @@
         saveState();
         updateDates();
         renderRanking();
-        saveStatus.textContent = "Updated " + applied + " quote(s) from authorized feed · " +
-          (snapshot.generatedAt ? new Date(snapshot.generatedAt).toLocaleString() : "timestamp unavailable");
+        const updatedAt = snapshot.generatedAt ? new Date(snapshot.generatedAt).toLocaleString() : "timestamp unavailable";
+        saveStatus.textContent = "Updated " + applied + " quote(s) from authorized feed · " + updatedAt;
+        setFeedStatus("Authorized feed active · " + applied + " quote(s) loaded · snapshot generated " + updatedAt + ". Retail prices and extra costs are still entered by you.", "success");
+      } else {
+        setFeedStatus("An authorized quote snapshot was found, but all matching products are manually overridden or unsupported. Clear a manual quote to allow feed updates.", "info");
       }
     } catch (_) {
       saveStatus.textContent = "Automatic quote snapshot unavailable; manual tracking still works";
+      setFeedStatus("Couldn't load the published quote snapshot. Manual tracking is available; automatic quotes require a working authorized feed and site deployment.", "warning");
     }
   }
 
