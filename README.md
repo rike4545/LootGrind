@@ -19,7 +19,7 @@ LootGrind is an independent native iOS project for researching retail-to-trade-i
 
 ## Current iOS project status
 
-The app currently includes a SwiftUI interface, deal model/store, Best Buy Products API provider, Walmart search provider, and unit tests. Best Buy requires a developer API key entered in the app. Walmart search results depend on a configured SerpApi key and should be treated as unverified until checked against the retailer listing. Trade-in values can be entered manually or refreshed through the authorized-feed adapter when you have an approved/licensed feed endpoint. There is no direct GameStop integration bundled, and backend scheduling, push notifications, and local pickup inventory are not yet complete.
+The app currently includes a SwiftUI interface, deal model/store, Best Buy Products API provider, Walmart search provider, and unit tests. Best Buy requires a developer API key entered in the app. Walmart search results depend on a configured SerpApi key and should be treated as unverified until checked against the retailer listing. Trade-in values can be entered manually or refreshed through the authorized-feed adapter when you have an approved/licensed feed endpoint. A daily GitHub Actions job now supports scheduled refreshes from that authorized feed; it requires provider credentials and a populated watchlist before it can run successfully. There is no direct GameStop integration bundled.
 
 The website includes a standalone profit estimator. Its sample deal card is explicitly illustrative and is not connected to live retailer prices or trade-in offers.
 
@@ -63,9 +63,18 @@ Configure an HTTPS endpoint and bearer API key in **Sources → Authorized trade
 - `payoutType` must be `Cash` or `Store Credit`.
 - `quotedAt` is an ISO-8601 timestamp; if omitted, the retrieval time is used.
 - `source` identifies the licensed provider; if omitted, LootGrind labels it as an authorized trade-in feed.
-- The adapter refreshes quotes for identifiers already in LootGrind. It does not discover the entire GameStop catalog by itself.
+- The iOS adapter refreshes identifiers already in the app. The scheduled backend job reads identifiers from `data/trade-in-watchlist.json`, queries the configured feed for each one, validates matching identifiers and payout values, and uploads a JSON snapshot as a GitHub Actions artifact named `lootgrind-trade-in-quotes` (retained for 14 days). It does not discover the entire GameStop catalog by itself.
 
-**Important:** This is a connector adapter, not a GameStop API key or a claim that GameStop offers a public trade-in API. Do not enter a GameStop website URL as the feed endpoint. A working feed requires a provider endpoint and credentials that you are permitted to use.
+**Important:** This is a connector adapter and scheduled feed poller, not a GameStop API key or a claim that GameStop offers a public trade-in API. Do not enter a GameStop website URL as the feed endpoint. A working feed requires a provider endpoint and credentials that you are permitted to use.
+
+### Enable scheduled refresh
+
+1. Replace the example placeholder in `data/trade-in-watchlist.json` with real UPCs or model numbers.
+2. In **Settings → Secrets and variables → Actions**, add repository secrets named `TRADE_IN_FEED_URL` and `TRADE_IN_FEED_KEY` for your licensed provider.
+3. Open **Actions → Refresh authorized trade-in quotes** and choose **Run workflow** to test it. Once configured, it runs daily at 12:20 UTC.
+4. Open the successful run and download the `lootgrind-trade-in-quotes` artifact. The job intentionally fails when credentials are missing or no valid quotes are returned.
+
+The workflow does not commit quotes into the repository or publish them to the public website. It produces a validated snapshot artifact; wiring that snapshot into the app or a hosted API is a separate integration step.
 
 ## Data integrity principles
 
@@ -84,11 +93,10 @@ Configure an HTTPS endpoint and bearer API key in **Sources → Authorized trade
 
 ## Planned milestones
 
-1. Add a backend scanner for supported retail sources.
-2. Add an authorized GameStop trade-in quote source and exact-SKU matching.
-3. Add scheduled refresh and push notifications.
-4. Add location permissions and local pickup availability.
-5. Expand tests for tax, fees, stale offers, payout type, and matching edge cases.
+1. Connect a licensed trade-in feed and populate the scheduled watchlist.
+2. Publish quote snapshots to a secure API consumable by the app.
+3. Add push notifications and local pickup availability.
+4. Expand tests for tax, fees, stale offers, payout type, and matching edge cases.
 
 ## Disclaimer
 
