@@ -87,3 +87,15 @@
 .magic-price-status.is-unknown{color:#929889}
 @media(max-width:900px){.magic-filter-bar{grid-template-columns:repeat(2,minmax(0,1fr))}.magic-filter-bar label:first-child{grid-column:1/-1}.magic-filter-bar .button{width:100%}}
 @media(max-width:520px){.magic-filter-bar{grid-template-columns:1fr;padding:13px}.magic-filter-bar label:first-child{grid-column:auto}#magic-filter-count{grid-column:auto}}
+
+/* PSA certification lookup shortcut */
+.psa-lookup-panel{display:grid;grid-template-columns:minmax(220px,1fr) minmax(300px,1.1fr);gap:22px;align-items:center;margin:20px 0;padding:20px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.psa-lookup-copy h3{margin:7px 0 8px;font-size:18px;letter-spacing:-.03em}
+.psa-lookup-copy p,.psa-lookup-status{color:var(--muted);font-size:11px;line-height:1.65}
+.psa-cert-form{display:flex;flex-direction:column;gap:9px}
+.psa-cert-form label{color:var(--muted);font-size:10px}
+.psa-cert-form input{width:100%;min-height:42px;padding:11px 12px;border:1px solid #393d32;border-radius:6px;background:#11120f;color:var(--text);font:12px var(--mono)}
+.psa-lookup-actions{display:flex;flex-wrap:wrap;gap:8px}
+.psa-lookup-actions .button{min-height:38px;cursor:pointer}
+.psa-lookup-status{margin:2px 0 0}
+@media(max-width:760px){.psa-lookup-panel{grid-template-columns:1fr;padding:15px}.psa-lookup-actions{flex-direction:column}.psa-lookup-actions .button{width:100%}}
