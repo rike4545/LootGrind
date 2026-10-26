@@ -266,7 +266,7 @@
     { key: "tcgplayerMarket", label: "TCGplayer", url: "https://www.tcgplayer.com/categories/trading-and-collectible-card-games/magic-the-gathering/price-guides" },
     { key: "pricechartingPrice", label: "PriceCharting", url: "https://www.pricecharting.com/category/magic-cards" },
     { key: "cardConduitBuylist", label: "Card Conduit", url: "https://cardconduit.com/card-price-check" },
-    { key: "gamestopTradeValue", label: "GameStop", url: "https://www.gamestop.com/trade/" }
+    { key: "gamestopTradeValue", label: "GameStop graded-card trade-in", url: "https://www.gamestop.com/graded-trading-cards/estimate" }
   ];
   function saveMagic() {
     try { localStorage.setItem(magicStorageKey, JSON.stringify(magicCards)); magicSaveStatus.textContent = "Cards saved locally in this browser"; }
@@ -354,7 +354,7 @@
         ["Search PSA Price Guide ↗", "https://www.psacard.com/priceguide"],
         ["Search PriceCharting ↗", "https://www.pricecharting.com/search-products?type=prices&q=" + q],
         ["Card Conduit checker ↗", "https://cardconduit.com/card-price-check"],
-        ["GameStop Trade Center ↗", "https://www.gamestop.com/trade/"]
+        ["GameStop graded-card estimator ↗", "https://www.gamestop.com/graded-trading-cards/estimate"]
       ];
       links.forEach(([label, href]) => { const a = document.createElement("a"); a.href = href; a.target = "_blank"; a.rel = "noreferrer"; a.textContent = label; linksCell.appendChild(a); });
       const remove = document.createElement("button"); remove.type = "button"; remove.className = "magic-remove"; remove.textContent = "Remove";
@@ -385,7 +385,7 @@
     magicCards = []; saveMagic(); renderMagic();
   });
   document.getElementById("magic-export").addEventListener("click", () => {
-    const headers = ["Card", "Set/printing", "Condition", "Finish", "TCGplayer raw market", "PriceCharting", "Card Conduit buylist", "GameStop trade-in", "PSA grade", "PSA graded guide value", "PSA guide checked at"];
+    const headers = ["Card", "Set/printing", "Condition", "Finish", "TCGplayer raw market", "PriceCharting", "Card Conduit buylist", "GameStop graded-card trade-in quote", "PSA grade", "PSA graded guide value", "PSA guide checked at"];
     const values = magicCards.map(card => [card.name, card.set, card.condition, card.finish, card.tcgplayerMarket, card.pricechartingPrice, card.cardConduitBuylist, card.gamestopTradeValue, card.psaGrade || "10", card.psaGradedValue, card.psaPriceGuideCheckedAt]);
     const csv = [headers, ...values].map(line => line.map(value => '"' + String(value ?? "").replace(/"/g, '""') + '"').join(",")).join("\r\n");
     const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
