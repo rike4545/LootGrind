@@ -96,18 +96,18 @@
       <p id="magic-feed-status" class="feed-status" role="status" aria-live="polite">Checking published Magic card price snapshot…</p>
       <div class="psa-lookup-panel" aria-labelledby="psa-lookup-title">
         <div class="psa-lookup-copy">
-          <div class="mini-label">GRADED CARD SHORTCUT</div>
-          <h3 id="psa-lookup-title">Look up a PSA certification number</h3>
-          <p>Use one certificate number to jump to PSA verification or GameStop’s official estimate form. LootGrind will copy the number for you when your browser allows it.</p>
+          <div class="mini-label">PSA / PSA-DNA CERT LOOKUP</div>
+          <h3 id="psa-lookup-title">Search a certification number</h3>
+          <p>Enter the number printed on a PSA-graded card, autograph label, or PSA/DNA certificate. Open the matching official PSA record directly, or use the separate GameStop estimate shortcut.</p>
         </div>
         <form id="psa-cert-form" class="psa-cert-form">
-          <label for="psa-cert-number">PSA certification number</label>
-          <input id="psa-cert-number" name="psa-cert-number" type="text" inputmode="numeric" autocomplete="off" maxlength="20" pattern="[0-9]{1,20}" placeholder="Enter digits from the slab label" required>
+          <label for="psa-cert-number">PSA or PSA/DNA certification number</label>
+          <input id="psa-cert-number" name="psa-cert-number" type="text" inputmode="numeric" autocomplete="off" maxlength="20" pattern="[0-9]{1,20}" placeholder="Enter certification digits" aria-describedby="psa-lookup-status" required>
           <div class="psa-lookup-actions">
-            <button class="button button-primary" type="button" id="psa-open-gamestop">Open GameStop estimate ↗</button>
-            <button class="button button-secondary" type="button" id="psa-open-verify">Open PSA verification ↗</button>
+            <button class="button button-primary" type="button" id="psa-open-verify">Search PSA / PSA-DNA record ↗</button>
+            <button class="button button-secondary" type="button" id="psa-open-gamestop">Open GameStop estimate ↗</button>
           </div>
-          <p id="psa-lookup-status" class="psa-lookup-status" role="status" aria-live="polite">The GameStop estimate must be confirmed on GameStop’s site; LootGrind does not currently have a supported direct quote feed.</p>
+          <p id="psa-lookup-status" class="psa-lookup-status" role="status" aria-live="polite">PSA’s official certification search supports both PSA and PSA/DNA numbers. GameStop’s estimate is a separate workflow; confirm its offer on GameStop’s site.</p>
         </form>
       </div>
       <form class="magic-add-form" id="magic-add-form">
