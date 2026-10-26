@@ -277,7 +277,7 @@
     if (!magicCards.length) {
       const row = document.createElement("tr");
       const cell = document.createElement("td");
-      cell.colSpan = 7;
+      cell.colSpan = 8;
       cell.className = "magic-empty";
       cell.textContent = "Add a Magic card above to track the exact printing, condition, and finish.";
       row.appendChild(cell); magicRows.appendChild(row); return;
@@ -305,6 +305,41 @@
         if (checked) { const small = document.createElement("small"); small.textContent = "Checked " + new Date(checked).toLocaleDateString(); cell.appendChild(small); }
         row.appendChild(cell);
       });
+      // PSA guide values apply only to the selected PSA-graded copy. They never enter raw-market spread calculations.
+      const psaCell = document.createElement("td");
+      psaCell.className = "magic-psa-value";
+      const gradeLabel = document.createElement("label");
+      gradeLabel.className = "magic-psa-grade-label";
+      gradeLabel.textContent = "PSA grade";
+      const gradeSelect = document.createElement("select");
+      gradeSelect.setAttribute("aria-label", "PSA grade for " + card.name);
+      ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "Authentic"].forEach(grade => {
+        const option = document.createElement("option");
+        option.value = grade; option.textContent = grade;
+        gradeSelect.appendChild(option);
+      });
+      gradeSelect.value = card.psaGrade || "10";
+      gradeSelect.addEventListener("change", () => {
+        card.psaGrade = gradeSelect.value;
+        saveMagic(); renderMagic();
+      });
+      const psaInput = document.createElement("input");
+      psaInput.className = "magic-value";
+      psaInput.type = "number"; psaInput.min = "0"; psaInput.step = ".01";
+      psaInput.placeholder = "Manual only";
+      psaInput.value = card.psaGradedValue ?? "";
+      psaInput.setAttribute("aria-label", "PSA Price Guide value for " + card.name + ", PSA grade " + gradeSelect.value);
+      psaInput.addEventListener("change", () => {
+        const value = psaInput.value.trim();
+        card.psaGradedValue = value === "" ? "" : String(Math.max(0, Number(value) || 0));
+        card.psaPriceGuideCheckedAt = value === "" ? "" : new Date().toISOString();
+        saveMagic(); renderMagic();
+      });
+      const gradeNote = document.createElement("small");
+      gradeNote.textContent = card.psaPriceGuideCheckedAt ? "Checked " + new Date(card.psaPriceGuideCheckedAt).toLocaleDateString() : "PSA-graded only";
+      gradeLabel.appendChild(gradeSelect);
+      psaCell.append(gradeLabel, psaInput, gradeNote);
+      row.appendChild(psaCell);
       const spreadCell = document.createElement("td"); spreadCell.className = "magic-spread";
       const marketValues = [safeNumber(card.tcgplayerMarket), safeNumber(card.pricechartingPrice)].filter(v => v !== null);
       const bestMarket = marketValues.length ? Math.max(...marketValues) : null;
@@ -316,6 +351,7 @@
       const q = encodeURIComponent(card.name + " " + card.set);
       const links = [
         ["Search TCGplayer ↗", "https://www.tcgplayer.com/search/magic/product?q=" + q],
+        ["Search PSA Price Guide ↗", "https://www.psacard.com/priceguide"],
         ["Search PriceCharting ↗", "https://www.pricecharting.com/search-products?type=prices&q=" + q],
         ["Card Conduit checker ↗", "https://cardconduit.com/card-price-check"],
         ["GameStop Trade Center ↗", "https://www.gamestop.com/trade/"]
@@ -334,7 +370,8 @@
       set: document.getElementById("magic-set").value.trim(),
       condition: document.getElementById("magic-condition").value,
       finish: document.getElementById("magic-finish").value,
-      tcgplayerMarket: "", pricechartingPrice: "", cardConduitBuylist: "", gamestopTradeValue: ""
+      tcgplayerMarket: "", pricechartingPrice: "", cardConduitBuylist: "", gamestopTradeValue: "",
+      psaGrade: "10", psaGradedValue: "", psaPriceGuideCheckedAt: ""
     };
     if (!card.name || !card.set) return;
     const key = magicKey(card);
@@ -348,8 +385,8 @@
     magicCards = []; saveMagic(); renderMagic();
   });
   document.getElementById("magic-export").addEventListener("click", () => {
-    const headers = ["Card", "Set/printing", "Condition", "Finish", "TCGplayer market", "PriceCharting", "Card Conduit buylist", "GameStop trade-in"];
-    const values = magicCards.map(card => [card.name, card.set, card.condition, card.finish, card.tcgplayerMarket, card.pricechartingPrice, card.cardConduitBuylist, card.gamestopTradeValue]);
+    const headers = ["Card", "Set/printing", "Condition", "Finish", "TCGplayer raw market", "PriceCharting", "Card Conduit buylist", "GameStop trade-in", "PSA grade", "PSA graded guide value", "PSA guide checked at"];
+    const values = magicCards.map(card => [card.name, card.set, card.condition, card.finish, card.tcgplayerMarket, card.pricechartingPrice, card.cardConduitBuylist, card.gamestopTradeValue, card.psaGrade || "10", card.psaGradedValue, card.psaPriceGuideCheckedAt]);
     const csv = [headers, ...values].map(line => line.map(value => '"' + String(value ?? "").replace(/"/g, '""') + '"').join(",")).join("\r\n");
     const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8;" }));
     const link = document.createElement("a"); link.href = url; link.download = "lootgrind-magic-card-prices.csv"; link.click(); URL.revokeObjectURL(url);
@@ -372,7 +409,8 @@
           card = {
             name: String(quote.name), set: String(quote.set),
             condition: String(quote.condition), finish: String(quote.finish),
-            tcgplayerMarket: "", pricechartingPrice: "", cardConduitBuylist: "", gamestopTradeValue: ""
+            tcgplayerMarket: "", pricechartingPrice: "", cardConduitBuylist: "", gamestopTradeValue: "",
+            psaGrade: "10", psaGradedValue: "", psaPriceGuideCheckedAt: ""
           };
           magicCards.push(card);
         }
