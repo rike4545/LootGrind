@@ -5,6 +5,8 @@ import SwiftUI
 final class DealStore: ObservableObject {
     @AppStorage("bestBuyAPIKey") var apiKey = ""
     @AppStorage("walmartSearchKey") var walmartSearchKey = ""
+    @AppStorage("authorizedTradeInFeedURL") var authorizedTradeInFeedURL = ""
+    @AppStorage("authorizedTradeInFeedKey") var authorizedTradeInFeedKey = ""
     @AppStorage("taxPercent") var taxPercent = 7.0
 
     @Published private(set) var quotes: [TradeInQuote] = []
@@ -48,23 +50,52 @@ final class DealStore: ObservableObject {
         isRefreshing = true
         errorMessage = nil
         defer { isRefreshing = false }
-        let providers: [ListingProvider] = [
+
+        var errors: [String] = []
+        var fetchedListings: [RetailListing] = []
+        var refreshedQuotes: [TradeInQuote] = []
+
+        let listingProviders: [ListingProvider] = [
             BestBuyProvider(apiKey: apiKey),
             WalmartSearchProvider(apiKey: walmartSearchKey)
         ].filter(\.isConfigured)
-        guard !providers.isEmpty else {
+
+        let quoteProvider = AuthorizedTradeInFeedProvider(
+            endpoint: authorizedTradeInFeedURL,
+            apiKey: authorizedTradeInFeedKey
+        )
+
+        guard !listingProviders.isEmpty || quoteProvider.isConfigured else {
             errorMessage = ProviderError.missingAPIKey.localizedDescription
             return
         }
-        var fetched: [RetailListing] = []
-        var errors: [String] = []
-        for provider in providers {
-            for identifier in Set(quotes.map(\.normalizedIdentifier)) {
-                do { fetched += try await provider.listings(for: identifier) }
+
+        let identifiers = Set(quotes.map(\.normalizedIdentifier))
+        for provider in listingProviders {
+            for identifier in identifiers {
+                do { fetchedListings += try await provider.listings(for: identifier) }
                 catch { errors.append("\(provider.name): \(error.localizedDescription)") }
             }
         }
-        listings = fetched
+
+        if quoteProvider.isConfigured {
+            for identifier in identifiers {
+                do { refreshedQuotes += try await quoteProvider.quotes(for: identifier) }
+                catch { errors.append("Trade-in feed: \(error.localizedDescription)") }
+            }
+        }
+
+        listings = fetchedListings
+        if quoteProvider.isConfigured {
+            let manualQuotes = quotes.filter { !$0.source.hasPrefix("Authorized feed:") }
+            let markedQuotes = refreshedQuotes.map { quote in
+                var quote = quote
+                quote.source = "Authorized feed: \(quote.source)"
+                return quote
+            }
+            quotes = manualQuotes + markedQuotes
+            persist()
+        }
         lastRefresh = Date()
         errorMessage = errors.isEmpty ? nil : Array(Set(errors)).sorted().joined(separator: "\n")
     }
