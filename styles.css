@@ -259,3 +259,155 @@ footer a{transition:color .18s}
 @media(prefers-reduced-motion:reduce){
   .step-card:hover,.magic-source-grid a:hover{transform:none}
 }
+
+
+/* LootGrind GameStop-inspired retail gaming theme — independent, not affiliated with GameStop. */
+:root{
+  --bg:#090909;
+  --panel:#141414;
+  --panel2:#1d1d1d;
+  --text:#f7f7f7;
+  --muted:#b7b7b7;
+  --line:#363636;
+  --lime:#ef233c;
+  --lime2:#c8102e;
+  --surface-shadow:0 18px 54px #0009;
+}
+body{
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 82% -12%,#e3183724,transparent 38rem),
+    radial-gradient(ellipse at 0% 42%,#ffffff06,transparent 34rem),
+    repeating-linear-gradient(135deg,#ffffff03 0,#ffffff03 1px,transparent 1px,transparent 12px),
+    var(--bg);
+}
+::selection{background:#e31837;color:#fff}
+.site-header{
+  background:#090909ed;
+  border-bottom:2px solid #e31837;
+  box-shadow:0 8px 30px #0008;
+}
+.brand{font-weight:800;text-transform:uppercase;letter-spacing:-.7px}
+.brand-mark{
+  background:#e31837;color:#fff;border-radius:4px;
+  box-shadow:0 0 0 2px #e3183728,0 6px 22px #e3183730;
+}
+.brand-mark span,.brand-light{color:#ff465b}
+.site-header nav a{font-weight:700;color:#d4d4d4}
+.site-header nav a:hover,.site-header nav a:focus-visible{color:#ff465b}
+.nav-cta{border-color:#e31837;color:#fff;background:#e3183710;border-radius:5px;font-weight:800}
+.nav-cta:hover{border-color:#ff465b;background:#e3183722}
+.eyebrow,.mini-label{color:#ff465b;letter-spacing:1.8px;font-weight:800}
+.pulse,.live-dot:before{background:#e31837;box-shadow:0 0 14px #e3183780}
+.hero{position:relative}
+.hero h1{font-weight:800;letter-spacing:-.065em}
+.hero h1 span,.section h2 span,.calculator-copy h2 span{color:#ff334e}
+.hero-description{color:#d0d0d0}
+.hero-note{border-left-color:#e31837}
+.button{border-radius:5px;text-transform:uppercase;font-weight:800;letter-spacing:.035em}
+.button-primary{
+  color:#fff;background:#e31837;border:1px solid #e31837;
+  box-shadow:0 8px 24px #e3183726;
+}
+.button-primary:hover{background:#c8102e;border-color:#ff465b;box-shadow:0 10px 30px #e3183740}
+.button-secondary{background:#151515;border:1px solid #555;color:#f5f5f5}
+.button-secondary:hover{border-color:#e31837;background:#e3183712}
+.product-card{
+  background:linear-gradient(145deg,#1b1b1b,#101010);
+  border:1px solid #444;border-top:3px solid #e31837;border-radius:8px;
+}
+.card-top,.card-foot{border-color:#353535}
+.status-pill{border-color:#e31837;color:#ff6678;border-radius:4px}
+.status-pill>span{background:#e31837}
+.watch-item{border-color:#303030}
+.watch-item:hover{background:#ffffff07}
+.watch-icon{background:#e3183718;border:1px solid #e3183750;color:#ff5a6e;border-radius:5px;font-weight:800}
+.watch-details h3{color:#fff}
+.watch-item>a{color:#ff465b}
+.card-foot{color:#c4c4c4}
+.ticker{background:#e31837;color:#fff;border-color:#e31837;font-weight:800}
+.ticker span{color:#fff9}
+.ticker i{background:#ffffff80}
+.section h2,.calculator-copy h2,.retailers h2{font-weight:800}
+.step-card{
+  background:linear-gradient(145deg,#1b1b1b,#111);
+  border:1px solid #353535;border-radius:7px;
+}
+.step-card:hover{border-color:#e31837;box-shadow:0 15px 36px #e3183710}
+.step-number{color:#ff465b}
+.step-icon{background:#e3183712;border:1px solid #e3183745;border-radius:6px;color:#ff465b}
+.step-tag{color:#ff465b;border-color:#e3183740}
+.calculator-section{background:linear-gradient(110deg,#151515,#1c1113 58%,#101010);border-color:#3b2528}
+.calculator{background:#0c0c0c;border-color:#414141;border-radius:7px}
+.input-wrap,.scanner-controls input,.scanner-table input,.scanner-table select,
+.magic-add-form input,.magic-add-form select,.magic-table input,.magic-table select,
+.magic-filter-bar input,.magic-filter-bar select,.psa-cert-form input,#psa-cert-number{
+  background:#0b0b0b;border-color:#454545;color:#fff;border-radius:5px;
+}
+.input-wrap:focus-within,.scanner-controls input:focus,.scanner-table input:focus,
+.scanner-table select:focus,.magic-add-form input:focus,.magic-add-form select:focus,
+.magic-table input:focus,.magic-table select:focus,.magic-filter-bar input:focus,
+.magic-filter-bar select:focus,.psa-cert-form input:focus,#psa-cert-number:focus{
+  border-color:#ff334e;box-shadow:0 0 0 3px #e318371c;
+}
+.choice span{border-radius:5px}
+.choice input:checked+span{border-color:#e31837;background:#e3183718}
+.calc-results>div{background:#171717;border-color:#3c3c3c;border-radius:6px}
+.calc-results strong,.ranking-positive{color:#ff465b}
+.integrity-check{color:#ff465b;border-color:#e31837}
+.integrity-item{border-color:#353535}
+.retailers{background:#111;border-top:1px solid #333;border-bottom:1px solid #333}
+.retailer-logos>*,.retailer-logo{filter:grayscale(1);opacity:.85}
+.closing{background:linear-gradient(115deg,#1a1012,#111);border-color:#4b292e;border-radius:7px}
+.closing:hover{border-color:#e31837}
+footer{border-color:#333}
+footer a:hover{color:#ff465b}
+.scanner-table-wrap,.magic-table-wrap,.magic-table-container{
+  border:1px solid #3b3b3b;border-radius:6px;background:#101010;
+}
+.scanner-table th,.magic-table th{background:#202020;color:#f1f1f1;border-bottom:2px solid #e31837}
+.scanner-table td,.magic-table td{border-bottom-color:#292929}
+.scanner-table tbody tr:hover,.magic-table tbody tr:hover{background:#e318370b}
+.scanner-table input,.scanner-table select,.magic-add-form input,.magic-add-form select,
+.magic-table input,.magic-table select,.magic-filter-bar input,.magic-filter-bar select{min-height:40px}
+.scanner-actions .button{border-radius:5px}
+.ranking-panel{background:linear-gradient(145deg,#191919,#101010);border:1px solid #424242;border-top:2px solid #e31837;border-radius:7px}
+.ranking-item{border-bottom-color:#303030}
+.ranking-positive{color:#ff465b}
+.ranking-negative{color:#ffb3bc}
+.feed-status{background:#171717;border-color:#454545;border-radius:5px}
+.feed-status:before{background:#bdbdbd}
+.feed-status[data-state="warning"]{border-color:#e31837;color:#ffc2ca}
+.feed-status[data-state="warning"]:before,.feed-status[data-state="success"]:before{background:#e31837}
+.feed-status[data-state="success"]{border-color:#71303a;color:#ffb8c1}
+.magic-source-grid a,.magic-add-form{
+  background:linear-gradient(145deg,#1a1a1a,#111);
+  border-color:#393939;border-radius:6px;
+}
+.magic-source-grid a:hover{border-color:#e31837;box-shadow:0 12px 28px #e3183712}
+.magic-source-grid small,.magic-table .magic-source-links a{color:#ff465b}
+.magic-add-form button{border-radius:5px}
+.magic-remove{border-color:#66313a;background:#251114;color:#ff9eab;border-radius:5px}
+.magic-remove:hover{background:#3b141b;border-color:#e31837}
+.magic-filter-bar{background:#161616;border-color:#393939;border-radius:6px}
+.magic-filter-bar .button{border-radius:5px}
+.magic-price-status.is-fresh{color:#f0f0f0}
+.magic-price-status.is-stale{color:#ff8e9b}
+.psa-lookup-panel,.psa-lookup,.psa-cert-panel{
+  background:linear-gradient(135deg,#1b1b1b,#111);
+  border-color:#454545;border-top:2px solid #e31837;border-radius:7px;
+}
+.psa-lookup-actions .button{border-radius:5px}
+#psa-cert-form button{border-radius:5px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid #ff465b;outline-offset:3px;
+}
+@media(max-width:650px){
+  .site-header{border-bottom-width:2px}
+  .hero h1{letter-spacing:-.06em}
+  .product-card{border-radius:7px}
+  .button{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
