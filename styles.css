@@ -411,3 +411,40 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+
+/* Dated Magic: The Gathering GameStop trade-in research snapshot. */
+.mtg-roi-section{padding-top:36px}
+.mtg-roi-alert,.mtg-roi-method,.mtg-roi-secondary{
+  border:1px solid #49363a;background:linear-gradient(145deg,#191516,#101010);
+  border-radius:8px;padding:22px;margin:22px 0;color:var(--text)
+}
+.mtg-roi-alert{border-top:3px solid #e31837}
+.mtg-roi-alert strong,.mtg-roi-method strong{color:#fff}
+.mtg-roi-alert p,.mtg-roi-method p{color:#c9c9c9;line-height:1.7;margin:9px 0 14px}
+.mtg-roi-alert .button{display:inline-flex;width:auto;margin-top:5px}
+.mtg-roi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}
+.mtg-roi-card{background:linear-gradient(145deg,#1a1a1a,#101010);border:1px solid #393939;border-top:2px solid #e31837;border-radius:7px;padding:20px;min-width:0}
+.mtg-roi-rank{font:500 11px "DM Mono",monospace;letter-spacing:1.5px;color:#ff465b;margin-bottom:12px}
+.mtg-roi-card h3,.mtg-roi-secondary h3,.mtg-roi-method h3{font-size:18px;line-height:1.35;margin:0 0 8px;color:#fff}
+.mtg-roi-meta{font-size:12px;line-height:1.6;color:#bdbdbd;min-height:40px;margin:0 0 18px}
+.mtg-roi-metrics{display:grid;grid-template-columns:1fr;gap:0}
+.mtg-roi-metrics>div{padding:12px 0;border-top:1px solid #303030;display:flex;flex-direction:column;gap:4px}
+.mtg-roi-metrics span{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:#bdbdbd}
+.mtg-roi-metrics strong{font:700 19px Manrope,sans-serif;overflow-wrap:anywhere}
+.mtg-roi-metrics small{font-size:11px;line-height:1.5;color:#a9a9a9}
+.mtg-roi-positive{color:#ff6478}
+.mtg-roi-metrics .mtg-roi-unverified{font-size:16px;color:#ffc2ca}
+.mtg-roi-caveat{font-size:12px;line-height:1.65;color:#bcbcbc;border-top:1px dashed #3c3c3c;padding-top:14px}
+.mtg-roi-links{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:16px}
+.mtg-roi-links a,.mtg-roi-secondary a,.mtg-roi-method a{color:#ff6678;text-decoration:underline;text-underline-offset:3px;font-size:12px}
+.mtg-roi-secondary ul{padding-left:20px;margin-bottom:0}
+.mtg-roi-secondary li{color:#c7c7c7;font-size:13px;line-height:1.75;margin:12px 0}
+.mtg-roi-method{background:#111}
+@media(max-width:1000px){.mtg-roi-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){
+  .mtg-roi-grid{grid-template-columns:1fr}
+  .mtg-roi-alert,.mtg-roi-method,.mtg-roi-secondary{padding:17px}
+  .mtg-roi-card{padding:17px}
+  .mtg-roi-alert .button{width:100%}
+}
