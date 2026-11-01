@@ -127,14 +127,14 @@
       const roi = totalCost > 0 ? net / totalCost * 100 : 0;
       const checkedAt = row.dataset.checkedAt || "";
       const ageDays = checkedAt ? Math.floor((Date.now() - new Date(checkedAt).getTime()) / 86400000) : null;
-      opportunities.push({ name: row.dataset.product, net, roi, payout: f.payout.value, effectivePayout, creditPercent, totalCost, checkedAt, ageDays });
+      if (net <= 0) return; // The opportunity ranking must never promote a losing trade.\n      opportunities.push({ name: row.dataset.product, net, roi, payout: f.payout.value, effectivePayout, creditPercent, totalCost, checkedAt, ageDays });
     });
     opportunities.sort((a, b) => b.net - a.net);
     ranking.replaceChildren();
     if (!opportunities.length) {
       const p = document.createElement("p");
       p.className = "empty-ranking";
-      p.textContent = "Enter a retail price and trade-in quote for at least one product to see your ranking.";
+      p.textContent = "No positive-spread opportunities yet. Enter matching acquisition costs and current quotes; losing trades stay off this list.";
       ranking.appendChild(p);
       return;
     }
